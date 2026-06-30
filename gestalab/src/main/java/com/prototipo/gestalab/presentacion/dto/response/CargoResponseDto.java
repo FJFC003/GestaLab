@@ -1,17 +1,17 @@
 package com.prototipo.gestalab.presentacion.dto.response;
 
-public class AreaResponseDto {
+public class CargoResponseDto {
 	
-	private int idArea;
+	private int idCargo;
 	private String nombre;
 	private String descripcion;
-	private boolean estadoArea;
+	private boolean estadoCargo;
 	
-	public int getIdArea() {
-		return idArea;
+	public int getIdCargo() {
+		return idCargo;
 	}
-	public void setIdArea(int idArea) {
-		this.idArea = idArea;
+	public void setIdCargo(int idCargo) {
+		this.idCargo = idCargo;
 	}
 	public String getNombre() {
 		return nombre;
@@ -25,11 +25,11 @@ public class AreaResponseDto {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public boolean isEstadoArea() {
-		return estadoArea;
+	public boolean isEstadoCargo() {
+		return estadoCargo;
 	}
-	public void setEstadoArea(boolean estadoArea) {
-		this.estadoArea = estadoArea;
+	public void setEstadoCargo(boolean estadoCargo) {
+		this.estadoCargo = estadoCargo;
 	}
 	
 	
