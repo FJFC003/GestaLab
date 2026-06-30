@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.CargoEntity;
 
-public interface ICargoRepositorio extends JpaRepository<CargoEntity, Integer> {
+public interface ICargoJpaRepositorio extends JpaRepository<CargoEntity, Integer> {
 
 }

@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.AreaEntity;
 
-public interface IAreaRepositorio extends JpaRepository<AreaEntity, Integer>{
+public interface IAreaJpaRepositorio extends JpaRepository<AreaEntity, Integer>{
 	
 	
 

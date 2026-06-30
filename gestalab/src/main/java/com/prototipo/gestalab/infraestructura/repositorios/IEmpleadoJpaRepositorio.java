@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.EmpleadoEntity;
 
-public interface IEmpleadoRepositorio extends JpaRepository<EmpleadoEntity, Integer> {
+public interface IEmpleadoJpaRepositorio extends JpaRepository<EmpleadoEntity, Integer> {
 
 }

@@ -12,33 +12,33 @@ import com.prototipo.gestalab.infraestructura.persistencia.jpa.EmpleadoEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.FirmaElectronicaEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.RolEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuarioEntity;
-import com.prototipo.gestalab.infraestructura.repositorios.IAreaRepositorio;
-import com.prototipo.gestalab.infraestructura.repositorios.ICargoRepositorio;
-import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoRepositorio;
-import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaRepositorio;
-import com.prototipo.gestalab.infraestructura.repositorios.IRolRepositorio;
-import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IAreaJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ICargoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioJpaRepositorio;
 
 @SpringBootTest
 class GestalabApplicationTests {
 	
 	@Autowired
-	IEmpleadoRepositorio repoEmpleado;
+	IEmpleadoJpaRepositorio repoEmpleado;
 	
 	@Autowired
-	IAreaRepositorio repoArea;
+	IAreaJpaRepositorio repoArea;
 	
 	@Autowired
-	ICargoRepositorio repoCargo;
+	ICargoJpaRepositorio repoCargo;
 	
 	@Autowired
-	IFirmaElectronicaRepositorio repoFirma;
+	IFirmaElectronicaJpaRepositorio repoFirma;
 	
 	@Autowired
-	IRolRepositorio repoRol;
+	IRolJpaRepositorio repoRol;
 	
 	@Autowired
-	IUsuarioRepositorio repoUsuario;
+	IUsuarioJpaRepositorio repoUsuario;
 	
 
 	@Test
