@@ -20,6 +20,11 @@ public class CotizacionC {
 	
 	
 
+	public CotizacionC() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public CotizacionC(int idCotizacionC, Date fechaElaboracionCotizacionC, String vigenciaDiasCotizacionC,
 			String elaboradoPorCotizacionC, double subtotalAgua, double subtotalRuido, double subtotalEmiciones,
 			double subtotalCalidad, double subtotalSuelo, double costoLogistica, double iva, double totalCotizacionC) {

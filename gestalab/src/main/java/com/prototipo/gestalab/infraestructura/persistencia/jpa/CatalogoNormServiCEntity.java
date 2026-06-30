@@ -15,7 +15,7 @@ public class CatalogoNormServiCEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCatalogoNormServiEntity;
+	private int idCatalogoNormServi;
 	@Column(length = 80)
 	private String parametroCatalogoNormServiEntity;
 	private String lmpCatalogoNormServiEntity;

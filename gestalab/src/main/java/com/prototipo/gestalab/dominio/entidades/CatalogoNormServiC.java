@@ -3,14 +3,14 @@ package com.prototipo.gestalab.dominio.entidades;
 
 public class CatalogoNormServiC {
 	
-	private int idCatalogoNormServiEntity;
+	private int idCatalogoNormServi;
 	private String parametroCatalogoNormServiEntity;
 	private String lmpCatalogoNormServiEntity;
-	public int getIdCatalogoNormServiEntity() {
-		return idCatalogoNormServiEntity;
+	public int getIdCatalogoNormServi() {
+		return idCatalogoNormServi;
 	}
-	public void setIdCatalogoNormServiEntity(int idCatalogoNormServiEntity) {
-		this.idCatalogoNormServiEntity = idCatalogoNormServiEntity;
+	public void setIdCatalogoNormServi(int idCatalogoNormServi) {
+		this.idCatalogoNormServi = idCatalogoNormServi;
 	}
 	public String getParametroCatalogoNormServiEntity() {
 		return parametroCatalogoNormServiEntity;
@@ -24,6 +24,7 @@ public class CatalogoNormServiC {
 	public void setLmpCatalogoNormServiEntity(String lmpCatalogoNormServiEntity) {
 		this.lmpCatalogoNormServiEntity = lmpCatalogoNormServiEntity;
 	}
+	
 	
 	
 
