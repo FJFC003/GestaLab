@@ -14,9 +14,9 @@ public class CargoRepositorioImpl implements ICargoRepositorio{
 	private final ICargoJpaRepositorio jpaRepositorio;
 	private final ICargoJpaMapper entityMapper;
 
-	public CargoRepositorioImpl(ICargoJpaRepositorio jpaRepositorio, ICargoJpaMapper entitMapper) {
+	public CargoRepositorioImpl(ICargoJpaRepositorio jpaRepositorio, ICargoJpaMapper entityMapper) {
 		this.jpaRepositorio = jpaRepositorio;
-		this.entityMapper = entitMapper;
+		this.entityMapper = entityMapper;
 	}
 
 	@Override

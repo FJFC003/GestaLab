@@ -33,7 +33,7 @@ public class CargoUseCaseImpl implements ICargoUseCase{
 
 	@Override
 	public void eliminar(int idCargo) {
-		repositorio.buscarPorId(idCargo);
+		repositorio.eliminar(idCargo);
 	}
 
 }
