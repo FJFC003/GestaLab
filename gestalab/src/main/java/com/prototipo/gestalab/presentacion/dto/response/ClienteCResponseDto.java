@@ -1,6 +1,6 @@
 package com.prototipo.gestalab.presentacion.dto.response;
 
-public class ClienteCResponse {
+public class ClienteCResponseDto {
 	
 	private int idClienteC;
 	private String tipoClienteC;
