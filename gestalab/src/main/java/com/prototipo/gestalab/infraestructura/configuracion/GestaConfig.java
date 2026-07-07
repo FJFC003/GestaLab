@@ -5,16 +5,22 @@ import org.springframework.context.annotation.Configuration;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IAreaUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICargoUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDesviosOrdenOTUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.AreaUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CargoUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.DesviosOrdenOTUseCaseImpl;
 import com.prototipo.gestalab.dominio.repositorio.IAreaRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.ICargoRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.IDesviosOrdenOTRepositorio;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.AreaRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CargoRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DesviosOrdenOTRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IAreaJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICargoJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDesviosOrdenOTJpaMapper;
 import com.prototipo.gestalab.infraestructura.repositorios.IAreaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICargoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IDesviosOrdenOTJpaRepositorio;
 
 @Configuration
 public class GestaConfig {
@@ -37,6 +43,16 @@ public class GestaConfig {
 	@Bean
 	ICargoUseCase cargoUseCase(ICargoRepositorio repo) {
 		return new CargoUseCaseImpl(repo);
+	}
+	
+	@Bean
+	IDesviosOrdenOTRepositorio desviosOrdenRepositorio(IDesviosOrdenOTJpaRepositorio jpaRepositorio, IDesviosOrdenOTJpaMapper mapper) {
+		return new DesviosOrdenOTRepositorioImpl(jpaRepositorio, mapper);
+	}
+	
+	@Bean
+	IDesviosOrdenOTUseCase desviosOrdenOTUseCase(IDesviosOrdenOTRepositorio repo) {
+		return new DesviosOrdenOTUseCaseImpl(repo);
 	}
 
 }

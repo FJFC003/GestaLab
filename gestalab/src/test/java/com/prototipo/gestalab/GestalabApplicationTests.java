@@ -12,12 +12,14 @@ import com.prototipo.gestalab.infraestructura.persistencia.jpa.EmpleadoEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.FirmaElectronicaEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.RolEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuarioEntity;
+import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuariohasRolEntity;
 import com.prototipo.gestalab.infraestructura.repositorios.IAreaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICargoJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IUsuariohasRolJpaRepositorio;
 
 @SpringBootTest
 class GestalabApplicationTests {
@@ -39,6 +41,9 @@ class GestalabApplicationTests {
 	
 	@Autowired
 	IUsuarioJpaRepositorio repoUsuario;
+	
+	@Autowired
+	IUsuariohasRolJpaRepositorio repoUsuarioRol;
 	
 
 	@Test
@@ -93,7 +98,9 @@ class GestalabApplicationTests {
 		nuevoU.setEstadoUsuario(true);
 		repoUsuario.save(nuevoU);
 		
-		
+		UsuariohasRolEntity nuevoUR = new UsuariohasRolEntity();
+		nuevoUR.setFechaAsignacion(new Date());
+		repoUsuarioRol.save(nuevoUR);
 		
 		
 	}

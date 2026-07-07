@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -27,5 +29,21 @@ public class EmpleadoEntity {
 	private Date fechaIngreso;
 	private Date fechaSalida;
 	private boolean estadoEmpleado;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_Area")
+	private AreaEntity fkAreaAntity;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_Cargo")
+	private CargoEntity fkCargoEntity;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_FirmaElectronica")
+	private FirmaElectronicaEntity fkFirmaElectronicaEntity;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_Usuario")
+	private UsuarioEntity fkUsuarioEntity;
 
 }
