@@ -5,16 +5,17 @@ import java.util.Optional;
 
 import com.prototipo.gestalab.dominio.entidades.UsuariohasRol;
 import com.prototipo.gestalab.dominio.repositorio.IUsuariohasRolRepositorio;
-import com.prototipo.gestalab.infraestructura.persistencia.jpa.RolEntity;
-import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IRolJpaMapper;
-import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuariohasRolEntity;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IUsuariohasRolJpaMapper;
+import com.prototipo.gestalab.infraestructura.repositorios.IUsuariohasRolJpaRepositorio;
 
 public class UsuariohasRolRepositorioImpl implements IUsuariohasRolRepositorio{
 	
-	private final IRolJpaRepositorio jpaRepositorio;
-	private final IRolJpaMapper entityMapper;
+	private final IUsuariohasRolJpaRepositorio jpaRepositorio;
+	private final IUsuariohasRolJpaMapper entityMapper;
 
-	public UsuariohasRolRepositorioImpl(IRolJpaRepositorio jpaRepositorio, IRolJpaMapper entityMapper) {
+	public UsuariohasRolRepositorioImpl(IUsuariohasRolJpaRepositorio jpaRepositorio,
+			IUsuariohasRolJpaMapper entityMapper) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
@@ -22,26 +23,27 @@ public class UsuariohasRolRepositorioImpl implements IUsuariohasRolRepositorio{
 
 	@Override
 	public UsuariohasRol guardar(UsuariohasRol nuevoUsuariohasRol) {
-		RolEntity entity = entityMapper
-		return null;
+		UsuariohasRolEntity entity = entityMapper.toEntity(nuevoUsuariohasRol);
+		UsuariohasRolEntity guardar = jpaRepositorio.save(entity);
+		return entityMapper.toDomain(guardar);
 	}
 
 	@Override
 	public Optional<UsuariohasRol> buscarPorId(int idUsuarioRol) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return jpaRepositorio.findById(idUsuarioRol).map(entityMapper::toDomain);
 	}
 
 	@Override
 	public List<UsuariohasRol> ListarTodos() {
 		// TODO Auto-generated method stub
-		return null;
+		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idUsuarioRol) {
 		// TODO Auto-generated method stub
-		
+		jpaRepositorio.deleteById(idUsuarioRol);
 	}
 
 }
