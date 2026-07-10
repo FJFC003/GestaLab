@@ -31,19 +31,19 @@ public class EmpleadoEntity {
 	private boolean estadoEmpleado;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_Area")
-	private AreaEntity fkAreaAntity;
+	@JoinColumn(name = "fk_area")
+	private AreaEntity fkAreaEntity;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_Cargo")
+	@JoinColumn(name = "fk_cargo")
 	private CargoEntity fkCargoEntity;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_FirmaElectronica")
+	@JoinColumn(name = "fk_firmaElectronica")
 	private FirmaElectronicaEntity fkFirmaElectronicaEntity;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_Usuario")
+	@JoinColumn(name = "fk_usuario")
 	private UsuarioEntity fkUsuarioEntity;
 
 }

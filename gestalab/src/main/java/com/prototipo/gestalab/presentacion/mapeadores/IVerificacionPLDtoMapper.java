@@ -5,6 +5,7 @@ import org.mapstruct.Mapper;
 import com.prototipo.gestalab.dominio.entidades.VerificacionPL;
 import com.prototipo.gestalab.presentacion.dto.request.VerificacionPLRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.VerificacionPLResponseDto;
+
 @Mapper(componentModel = "spring")
 public interface IVerificacionPLDtoMapper {
 	
