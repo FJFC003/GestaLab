@@ -6,7 +6,7 @@ import com.prototipo.gestalab.dominio.entidades.CatalogoNormServiC;
 
 public interface ICatalogoNormServiCUseCase {
 	
-	CatalogoNormServiC guardar (CatalogoNormServiC nuevoCargo);
+	CatalogoNormServiC guardar (CatalogoNormServiC nuevoCatalogoNorm);
 	CatalogoNormServiC buscarPorId(int idCatalogoNormServi);
 	List<CatalogoNormServiC> ListarTodos();
 	

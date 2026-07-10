@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.prototipo.gestalab.dominio.entidades.CatalogoParametroC;
 
 
-public interface ICatalogoParametroRepositorio {
+public interface ICatalogoParametroCRepositorio {
 	
 	CatalogoParametroC guardar (CatalogoParametroC nuevaCataPara);
 	Optional<CatalogoParametroC> buscarPorId(int idParametroC);

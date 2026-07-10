@@ -8,7 +8,7 @@ import com.prototipo.gestalab.dominio.entidades.CatalogoNormServiC;
 
 public interface ICatalogoNormServiCRepositorio {
 	
-	CatalogoNormServiC guardar (CatalogoNormServiC nuevoCargo);
+	CatalogoNormServiC guardar (CatalogoNormServiC nuevoCatalogoNorm);
 	Optional<CatalogoNormServiC> buscarPorId(int idCatalogoNormServi);
 	List<CatalogoNormServiC> ListarTodos();
 	
