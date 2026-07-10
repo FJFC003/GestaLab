@@ -22,12 +22,12 @@ import jakarta.validation.Valid;
 
 @RequestMapping("/api/gestalab/ordentrabajo")
 @RestController
-public class OrdenTrabajo {
+public class OrdenTrabajoOTController {
 	
 	private final IOrdenTrabajoOTUseCase ordenTrabajoOTUseCase;
 	private final IOrdenTrabajoOTDtoMapper mapper;
 	
-	public OrdenTrabajo(IOrdenTrabajoOTUseCase ordenTrabajoOTUseCase, IOrdenTrabajoOTDtoMapper mapper) {
+	public OrdenTrabajoOTController(IOrdenTrabajoOTUseCase ordenTrabajoOTUseCase, IOrdenTrabajoOTDtoMapper mapper) {
 		super();
 		this.ordenTrabajoOTUseCase = ordenTrabajoOTUseCase;
 		this.mapper = mapper;
