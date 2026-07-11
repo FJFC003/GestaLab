@@ -1,7 +1,6 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoTerminoCondiCUseCase;
 import com.prototipo.gestalab.dominio.entidades.CatalogoTerminoCondiC;
