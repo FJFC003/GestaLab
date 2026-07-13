@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.AreaEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.CargoEntity;
+import com.prototipo.gestalab.infraestructura.persistencia.jpa.ClienteCEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.EmpleadoEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.FirmaElectronicaEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.RolEntity;
@@ -15,6 +16,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuarioEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuariohasRolEntity;
 import com.prototipo.gestalab.infraestructura.repositorios.IAreaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICargoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IClienteCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
@@ -44,6 +46,9 @@ class GestalabApplicationTests {
 	
 	@Autowired
 	IUsuariohasRolJpaRepositorio repoUsuarioRol;
+	
+	@Autowired
+	IClienteCJpaRepositorio repoClienteC;
 	
 
 	@Test
@@ -101,6 +106,10 @@ class GestalabApplicationTests {
 		UsuariohasRolEntity nuevoUR = new UsuariohasRolEntity();
 		nuevoUR.setFechaAsignacion(new Date());
 		repoUsuarioRol.save(nuevoUR);
+		
+		ClienteCEntity nuevoCli = new ClienteCEntity();
+		nuevoCli.setNombrePersonaContactoClienteC("GestaEcuador");
+		repoClienteC.save(nuevoCli);
 		
 		
 	}
