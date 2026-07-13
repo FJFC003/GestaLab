@@ -1,2 +1,2 @@
 # GestaLab
-Auntomatizacion y sistematizacion en GestaLab
+Automatizacion y sistematizacion en GestaLab
