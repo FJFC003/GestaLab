@@ -43,6 +43,6 @@ public class DetalleCEntity {
     private CatalogoNormServiCEntity fkCatalogoNormServiEntity;
     
     @OneToMany(mappedBy = "fkDetalleCEntity")
-    private List<OrdenTrabajoOTEntity> listaOrdenes = new ArrayList<>();
+    private List<PlanMuestreoPLEntity> listaPlanes = new ArrayList<>();
 
 }

@@ -40,11 +40,11 @@ public class OrdenTrabajoOTEntity {
     private DesviosOrdenOTEntity fkDesvio;
 	
 	@ManyToOne
-    @JoinColumn(name = "fk_Detalle_Cotizacion")
-    private DetalleCEntity fkDetalleCEntity;
+    @JoinColumn(name = "fkPlanMuestreoEntity")
+    private PlanMuestreoPLEntity fkPlanMuestreoEntity;
 	
 	@OneToMany(mappedBy = "fkOrdenTrabajoEntity")
-    private List<PlanMuestreoPLEntity> listaPlanes = new ArrayList<>();
+    private List<InformeResultadosIREntity> listaInformen = new ArrayList<>();
 
 
 

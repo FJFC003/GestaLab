@@ -39,7 +39,7 @@ public class InformeResultadosIREntity {
 	private ResultadosIREntity fkResultadosEntity;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_Plan_Muestreo")
-	private PlanMuestreoPLEntity fkPlanMuestreoEntity;
+	@JoinColumn(name = "fk_orden_trabajo")
+	private OrdenTrabajoOTEntity fkOrdenTrabajoEntity;
 
 }
