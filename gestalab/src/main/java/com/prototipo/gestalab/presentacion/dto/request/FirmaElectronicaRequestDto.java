@@ -7,13 +7,10 @@ import lombok.Data;
 
 @Data
 public class FirmaElectronicaRequestDto {
-	@NotBlank
 	private int idFirma;
 	@NotBlank
 	private String formatoFirma;
-	@NotBlank
 	private Date fechaSubida;
-	@NotBlank
 	private Date fechaExpiracion;
 
 }

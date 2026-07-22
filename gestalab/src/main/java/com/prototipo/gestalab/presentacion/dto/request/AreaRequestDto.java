@@ -6,13 +6,11 @@ import lombok.Data;
 @Data
 public class AreaRequestDto {
 	
-	@NotBlank
 	private int idArea;
 	@NotBlank
 	private String nombre;
 	@NotBlank
 	private String descripcion;
-	@NotBlank
 	private boolean estadoArea;
 
 }

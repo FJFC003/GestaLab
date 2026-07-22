@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class UsuarioRequestDto {
 	
-	@NotBlank
 	private int idUsuario;
 	@NotBlank
 	private String nombre;
@@ -16,9 +15,7 @@ public class UsuarioRequestDto {
 	private String correo;
 	@NotBlank
 	private String contrasenia;
-	@NotBlank
 	private Date fechaCreacion;
-	@NotBlank
 	private boolean estadoUsuario;
 
 }
