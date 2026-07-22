@@ -37,22 +37,37 @@ public class EmpleadoRepositorioImpl implements IEmpleadoRepositorio{
 	@Override
 	public Empleado guardar(Empleado nuevoEmpleado) {
 		EmpleadoEntity entity = entityMapper.toEntity(nuevoEmpleado);
-		if (nuevoEmpleado.getFkArea() != null) {
-			areaJpaRepositorio.findById(nuevoEmpleado.getFkArea().getIdArea())
-					.ifPresent(entity::setFkAreaEntity);
-		}
-		if (nuevoEmpleado.getFkCargo() != null) {
-			cargoJpaRepositorio.findById(nuevoEmpleado.getFkCargo().getIdCargo())
-					.ifPresent(entity::setFkCargoEntity);
-		}
-		if (nuevoEmpleado.getFkFirmaElectronica() != null) {
-			firmaJpaRepositorio.findById(nuevoEmpleado.getFkFirmaElectronica().getIdFirma())
-					.ifPresent(entity::setFkFirmaElectronicaEntity);
-		}
-		if (nuevoEmpleado.getFkUsuario() != null) {
-			usuarioJpaRepositorio.findById(nuevoEmpleado.getFkUsuario().getIdUsuario())
-					.ifPresent(entity::setFkUsuarioEntity);
-		}
+		// Área
+				if (nuevoEmpleado.getFkArea() != null && nuevoEmpleado.getFkArea().getIdArea() > 0) {
+					entity.setFkAreaEntity(
+							areaJpaRepositorio.findById(nuevoEmpleado.getFkArea().getIdArea()).orElse(null));
+				} else {
+					entity.setFkAreaEntity(null);
+				}
+
+				// Cargo
+				if (nuevoEmpleado.getFkCargo() != null && nuevoEmpleado.getFkCargo().getIdCargo() > 0) {
+					entity.setFkCargoEntity(
+							cargoJpaRepositorio.findById(nuevoEmpleado.getFkCargo().getIdCargo()).orElse(null));
+				} else {
+					entity.setFkCargoEntity(null);
+				}
+
+				// Firma Electrónica
+				if (nuevoEmpleado.getFkFirmaElectronica() != null && nuevoEmpleado.getFkFirmaElectronica().getIdFirma() > 0) {
+					entity.setFkFirmaElectronicaEntity(
+							firmaJpaRepositorio.findById(nuevoEmpleado.getFkFirmaElectronica().getIdFirma()).orElse(null));
+				} else {
+					entity.setFkFirmaElectronicaEntity(null);
+				}
+
+				// Usuario
+				if (nuevoEmpleado.getFkUsuario() != null && nuevoEmpleado.getFkUsuario().getIdUsuario() > 0) {
+					entity.setFkUsuarioEntity(
+							usuarioJpaRepositorio.findById(nuevoEmpleado.getFkUsuario().getIdUsuario()).orElse(null));
+				} else {
+					entity.setFkUsuarioEntity(null);
+				}
 		EmpleadoEntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}
