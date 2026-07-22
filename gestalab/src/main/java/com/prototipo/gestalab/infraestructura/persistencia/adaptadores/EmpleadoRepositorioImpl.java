@@ -7,24 +7,52 @@ import com.prototipo.gestalab.dominio.entidades.Empleado;
 import com.prototipo.gestalab.dominio.repositorio.IEmpleadoRepositorio;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.EmpleadoEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IEmpleadoJpaMapper;
+import com.prototipo.gestalab.infraestructura.repositorios.IAreaJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ICargoJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioJpaRepositorio;
 
 public class EmpleadoRepositorioImpl implements IEmpleadoRepositorio{
 	
 	private final IEmpleadoJpaRepositorio jpaRepositorio;
 	private final IEmpleadoJpaMapper entityMapper;
-	
-	
+	private final IAreaJpaRepositorio areaJpaRepositorio;
+	private final ICargoJpaRepositorio cargoJpaRepositorio;
+	private final IFirmaElectronicaJpaRepositorio firmaJpaRepositorio;
+	private final IUsuarioJpaRepositorio usuarioJpaRepositorio;
 
-	public EmpleadoRepositorioImpl(IEmpleadoJpaRepositorio jpaRepositorio, IEmpleadoJpaMapper entityMapper) {
+	public EmpleadoRepositorioImpl(IEmpleadoJpaRepositorio jpaRepositorio, IEmpleadoJpaMapper entityMapper,
+			IAreaJpaRepositorio areaJpaRepositorio, ICargoJpaRepositorio cargoJpaRepositorio,
+			IFirmaElectronicaJpaRepositorio firmaJpaRepositorio, IUsuarioJpaRepositorio usuarioJpaRepositorio) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
+		this.areaJpaRepositorio = areaJpaRepositorio;
+		this.cargoJpaRepositorio = cargoJpaRepositorio;
+		this.firmaJpaRepositorio = firmaJpaRepositorio;
+		this.usuarioJpaRepositorio = usuarioJpaRepositorio;
 	}
 
 	@Override
 	public Empleado guardar(Empleado nuevoEmpleado) {
 		EmpleadoEntity entity = entityMapper.toEntity(nuevoEmpleado);
+		if (nuevoEmpleado.getFkArea() != null) {
+			areaJpaRepositorio.findById(nuevoEmpleado.getFkArea().getIdArea())
+					.ifPresent(entity::setFkAreaEntity);
+		}
+		if (nuevoEmpleado.getFkCargo() != null) {
+			cargoJpaRepositorio.findById(nuevoEmpleado.getFkCargo().getIdCargo())
+					.ifPresent(entity::setFkCargoEntity);
+		}
+		if (nuevoEmpleado.getFkFirmaElectronica() != null) {
+			firmaJpaRepositorio.findById(nuevoEmpleado.getFkFirmaElectronica().getIdFirma())
+					.ifPresent(entity::setFkFirmaElectronicaEntity);
+		}
+		if (nuevoEmpleado.getFkUsuario() != null) {
+			usuarioJpaRepositorio.findById(nuevoEmpleado.getFkUsuario().getIdUsuario())
+					.ifPresent(entity::setFkUsuarioEntity);
+		}
 		EmpleadoEntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}

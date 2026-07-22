@@ -13,8 +13,13 @@ public class Empleado {
 	private Date fechaIngreso;
 	private Date fechaSalida;
 	private boolean estadoEmpleado;
+	private Area fkArea;
+	private Cargo fkCargo;
+	private FirmaElectronica fkFirmaElectronica;
+	private Usuario fkUsuario;
 	public Empleado(int idEmpleado, String nombre, String apellido, String ci, String correo, String direccion,
-			Date fechaIngreso, Date fechaSalida, boolean estadoEmpleado) {
+			Date fechaIngreso, Date fechaSalida, boolean estadoEmpleado, Area fkArea, Cargo fkCargo,
+			FirmaElectronica fkFirmaElectronica, Usuario fkUsuario) {
 		super();
 		this.idEmpleado = idEmpleado;
 		this.nombre = nombre;
@@ -25,6 +30,10 @@ public class Empleado {
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
 		this.estadoEmpleado = estadoEmpleado;
+		this.fkArea = fkArea;
+		this.fkCargo = fkCargo;
+		this.fkFirmaElectronica = fkFirmaElectronica;
+		this.fkUsuario = fkUsuario;
 	}
 	public Empleado() {
 		super();
@@ -84,7 +93,29 @@ public class Empleado {
 	public void setEstadoEmpleado(boolean estadoEmpleado) {
 		this.estadoEmpleado = estadoEmpleado;
 	}
+	public Area getFkArea() {
+		return fkArea;
+	}
+	public void setFkArea(Area fkArea) {
+		this.fkArea = fkArea;
+	}
+	public Cargo getFkCargo() {
+		return fkCargo;
+	}
+	public void setFkCargo(Cargo fkCargo) {
+		this.fkCargo = fkCargo;
+	}
+	public FirmaElectronica getFkFirmaElectronica() {
+		return fkFirmaElectronica;
+	}
+	public void setFkFirmaElectronica(FirmaElectronica fkFirmaElectronica) {
+		this.fkFirmaElectronica = fkFirmaElectronica;
+	}
+	public Usuario getFkUsuario() {
+		return fkUsuario;
+	}
+	public void setFkUsuario(Usuario fkUsuario) {
+		this.fkUsuario = fkUsuario;
+	}
 	
-	
-
 }

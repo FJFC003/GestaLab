@@ -218,8 +218,11 @@ public class GestaConfig {
 	}
 	
 	@Bean
-	IEmpleadoRepositorio empleadoRepositorio(IEmpleadoJpaRepositorio jpaRepositorio, IEmpleadoJpaMapper mapper) {
-		return new EmpleadoRepositorioImpl(jpaRepositorio, mapper);
+	IEmpleadoRepositorio empleadoRepositorio(IEmpleadoJpaRepositorio jpaRepositorio, IEmpleadoJpaMapper mapper,
+			IAreaJpaRepositorio areaJpaRepositorio, ICargoJpaRepositorio cargoJpaRepositorio,
+			IFirmaElectronicaJpaRepositorio firmaJpaRepositorio, IUsuarioJpaRepositorio usuarioJpaRepositorio) {
+		return new EmpleadoRepositorioImpl(jpaRepositorio, mapper, areaJpaRepositorio, cargoJpaRepositorio,
+				firmaJpaRepositorio, usuarioJpaRepositorio);
 	}
 	
 	@Bean

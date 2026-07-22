@@ -26,5 +26,13 @@ public class EmpleadoRequestDto {
 	private Date fechaSalida;
 	@NotBlank
 	private boolean estadoEmpleado;
+	@NotBlank
+	private int fkArea;
+	@NotBlank
+	private int fkCargo;
+	@NotBlank
+	private int fkFirmaElectronica;
+	@NotBlank
+	private int fkUsuario;
 
 }

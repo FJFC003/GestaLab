@@ -13,6 +13,10 @@ public class EmpleadoResponseDto {
 	private Date fechaIngreso;
 	private Date fechaSalida;
 	private boolean estadoEmpleado;
+	private AreaResponseDto fkArea;
+	private CargoResponseDto fkCargo;
+	private FirmaElectronicaResponseDto fkFirmaElectronica;
+	private UsuarioResponseDto fkUsuario;
 	public int getIdEmpleado() {
 		return idEmpleado;
 	}
@@ -66,6 +70,30 @@ public class EmpleadoResponseDto {
 	}
 	public void setEstadoEmpleado(boolean estadoEmpleado) {
 		this.estadoEmpleado = estadoEmpleado;
+	}
+	public AreaResponseDto getFkArea() {
+		return fkArea;
+	}
+	public void setFkArea(AreaResponseDto fkArea) {
+		this.fkArea = fkArea;
+	}
+	public CargoResponseDto getFkCargo() {
+		return fkCargo;
+	}
+	public void setFkCargo(CargoResponseDto fkCargo) {
+		this.fkCargo = fkCargo;
+	}
+	public FirmaElectronicaResponseDto getFkFirmaElectronica() {
+		return fkFirmaElectronica;
+	}
+	public void setFkFirmaElectronica(FirmaElectronicaResponseDto fkFirmaElectronica) {
+		this.fkFirmaElectronica = fkFirmaElectronica;
+	}
+	public UsuarioResponseDto getFkUsuario() {
+		return fkUsuario;
+	}
+	public void setFkUsuario(UsuarioResponseDto fkUsuario) {
+		this.fkUsuario = fkUsuario;
 	}
 
 }
