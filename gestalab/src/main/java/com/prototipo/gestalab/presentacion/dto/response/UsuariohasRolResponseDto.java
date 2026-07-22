@@ -2,21 +2,13 @@ package com.prototipo.gestalab.presentacion.dto.response;
 
 import java.util.Date;
 
+import lombok.Data;
+@Data
 public class UsuariohasRolResponseDto {
 	
 	private int idUsuarioRol;
 	private Date fechaAsignacion;
-	public int getIdUsuarioRol() {
-		return idUsuarioRol;
-	}
-	public void setIdUsuarioRol(int idUsuarioRol) {
-		this.idUsuarioRol = idUsuarioRol;
-	}
-	public Date getFechaAsignacion() {
-		return fechaAsignacion;
-	}
-	public void setFechaAsignacion(Date fechaAsignacion) {
-		this.fechaAsignacion = fechaAsignacion;
-	}
+	private UsuarioResponseDto fkUsuario;
+	private RolResponseDto fkRol;
 
 }

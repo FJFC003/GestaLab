@@ -7,23 +7,40 @@ import com.prototipo.gestalab.dominio.entidades.UsuariohasRol;
 import com.prototipo.gestalab.dominio.repositorio.IUsuariohasRolRepositorio;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.UsuariohasRolEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IUsuariohasRolJpaMapper;
+import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IUsuariohasRolJpaRepositorio;
 
 public class UsuariohasRolRepositorioImpl implements IUsuariohasRolRepositorio{
 	
 	private final IUsuariohasRolJpaRepositorio jpaRepositorio;
 	private final IUsuariohasRolJpaMapper entityMapper;
+	private final IUsuarioJpaRepositorio usuarioJpaRepositorio;
+	private final IRolJpaRepositorio rolJpaRepositorio;
+	
 
 	public UsuariohasRolRepositorioImpl(IUsuariohasRolJpaRepositorio jpaRepositorio,
-			IUsuariohasRolJpaMapper entityMapper) {
+			IUsuariohasRolJpaMapper entityMapper, IUsuarioJpaRepositorio usuarioJpaRepositorio,
+			IRolJpaRepositorio rolJpaRepositorio) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
+		this.usuarioJpaRepositorio = usuarioJpaRepositorio;
+		this.rolJpaRepositorio = rolJpaRepositorio;
 	}
 
 	@Override
 	public UsuariohasRol guardar(UsuariohasRol nuevoUsuariohasRol) {
 		UsuariohasRolEntity entity = entityMapper.toEntity(nuevoUsuariohasRol);
+		if (nuevoUsuariohasRol.getFkUsuario() != null) {
+			usuarioJpaRepositorio.findById(nuevoUsuariohasRol.getFkUsuario().getIdUsuario())
+					.ifPresent(entity::setFkUsuarioEntity);
+		}
+		if (nuevoUsuariohasRol.getFkRol() != null) {
+			rolJpaRepositorio.findById(nuevoUsuariohasRol.getFkRol().getIdRol())
+					.ifPresent(entity::setFkRolEntity);
+		}
+		
 		UsuariohasRolEntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}

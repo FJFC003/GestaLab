@@ -49,5 +49,10 @@ public class EmpleadoController {
 		empleadoUseCase.eliminar(idEmpleado);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/{idEmpleado}")
+	public EmpleadoResponseDto buscarPorId(@PathVariable int idEmpleado) {
+		return mapper.toResponseDto(empleadoUseCase.buscarPorId(idEmpleado));
+	}
 
 }

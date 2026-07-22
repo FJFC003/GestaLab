@@ -251,8 +251,10 @@ public class GestaConfig {
 	}
 	
 	@Bean
-	IUsuariohasRolRepositorio usuariohasRolRepositorio(IUsuariohasRolJpaRepositorio jpaRepositorio, IUsuariohasRolJpaMapper mapper) {
-		return new UsuariohasRolRepositorioImpl(jpaRepositorio, mapper);
+	IUsuariohasRolRepositorio usuariohasRolRepositorio(IUsuariohasRolJpaRepositorio jpaRepositorio,
+			IUsuariohasRolJpaMapper mapper, IUsuarioJpaRepositorio usuarioJpaRepositorio,
+			IRolJpaRepositorio rolJpaRepositorio) {
+		return new UsuariohasRolRepositorioImpl(jpaRepositorio, mapper, usuarioJpaRepositorio, rolJpaRepositorio);
 	}
 	
 	@Bean

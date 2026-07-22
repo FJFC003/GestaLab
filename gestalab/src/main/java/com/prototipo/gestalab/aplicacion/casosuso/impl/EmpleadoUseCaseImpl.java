@@ -1,6 +1,7 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEmpleadoUseCase;
 import com.prototipo.gestalab.dominio.entidades.Empleado;
@@ -17,7 +18,15 @@ public class EmpleadoUseCaseImpl implements IEmpleadoUseCase{
 
 	@Override
 	public Empleado guardar(Empleado nuevoEmpleado) {
-		// TODO Auto-generated method stub
+		Optional<Empleado> existente = repositorio.ListarTodo().stream()
+				.filter(e -> e.getCi() != null && e.getCi().equalsIgnoreCase(nuevoEmpleado.getCi()))
+				.filter(e -> e.getIdEmpleado() != nuevoEmpleado.getIdEmpleado())
+				.findFirst();
+
+		if (existente.isPresent()) {
+			throw new IllegalStateException(
+					"Ya existe un empleado registrado con la cédula " + nuevoEmpleado.getCi());
+		}
 		return repositorio.guardar(nuevoEmpleado);
 	}
 
