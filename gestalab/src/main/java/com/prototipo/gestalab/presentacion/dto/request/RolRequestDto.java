@@ -6,13 +6,11 @@ import lombok.Data;
 @Data
 public class RolRequestDto {
 	
-	@NotBlank
 	private int idRol;
 	@NotBlank
 	private String nombre;
 	@NotBlank
 	private String descripcion;
-	@NotBlank
 	private boolean estadoRol;
 
 }

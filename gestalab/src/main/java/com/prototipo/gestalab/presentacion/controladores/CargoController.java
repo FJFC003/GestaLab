@@ -42,6 +42,11 @@ public class CargoController {
 	public List<CargoResponseDto> listarTodos(){
 		return cargoUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
+
+	@GetMapping("/{idCargo}")
+	public CargoResponseDto buscarPorId(@PathVariable int idCargo) {
+		return mapper.toResponseDto(cargoUseCase.buscarPorId(idCargo));
+	}
 	
 	@DeleteMapping("/{idCargo}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idCargo)

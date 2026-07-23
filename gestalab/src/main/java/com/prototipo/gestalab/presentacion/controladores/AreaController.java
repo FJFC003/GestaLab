@@ -42,6 +42,11 @@ public class AreaController {
 	public List<AreaResponseDto> listarTodos(){
 		return areaUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
+
+	@GetMapping("/{idArea}")
+	public AreaResponseDto buscarPorId(@PathVariable int idArea) {
+		return mapper.toResponseDto(areaUseCase.buscarPorId(idArea));
+	}
 	
 	@DeleteMapping("/{idArea}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idArea)
@@ -49,8 +54,6 @@ public class AreaController {
 		areaUseCase.eliminar(idArea);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
 	
 	
 

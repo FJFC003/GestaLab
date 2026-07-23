@@ -42,6 +42,11 @@ public class RolController {
 	public List<RolResponseDto> listarTodos(){
 		return rolUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
+
+	@GetMapping("/{idRol}")
+	public RolResponseDto buscarPorId(@PathVariable int idRol) {
+		return mapper.toResponseDto(rolUseCase.buscarPorId(idRol));
+	}
 	
 	@DeleteMapping("/{idRol}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idRol)
