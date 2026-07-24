@@ -17,6 +17,8 @@ public class Empleado {
 	private Cargo fkCargo;
 	private FirmaElectronica fkFirmaElectronica;
 	private Usuario fkUsuario;
+	
+	
 	public Empleado(int idEmpleado, String nombre, String apellido, String ci, String correo, String direccion,
 			Date fechaIngreso, Date fechaSalida, boolean estadoEmpleado, Area fkArea, Cargo fkCargo,
 			FirmaElectronica fkFirmaElectronica, Usuario fkUsuario) {
