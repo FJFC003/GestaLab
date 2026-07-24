@@ -10,6 +10,28 @@ public class DetalleC {
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
 	private String condicionDetalleC;
+	private CotizacionC fkCotizacion;
+	private CatalogoParametroC fkParametro;
+	private CatalogoNormServiC fkNormaServicio;
+	
+	public CotizacionC getFkCotizacion() {
+		return fkCotizacion;
+	}
+	public void setFkCotizacion(CotizacionC fkCotizacion) {
+		this.fkCotizacion = fkCotizacion;
+	}
+	public CatalogoParametroC getFkParametro() {
+		return fkParametro;
+	}
+	public void setFkParametro(CatalogoParametroC fkParametro) {
+		this.fkParametro = fkParametro;
+	}
+	public CatalogoNormServiC getFkNormaServicio() {
+		return fkNormaServicio;
+	}
+	public void setFkNormaServicio(CatalogoNormServiC fkNormaServicio) {
+		this.fkNormaServicio = fkNormaServicio;
+	}
 	public int getIdDetalleC() {
 		return idDetalleC;
 	}

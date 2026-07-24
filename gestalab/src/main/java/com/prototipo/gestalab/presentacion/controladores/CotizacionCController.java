@@ -43,6 +43,11 @@ public class CotizacionCController {
 		return cotizacionCUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/{idCotizacionC}")
+	public CotizacionCResponseDto buscarPorId(@PathVariable int idCotizacionC) {
+		return mapper.toResponseDto(cotizacionCUseCase.buscarPorId(idCotizacionC));
+	}
+	
 	@DeleteMapping("/{idCotizacionC}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idCotizacionC)
 	{

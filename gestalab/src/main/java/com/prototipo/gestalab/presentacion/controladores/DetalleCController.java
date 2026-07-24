@@ -43,6 +43,11 @@ public class DetalleCController {
 		return detalleCUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/{idDetalleC}")
+	public DetalleCResponseDto buscarPorId(@PathVariable int idDetalleC) {
+		return mapper.toResponseDto(detalleCUseCase.buscarPorId(idDetalleC));
+	}
+	
 	@DeleteMapping("/{idDetalleC}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idDetalleC)
 	{

@@ -44,6 +44,11 @@ public class CatalogoTerminoCondiCController {
 		return catalogoTerminoCondiCUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/{idTerminoC}")
+	public CatalogoTerminoCondiCResponseDto buscarPorId(@PathVariable int idTerminoC) {
+		return mapper.toResponseDto(catalogoTerminoCondiCUseCase.buscarPorId(idTerminoC));
+	}
+	
 	@DeleteMapping("/{idTerminoC}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idTerminoC)
 	{

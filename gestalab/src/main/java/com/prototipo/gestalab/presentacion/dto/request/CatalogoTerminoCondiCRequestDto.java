@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class CatalogoTerminoCondiCRequestDto {
 	
-	@NotBlank
 	private int idTerminoC;
 	@NotBlank
 	private String tituloTerminoC;

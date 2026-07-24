@@ -44,6 +44,11 @@ public class CatalogoNormServiCController {
 		return catalogoNormServiCUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/{idCatalogoNormServi}")
+	public CatalogoNormServiCResponseDto buscarPorId(@PathVariable int idCatalogoNormServi) {
+		return mapper.toResponseDto(catalogoNormServiCUseCase.buscarPorId(idCatalogoNormServi));
+	}
+	
 	@DeleteMapping("/{idCatalogoNormServi}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idCatalogoNormServi)
 	{

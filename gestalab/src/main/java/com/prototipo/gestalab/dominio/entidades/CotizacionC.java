@@ -17,8 +17,35 @@ public class CotizacionC {
 	private double costoLogistica;
 	private double Iva;
 	private double TotalCotizacionC;
+	private ClienteC fkCliente;
+	private CatalogoTerminoCondiC fkTerminoCondicion;
+	private Empleado fkEmpleado;
 	
 	
+
+	public ClienteC getFkCliente() {
+		return fkCliente;
+	}
+
+	public void setFkCliente(ClienteC fkCliente) {
+		this.fkCliente = fkCliente;
+	}
+
+	public CatalogoTerminoCondiC getFkTerminoCondicion() {
+		return fkTerminoCondicion;
+	}
+
+	public void setFkTerminoCondicion(CatalogoTerminoCondiC fkTerminoCondicion) {
+		this.fkTerminoCondicion = fkTerminoCondicion;
+	}
+
+	public Empleado getFkEmpleado() {
+		return fkEmpleado;
+	}
+
+	public void setFkEmpleado(Empleado fkEmpleado) {
+		this.fkEmpleado = fkEmpleado;
+	}
 
 	public CotizacionC() {
 		super();

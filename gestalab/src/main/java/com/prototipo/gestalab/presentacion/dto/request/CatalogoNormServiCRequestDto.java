@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class CatalogoNormServiCRequestDto {
 	
-	@NotBlank
 	private int idCatalogoNormServi;
 	@NotBlank
 	private String parametroCatalogoNormServiEntity;

@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class CatalogoParametroCRequestDto {
 	
-	@NotBlank
+	
 	private int idParametroC;
 	@NotBlank
 	private String condicionParametroC;

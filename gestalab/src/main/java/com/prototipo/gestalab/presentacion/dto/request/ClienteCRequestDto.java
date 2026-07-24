@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class ClienteCRequestDto {
 	
-	@NotBlank
 	private int idClienteC;
 	@NotBlank
 	private String tipoClienteC;
@@ -22,7 +21,6 @@ public class ClienteCRequestDto {
 	private String telefonoClienteC;
 	@NotBlank
 	private String correoClienteC;
-	@NotBlank
 	private boolean estadoClienteC;
 
 }

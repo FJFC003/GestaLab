@@ -44,6 +44,11 @@ public class CatalogoParametroCController {
 		return catalogoParametroUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/{idParametroC}")
+	public CatalogoParametroCResponseDto buscarPorId(@PathVariable int idParametroC) {
+		return mapper.toResponseDto(catalogoParametroUseCase.buscarPorId(idParametroC));
+	}
+	
 	@DeleteMapping("/{idParametroC}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idParametroC)
 	{
