@@ -89,12 +89,12 @@ class GestalabApplicationTests {
 		
 		
 		RolEntity nuevoR = new RolEntity();
-		nuevoR.setNombre("Coordinacion");
-		nuevoR.setDescripcion("Coordina Equipos de trabajos");
+		nuevoR.setNombre("Gerente General");
+		nuevoR.setDescripcion("Acceso total al sistema de gestión");
 		nuevoR.setEstadoRol(true);
 		repoRol.save(nuevoR);
-		
-		
+
+
 		UsuarioEntity nuevoU = new UsuarioEntity();
 		nuevoU.setNombre("Fj2003");
 		nuevoU.setContrasenia("123456");
@@ -102,10 +102,14 @@ class GestalabApplicationTests {
 		nuevoU.setFechaCreacion(new Date());
 		nuevoU.setEstadoUsuario(true);
 		repoUsuario.save(nuevoU);
-		
+
 		UsuariohasRolEntity nuevoUR = new UsuariohasRolEntity();
+		nuevoUR.setFkUsuarioEntity(nuevoU);
+		nuevoUR.setFkRolEntity(nuevoR);
 		nuevoUR.setFechaAsignacion(new Date());
 		repoUsuarioRol.save(nuevoUR);
+		
+		
 		
 		ClienteCEntity nuevoCli = new ClienteCEntity();
 		nuevoCli.setNombrePersonaContactoClienteC("GestaEcuador");
