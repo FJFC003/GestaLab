@@ -8,7 +8,7 @@ import com.prototipo.gestalab.dominio.entidades.Usuario;
 import com.prototipo.gestalab.dominio.repositorio.IUsuarioRepositorio;
 
 
-public class LoginUseCaseImpl {
+public class LoginUseCaseImpl implements ILoginUseCase{
 
 	private final IUsuarioRepositorio usuarioRepositorio;
 
@@ -18,8 +18,9 @@ public class LoginUseCaseImpl {
 	}
 
 	@Override
-	Usuario autenticar(String correo, String contrasenia);
-	List<Usuario> usuarios = usuarioRepositorio.ListarTodos();
+	public Usuario autenticar(String correo, String contrasenia) {
+		// TODO Auto-generated method stub
+		List<Usuario> usuarios = usuarioRepositorio.ListarTodos();
 
 		Optional<Usuario> encontrado = usuarios.stream()
 				.filter(u -> u.getCorreo() != null && u.getCorreo().equalsIgnoreCase(correo))
@@ -29,4 +30,6 @@ public class LoginUseCaseImpl {
 
 		return encontrado.orElseThrow(() -> new IllegalStateException("Correo o contraseña incorrectos"));
 	}
+
+	
 }
