@@ -1,9 +1,10 @@
 package com.prototipo.gestalab.aplicacion.casosuso.entrada;
 
-import com.prototipo.gestalab.dominio.entidades.Login;
+import com.prototipo.gestalab.dominio.entidades.Usuario;
 
 public interface ILoginUseCase {
-	
-	Login guardar(Login nuevologin);
 
+	Usuario autenticar(String correo, String contrasenia);
+
+	
 }

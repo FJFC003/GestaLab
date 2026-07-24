@@ -1,11 +1,16 @@
 package com.prototipo.gestalab.presentacion.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
+
 public class LoginRequestDto {
-	
-	private String correo;
-	private String contrasenia;
+
+		@NotBlank
+		private String correo;
+		@NotBlank
+		private String contrasenia;
 
 }
+

@@ -1,22 +1,32 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ILoginUseCase;
-import com.prototipo.gestalab.dominio.entidades.Login;
-import com.prototipo.gestalab.dominio.repositorio.ILoginRepositorio;
+import com.prototipo.gestalab.dominio.entidades.Usuario;
+import com.prototipo.gestalab.dominio.repositorio.IUsuarioRepositorio;
 
-public class LoginUseCaseImpl implements ILoginUseCase{
-	
-	private final ILoginRepositorio repositorio;
 
-	public LoginUseCaseImpl(ILoginRepositorio repositorio) {
+public class LoginUseCaseImpl {
+
+	private final IUsuarioRepositorio usuarioRepositorio;
+
+	public LoginUseCaseImpl(IUsuarioRepositorio usuarioRepositorio) {
 		super();
-		this.repositorio = repositorio;
+		this.usuarioRepositorio = usuarioRepositorio;
 	}
 
 	@Override
-	public Login guardar(Login nuevologin) {
-		// TODO Auto-generated method stub
-		return repositorio.guardar(nuevologin);
-	}
+	Usuario autenticar(String correo, String contrasenia);
+	List<Usuario> usuarios = usuarioRepositorio.ListarTodos();
 
+		Optional<Usuario> encontrado = usuarios.stream()
+				.filter(u -> u.getCorreo() != null && u.getCorreo().equalsIgnoreCase(correo))
+				.filter(u -> u.getContrasenia() != null && u.getContrasenia().equals(contrasenia))
+				.filter(Usuario::isEstadoUsuario)
+				.findFirst();
+
+		return encontrado.orElseThrow(() -> new IllegalStateException("Correo o contraseña incorrectos"));
+	}
 }
