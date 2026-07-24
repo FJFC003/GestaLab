@@ -22,6 +22,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.IFirmaElectronicaUseCa
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionAdicionalPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionMatrizPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.ILoginUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IOrdenTrabajoOTUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IParametroAnalizarPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlanMuestreoPLUseCase;
@@ -52,6 +53,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.FirmaElectronicaUseCaseIm
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformacionAdicionalPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformacionMatrizPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformeResultadosIRUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.LoginUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.OrdenTrabajoOTUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ParametroAnalizarPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.PlanMuestreoPLUseCaseImpl;
@@ -493,5 +495,12 @@ public class GestaConfig {
 	IInformeResultadosIRUseCase informeResultadosIRUseCase(IInformeResultadosIRRepositorio repo) {
 			return new InformeResultadosIRUseCaseImpl(repo);
 		}
+		
+		@Bean
+		ILoginUseCase authUseCase(IUsuarioRepositorio usuarioRepositorio) {
+			return new LoginUseCaseImpl(usuarioRepositorio);
+		}
+		
+		
 
 }
