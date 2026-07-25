@@ -3,7 +3,7 @@ package com.prototipo.gestalab.presentacion.dto.response;
 public class CatalogoParametroCResponseDto {
 	
 	private int idParametroC;
-	private String condicionParametroC;
+	private CondicionParametroCResponseDto fkCondicionParametro;
 	private String ensayoParametroC;
 	private String tecnicaParametroC;
 	private String procedimientoInternoParametroC;
@@ -16,11 +16,11 @@ public class CatalogoParametroCResponseDto {
 	public void setIdParametroC(int idParametroC) {
 		this.idParametroC = idParametroC;
 	}
-	public String getCondicionParametroC() {
-		return condicionParametroC;
+	public CondicionParametroCResponseDto getFkCondicionParametro() {
+		return fkCondicionParametro;
 	}
-	public void setCondicionParametroC(String condicionParametroC) {
-		this.condicionParametroC = condicionParametroC;
+	public void setFkCondicionParametro(CondicionParametroCResponseDto fkCondicionParametro) {
+		this.fkCondicionParametro = fkCondicionParametro;
 	}
 	public String getEnsayoParametroC() {
 		return ensayoParametroC;
@@ -58,7 +58,5 @@ public class CatalogoParametroCResponseDto {
 	public void setRangoTrabajoParametroC(String rangoTrabajoParametroC) {
 		this.rangoTrabajoParametroC = rangoTrabajoParametroC;
 	}
-	
-	
 
 }

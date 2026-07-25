@@ -17,18 +17,14 @@ public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
 	private final ICotizacionCJpaRepositorio jpaRepositorio;
 	private final ICotizacionCJpaMapper entityMapper;
 	private final IClienteCJpaRepositorio clienteCJpaRepositorio;
-	private final ICatalogoTerminoCondiCJpaRepositorio terminoCondiCJpaRepositorio;
 	private final IEmpleadoJpaRepositorio empleadoJpaRepositorio;
-
+	
 	public CotizacionCRepositorioImpl(ICotizacionCJpaRepositorio jpaRepositorio, ICotizacionCJpaMapper entityMapper,
-			IClienteCJpaRepositorio clienteCJpaRepositorio,
-			ICatalogoTerminoCondiCJpaRepositorio terminoCondiCJpaRepositorio,
-			IEmpleadoJpaRepositorio empleadoJpaRepositorio) {
+			IClienteCJpaRepositorio clienteCJpaRepositorio, IEmpleadoJpaRepositorio empleadoJpaRepositorio) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
 		this.clienteCJpaRepositorio = clienteCJpaRepositorio;
-		this.terminoCondiCJpaRepositorio = terminoCondiCJpaRepositorio;
 		this.empleadoJpaRepositorio = empleadoJpaRepositorio;
 	}
 
@@ -41,13 +37,6 @@ public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
 					clienteCJpaRepositorio.findById(nuevoCotizacionC.getFkCliente().getIdClienteC()).orElse(null));
 		} else {
 			entity.setFkClienteCEntity(null);
-		}
-
-		if (nuevoCotizacionC.getFkTerminoCondicion() != null && nuevoCotizacionC.getFkTerminoCondicion().getIdTerminoC() > 0) {
-			entity.setFkCatalogoTerminoCondiEntity(
-					terminoCondiCJpaRepositorio.findById(nuevoCotizacionC.getFkTerminoCondicion().getIdTerminoC()).orElse(null));
-		} else {
-			entity.setFkCatalogoTerminoCondiEntity(null);
 		}
 
 		if (nuevoCotizacionC.getFkEmpleado() != null && nuevoCotizacionC.getFkEmpleado().getIdEmpleado() > 0) {

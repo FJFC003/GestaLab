@@ -9,7 +9,7 @@ public class CatalogoParametroCRequestDto {
 	
 	private int idParametroC;
 	@NotBlank
-	private String condicionParametroC;
+	private int fkCondicionParametroC;
 	@NotBlank
 	private String ensayoParametroC;
 	@NotBlank

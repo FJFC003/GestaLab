@@ -40,9 +40,8 @@ public class CotizacionCEntity {
     @JoinColumn(name = "fk_cliente")
     private ClienteCEntity fkClienteCEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_termino_condicion") 
-    private CatalogoTerminosCondiCEntity fkCatalogoTerminoCondiEntity;
+
+
     
     @ManyToOne
     @JoinColumn(name = "fk_Empleado") 

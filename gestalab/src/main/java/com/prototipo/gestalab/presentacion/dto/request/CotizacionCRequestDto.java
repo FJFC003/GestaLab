@@ -20,7 +20,7 @@ public class CotizacionCRequestDto {
 	private double Iva;
 	private double TotalCotizacionC;
 	private int fkCliente;
-	private int fkTerminoCondicion;
+	
 	private int fkEmpleado;
 
 }
