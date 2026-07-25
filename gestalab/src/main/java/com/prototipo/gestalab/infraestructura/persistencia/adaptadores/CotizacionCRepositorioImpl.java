@@ -19,19 +19,22 @@ public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
 	private final ICotizacionCJpaMapper entityMapper;
 	private final IClienteCJpaRepositorio clienteCJpaRepositorio;
 	private final IEmpleadoJpaRepositorio empleadoJpaRepositorio;
-	
+	private final IDetalleCJpaRepositorio detalleCJpaRepositorio;
+
 	public CotizacionCRepositorioImpl(ICotizacionCJpaRepositorio jpaRepositorio, ICotizacionCJpaMapper entityMapper,
-			IClienteCJpaRepositorio clienteCJpaRepositorio, IEmpleadoJpaRepositorio empleadoJpaRepositorio) {
+			IClienteCJpaRepositorio clienteCJpaRepositorio, IEmpleadoJpaRepositorio empleadoJpaRepositorio,
+			IDetalleCJpaRepositorio detalleCJpaRepositorio) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
 		this.clienteCJpaRepositorio = clienteCJpaRepositorio;
 		this.empleadoJpaRepositorio = empleadoJpaRepositorio;
+		this.detalleCJpaRepositorio = detalleCJpaRepositorio;
 	}
 
 	@Override
 	public CotizacionC guardar(CotizacionC nuevoCotizacionC) {
-		CotizacionCEntity entity = entityMapper.toEntity(nuevoCotizacionC);
+CotizacionCEntity entity = entityMapper.toEntity(nuevoCotizacionC);
 		
 		if (nuevoCotizacionC.getFkCliente() != null && nuevoCotizacionC.getFkCliente().getIdClienteC() > 0) {
 			entity.setFkClienteCEntity(
@@ -66,8 +69,10 @@ public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
 	@Override
 	public void eliminar(int idCotizacionC) {
 		// TODO Auto-generated method stub
-		IDetalleCJpaRepositorio.deleteAll(IDetalleCJpaRepositorio.findByFkCotizacionCEntity_IdCotizacionC(idCotizacionC));
+		detalleCJpaRepositorio.deleteAll(detalleCJpaRepositorio.findByFkCotizacionCEntity_IdCotizacionC(idCotizacionC));
 		jpaRepositorio.deleteById(idCotizacionC);
 	}
+
+	
 
 }

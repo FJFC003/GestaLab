@@ -6,10 +6,8 @@ import lombok.Data;
 @Data
 public class CatalogoParametroCRequestDto {
 	
-	
 	private int idParametroC;
-	@NotBlank
-	private int fkCondicionParametroC;
+	private int fkCondicionParametro;
 	@NotBlank
 	private String ensayoParametroC;
 	@NotBlank
@@ -22,5 +20,4 @@ public class CatalogoParametroCRequestDto {
 	private String unidadParametroC;
 	@NotBlank
 	private String rangoTrabajoParametroC;
-
 }

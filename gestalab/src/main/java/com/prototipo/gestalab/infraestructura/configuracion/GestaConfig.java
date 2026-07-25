@@ -332,8 +332,9 @@ public class GestaConfig {
 
 	@Bean
 	ICotizacionCRepositorio cotizacionCRepositorio(ICotizacionCJpaRepositorio jpaRepositorio, ICotizacionCJpaMapper mapper,
-			IClienteCJpaRepositorio clienteCJpaRepositorio, IEmpleadoJpaRepositorio empleadoJpaRepositorio) {
-		return new CotizacionCRepositorioImpl(jpaRepositorio, mapper, clienteCJpaRepositorio, empleadoJpaRepositorio);
+			IClienteCJpaRepositorio clienteCJpaRepositorio, IEmpleadoJpaRepositorio empleadoJpaRepositorio,
+			IDetalleCJpaRepositorio detalleCJpaRepositorio) {
+		return new CotizacionCRepositorioImpl(jpaRepositorio, mapper, clienteCJpaRepositorio, empleadoJpaRepositorio, detalleCJpaRepositorio);
 	}
 	
 	@Bean

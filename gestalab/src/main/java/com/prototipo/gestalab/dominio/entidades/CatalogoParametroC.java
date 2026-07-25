@@ -4,24 +4,25 @@ package com.prototipo.gestalab.dominio.entidades;
 public class CatalogoParametroC {
 	
 	private int idParametroC;
-	private String condicionParametroC;
 	private String ensayoParametroC;
 	private String tecnicaParametroC;
 	private String procedimientoInternoParametroC;
 	private String normaReferencialParametroC;
 	private String unidadParametroC;
 	private String rangoTrabajoParametroC;
+	private CondicionParametroC fkCondicionParametro;
+	
+	public CondicionParametroC getFkCondicionParametro() {
+		return fkCondicionParametro;
+	}
+	public void setFkCondicionParametro(CondicionParametroC fkCondicionParametro) {
+		this.fkCondicionParametro = fkCondicionParametro;
+	}
 	public int getIdParametroC() {
 		return idParametroC;
 	}
 	public void setIdParametroC(int idParametroC) {
 		this.idParametroC = idParametroC;
-	}
-	public String getCondicionParametroC() {
-		return condicionParametroC;
-	}
-	public void setCondicionParametroC(String condicionParametroC) {
-		this.condicionParametroC = condicionParametroC;
 	}
 	public String getEnsayoParametroC() {
 		return ensayoParametroC;
@@ -59,7 +60,5 @@ public class CatalogoParametroC {
 	public void setRangoTrabajoParametroC(String rangoTrabajoParametroC) {
 		this.rangoTrabajoParametroC = rangoTrabajoParametroC;
 	}
-	
-	
 
 }
