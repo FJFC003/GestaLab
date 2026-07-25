@@ -22,6 +22,7 @@ public class CargoEntity {
 	private int idCargo;
 	@Column(length = 80)
 	private String nombre;
+	@Column(length = 1000)
 	private String descripcion;
 	private boolean estadoCargo;
 	

@@ -21,8 +21,6 @@ import jakarta.validation.Valid;
 @RequestMapping("api/gestalab/login")
 @RestController
 public class LoginController {
-	
-	private static final String ROL_GERENTE = "Gerente General";
 
 	private final ILoginUseCase loginUseCase;
 	private final IUsuariohasRolUseCase usuariohasRolUseCase;
@@ -43,10 +41,9 @@ public class LoginController {
 				.filter(a -> a.getFkUsuario() != null && a.getFkUsuario().getIdUsuario() == usuario.getIdUsuario())
 				.filter(a -> a.getFkRol() != null && a.getFkRol().getNombre() != null)
 				.map(a -> a.getFkRol().getNombre())
-				.filter(nombre -> nombre.equalsIgnoreCase(ROL_GERENTE))
 				.findFirst()
 				.orElseThrow(() -> new IllegalStateException(
-						"Este usuario no tiene permisos de Gerente General"));
+						"Este usuario no tiene un rol asignado"));
 
 		LoginResponseDto response = new LoginResponseDto();
 		response.setIdUsuario(usuario.getIdUsuario());
