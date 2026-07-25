@@ -10,6 +10,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoParametroUseC
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoTerminoCondiCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IClienteCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionAmbientalIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionParametroCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICotizacionCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDatosLaboratorioIRUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDesviosOrdenOTUseCase;
@@ -41,6 +42,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.CatalogoParametroUseCaseI
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CatalogoTerminoCondiCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ClienteCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CondicionAmbientalIRUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.CondicionParametroCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CotizacionCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DatosLaboratorioIRUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DesviosOrdenOTUseCaseImpl;
@@ -72,6 +74,7 @@ import com.prototipo.gestalab.dominio.repositorio.ICatalogoParametroCRepositorio
 import com.prototipo.gestalab.dominio.repositorio.ICatalogoTerminoCondiCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IClienteCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.ICondicionAmbientalIRRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.ICondicionParametroCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.ICotizacionCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDatosLaboratorioIRRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDesviosOrdenOTRepositorio;
@@ -102,6 +105,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CatalogoP
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CatalogoTerminoCondiCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.ClienteCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CondicionAmbientalIRRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CondicionParametroCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CotizacionCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DatosLaboratorioIRRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DesviosOrdenOTRepositorioImpl;
@@ -132,6 +136,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICatalogoP
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICatalogoTerminosCondiCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IClienteCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICondicionAmbientalIRJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICondicionParametroCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICotizacionCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDatosLaboratorioIRJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDesviosOrdenOTJpaMapper;
@@ -162,6 +167,7 @@ import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoParametroCJp
 import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoTerminoCondiCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IClienteCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICondicionAmbientalIRJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ICondicionParametroCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICotizacionCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDatosLaboratorioIRJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDesviosOrdenOTJpaRepositorio;
@@ -503,6 +509,16 @@ public class GestaConfig {
 		@Bean
 		ILoginUseCase authUseCase(IUsuarioRepositorio usuarioRepositorio) {
 			return new LoginUseCaseImpl(usuarioRepositorio);
+		}
+		
+		@Bean
+		ICondicionParametroCRepositorio condicionParametroCRepositorio(ICondicionParametroCJpaRepositorio jpaRepositorio, ICondicionParametroCJpaMapper mapper) {
+			return new CondicionParametroCRepositorioImpl(jpaRepositorio, mapper);
+		}
+
+		@Bean
+		ICondicionParametroCUseCase condicionParametroCUseCase(ICondicionParametroCRepositorio repo) {
+			return new CondicionParametroCUseCaseImpl(repo);
 		}
 		
 		

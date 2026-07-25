@@ -10,6 +10,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICotizacio
 import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoTerminoCondiCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IClienteCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICotizacionCJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IDetalleCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
 
 public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
@@ -65,6 +66,7 @@ public class CotizacionCRepositorioImpl implements ICotizacionCRepositorio{
 	@Override
 	public void eliminar(int idCotizacionC) {
 		// TODO Auto-generated method stub
+		IDetalleCJpaRepositorio.deleteAll(IDetalleCJpaRepositorio.findByFkCotizacionCEntity_IdCotizacionC(idCotizacionC));
 		jpaRepositorio.deleteById(idCotizacionC);
 	}
 

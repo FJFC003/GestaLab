@@ -35,6 +35,7 @@ public class CotizacionCEntity {
 	private double costoLogistica;
 	private double Iva;
 	private double TotalCotizacionC;
+	private boolean estadoCotizacionC;
 	
     @ManyToOne
     @JoinColumn(name = "fk_cliente")

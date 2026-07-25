@@ -25,6 +25,12 @@ public class CondicionParametroCRepositorioImpl implements ICondicionParametroCR
 	@Override
 	public CondicionParametroC guardar(CondicionParametroC nuevo) {
 		CondicionParametroCEntity entity = entityMapper.toEntity(nuevo);
+		if (nuevo.getFkCondicionParametro() != null && nuevo.getFkCondicionParametro().getIdCondicionParametroC() > 0) {
+			entity.setFkCondicionParametroEntity(
+					condicionJpaRepositorio.findById(nuevo.getFkCondicionParametro().getIdCondicionParametroC()).orElse(null));
+		} else {
+			entity.setFkCondicionParametroEntity(null);
+		}
 		return entityMapper.toDomain(jpaRepositorio.save(entity));
 	}
 
