@@ -54,5 +54,12 @@ public class DetalleCController {
 		detalleCUseCase.eliminar(idDetalleC);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/porcotizacion/{idCotizacionC}")
+	public List<DetalleCResponseDto> buscarPorCotizacion(@PathVariable int idCotizacionC) {
+		return detalleCUseCase.buscarPorCotizacion(idCotizacionC).stream()
+				.map(mapper::toResponseDto)
+				.toList();
+	}
 
 }

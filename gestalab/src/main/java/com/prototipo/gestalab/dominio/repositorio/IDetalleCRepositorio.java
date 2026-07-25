@@ -10,6 +10,7 @@ public interface IDetalleCRepositorio {
 	DetalleC guardar (DetalleC nuevoDetalleC);
 	Optional<DetalleC> buscarPorId(int idDetalleC);
 	List<DetalleC> ListarTodos();
+	List<DetalleC> buscarPorCotizacion(int idCotizacionC);
 	
 	void eliminar (int idDetalleC);
 

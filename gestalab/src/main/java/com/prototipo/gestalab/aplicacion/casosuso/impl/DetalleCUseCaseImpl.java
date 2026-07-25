@@ -42,4 +42,10 @@ public class DetalleCUseCaseImpl implements IDetalleCUseCase{
 		repositorio.eliminar(idDetalleC);
 	}
 
+	@Override
+	public List<DetalleC> buscarPorCotizacion(int idCotizacionC) {
+		// TODO Auto-generated method stub
+		return repositorio.buscarPorCotizacion(idCotizacionC);
+	}
+
 }

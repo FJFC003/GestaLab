@@ -79,4 +79,13 @@ public class DetalleCRepositorioImpl implements IDetalleCRepositorio{
 		jpaRepositorio.deleteById(idDetalleC);
 	}
 
+	@Override
+	public List<DetalleC> buscarPorCotizacion(int idCotizacionC) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkCotizacionCEntity_IdCotizacionC(idCotizacionC)
+				.stream()
+				.map(entityMapper::toDomain)
+				.toList();
+	}
+
 }
