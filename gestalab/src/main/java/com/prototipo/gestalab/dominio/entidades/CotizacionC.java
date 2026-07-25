@@ -17,6 +17,15 @@ public class CotizacionC {
 	private double costoLogistica;
 	private double Iva;
 	private double TotalCotizacionC;
+	private boolean estadoCotizacionC;
+	public boolean isEstadoCotizacionC() {
+		return estadoCotizacionC;
+	}
+
+	public void setEstadoCotizacionC(boolean estadoCotizacionC) {
+		this.estadoCotizacionC = estadoCotizacionC;
+	}
+
 	private ClienteC fkCliente;
 	
 	private Empleado fkEmpleado;

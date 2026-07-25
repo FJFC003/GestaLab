@@ -7,7 +7,6 @@ import com.prototipo.gestalab.dominio.entidades.CotizacionC;
 import com.prototipo.gestalab.dominio.repositorio.ICotizacionCRepositorio;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.CotizacionCEntity;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICotizacionCJpaMapper;
-import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoTerminoCondiCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IClienteCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICotizacionCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDetalleCJpaRepositorio;

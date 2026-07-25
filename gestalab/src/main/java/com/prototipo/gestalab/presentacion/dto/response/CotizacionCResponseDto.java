@@ -20,7 +20,7 @@ public class CotizacionCResponseDto {
 	private double Iva;
 	private double TotalCotizacionC;
 	private ClienteCResponseDto fkCliente;
-	
+	private boolean estadoCotizacionC;
 	private EmpleadoResponseDto fkEmpleado;
 	
 	
