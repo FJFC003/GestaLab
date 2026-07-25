@@ -23,6 +23,7 @@ public class CatalogoTerminosCondiCEntity {
 	private int idTerminoC;
 	@Column(length = 80)
 	private String tituloTerminoC;
+	@Column(length = 10000)
 	private String contenidoTerminoC;
 	
 	@OneToMany(mappedBy = "fkCatalogoTerminoCondiEntity")
