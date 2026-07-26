@@ -6,15 +6,20 @@ import org.mapstruct.Mapping;
 import com.prototipo.gestalab.dominio.entidades.CotizacionC;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.CotizacionCEntity;
 
-@Mapper(componentModel = "spring", uses = { IClienteCJpaMapper.class, IEmpleadoJpaMapper.class })
+@Mapper(componentModel = "spring", uses = { IClienteCJpaMapper.class, IEmpleadoJpaMapper.class,
+		ICatalogoNormServiCJpaMapper.class, ILmpCJpaMapper.class })
 public interface ICotizacionCJpaMapper {
 	
 	@Mapping(target = "fkCliente", source = "fkClienteCEntity")
 	@Mapping(target = "fkEmpleado", source = "fkEmpleadoEntity")
+	@Mapping(target = "fkNormaServicio", source = "fkCatalogoNormServiEntity")
+	@Mapping(target = "fkLmp", source = "fkLmpEntity")
 	CotizacionC toDomain(CotizacionCEntity entity);
 	
 	@Mapping(target = "fkClienteCEntity", source = "fkCliente")
 	@Mapping(target = "fkEmpleadoEntity", source = "fkEmpleado")
+	@Mapping(target = "fkCatalogoNormServiEntity", source = "fkNormaServicio")
+	@Mapping(target = "fkLmpEntity", source = "fkLmp")
 	CotizacionCEntity toEntity(CotizacionC cotizacionCPojo);
 
 }

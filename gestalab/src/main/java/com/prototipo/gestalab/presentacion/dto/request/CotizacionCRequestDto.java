@@ -22,5 +22,7 @@ public class CotizacionCRequestDto {
 	private int fkCliente;
 	private boolean estadoCotizacionC;
 	private int fkEmpleado;
+	private int fkNormaServicio;
+	private int fkLmp;
 
 }

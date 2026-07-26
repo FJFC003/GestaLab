@@ -48,6 +48,10 @@ public class CotizacionCEntity {
 	@ManyToOne
     @JoinColumn(name = "fk_norma_servicio")
     private CatalogoNormServiCEntity fkCatalogoNormServiEntity;
+
+	@ManyToOne
+    @JoinColumn(name = "fk_lmp")
+    private LmpCEntity fkLmpEntity;
  
 	@OneToMany(mappedBy = "fkCotizacionCEntity")
     private List<DetalleCEntity> listaDetalles = new ArrayList<>();

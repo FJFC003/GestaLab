@@ -50,6 +50,25 @@ public class CotizacionC {
 		this.fkEmpleado = fkEmpleado;
 	}
 
+	private CatalogoNormServiC fkNormaServicio;
+	private LmpC fkLmp;
+
+	public CatalogoNormServiC getFkNormaServicio() {
+		return fkNormaServicio;
+	}
+
+	public void setFkNormaServicio(CatalogoNormServiC fkNormaServicio) {
+		this.fkNormaServicio = fkNormaServicio;
+	}
+
+	public LmpC getFkLmp() {
+		return fkLmp;
+	}
+
+	public void setFkLmp(LmpC fkLmp) {
+		this.fkLmp = fkLmp;
+	}
+
 	public CotizacionC() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -168,7 +187,4 @@ public class CotizacionC {
 	public void setTotalCotizacionC(double totalCotizacionC) {
 		TotalCotizacionC = totalCotizacionC;
 	}
-	
-	
-
 }
