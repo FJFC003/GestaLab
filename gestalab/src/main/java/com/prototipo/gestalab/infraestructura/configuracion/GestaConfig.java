@@ -311,8 +311,11 @@ public class GestaConfig {
 	}
 	
 	@Bean
-	ICatalogoParametroCRepositorio catalogoParametroCRepositorio(ICatalogoParametroCJpaRepositorio jpaRepositorio, ICatalogoParametrosCJpaMapper mapper) {
-		return new CatalogoParametroCRepositorioImpl(jpaRepositorio, mapper);
+	ICatalogoParametroCRepositorio catalogoParametroCRepositorio(
+			ICatalogoParametroCJpaRepositorio jpaRepositorio,
+			ICatalogoParametrosCJpaMapper mapper,
+			ICondicionParametroCJpaRepositorio condicionJpaRepositorio) {
+		return new CatalogoParametroCRepositorioImpl(jpaRepositorio, mapper, condicionJpaRepositorio);
 	}
 	
 	@Bean
