@@ -20,12 +20,13 @@ public class CatalogoNormServiCEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCatalogoNormServi;
-	@Column(length = 30000)
-	private String parametroCatalogoNormServiEntity;
-	@Column(length = 30000)
-	private String lmpCatalogoNormServiEntity;
-
+	@Column(length = 255)
+	private String nombreCatalogoNormServiEntity;
+ 
+	@OneToMany(mappedBy = "fkNormaEntity")
+	private List<NormaParametroLmpCEntity> listaParametrosLmp = new ArrayList<>();
+ 
 	@OneToMany(mappedBy = "fkCatalogoNormServiEntity")
-    private List<DetalleCEntity> listaDetalles = new ArrayList<>();
+	private List<CotizacionCEntity> listaCotizaciones = new ArrayList<>();
 	
 }

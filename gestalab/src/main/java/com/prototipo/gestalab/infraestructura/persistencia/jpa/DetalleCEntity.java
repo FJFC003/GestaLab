@@ -3,7 +3,6 @@ package com.prototipo.gestalab.infraestructura.persistencia.jpa;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,9 +21,6 @@ public class DetalleCEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDetalleC;
-	@Column(length = 80)
-	private String descripcionDetalleC;
-	private String plazoEntregaDetalleC;
 	private int cantidadPuntosDetalleC;
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
@@ -33,14 +29,22 @@ public class DetalleCEntity {
 	@ManyToOne
     @JoinColumn(name = "fk_cotizacion")
     private CotizacionCEntity fkCotizacionCEntity;
-
+ 
     @ManyToOne
     @JoinColumn(name = "fk_parametro")
     private CatalogoParametrosCEntity fkCatalogoParametroEntity;
-
+ 
     @ManyToOne
-    @JoinColumn(name = "fk_norma_servicio")
-    private CatalogoNormServiCEntity fkCatalogoNormServiEntity;
+    @JoinColumn(name = "fk_lmp")
+    private LmpCEntity fkLmpEntity;
+ 
+    @ManyToOne
+    @JoinColumn(name = "fk_descripcion_servicio")
+    private DescripcionServicioCEntity fkDescripcionServicioEntity;
+ 
+    @ManyToOne
+    @JoinColumn(name = "fk_plazo_entrega")
+    private PlazoEntregaCEntity fkPlazoEntregaEntity;
     
     @OneToMany(mappedBy = "fkDetalleCEntity")
     private List<PlanMuestreoPLEntity> listaPlanes = new ArrayList<>();

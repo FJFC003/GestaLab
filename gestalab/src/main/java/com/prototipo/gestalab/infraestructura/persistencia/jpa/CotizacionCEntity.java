@@ -40,14 +40,15 @@ public class CotizacionCEntity {
     @ManyToOne
     @JoinColumn(name = "fk_cliente")
     private ClienteCEntity fkClienteCEntity;
-
-
-
     
     @ManyToOne
     @JoinColumn(name = "fk_Empleado") 
     private EmpleadoEntity fkEmpleadoEntity;
-
+ 
+    @ManyToOne
+    @JoinColumn(name = "fk_norma_servicio")
+    private CatalogoNormServiCEntity fkCatalogoNormServiEntity;
+ 
     @OneToMany(mappedBy = "fkCotizacionCEntity")
     private List<DetalleCEntity> listaDetalles = new ArrayList<>();
 
