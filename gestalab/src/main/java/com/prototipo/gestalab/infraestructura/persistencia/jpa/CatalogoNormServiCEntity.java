@@ -20,8 +20,9 @@ public class CatalogoNormServiCEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCatalogoNormServi;
-	@Column(length = 80)
+	@Column(length = 30000)
 	private String parametroCatalogoNormServiEntity;
+	@Column(length = 30000)
 	private String lmpCatalogoNormServiEntity;
 
 	@OneToMany(mappedBy = "fkCatalogoNormServiEntity")
