@@ -27,19 +27,17 @@ public class CatalogoParametroCRepositorioImpl implements ICatalogoParametroCRep
 
 	@Override
 	public CatalogoParametroC guardar(CatalogoParametroC nuevaCataPara) {
+		CatalogoParametrosCEntity entity = entityMapper.toEntity(nuevaCataPara);
+
 		int idCondicion = nuevaCataPara.getFkCondicionParametro() != null
 				? nuevaCataPara.getFkCondicionParametro().getIdCondicionParametroC()
 				: 0;
 
-		if (idCondicion <= 0) {
-			throw new IllegalArgumentException("Debe seleccionar una condición del parámetro válida");
+		if (idCondicion > 0) {
+			entity.setFkCondicionParametroEntity(condicionJpaRepositorio.getReferenceById(idCondicion));
+		} else {
+			entity.setFkCondicionParametroEntity(null);
 		}
-
-		CatalogoParametrosCEntity entity = entityMapper.toEntity(nuevaCataPara);
-
-		
-		CondicionParametroCEntity condicionRef = condicionJpaRepositorio.getReferenceById(idCondicion);
-		entity.setFkCondicionParametroEntity(condicionRef);
 
 		CatalogoParametrosCEntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
