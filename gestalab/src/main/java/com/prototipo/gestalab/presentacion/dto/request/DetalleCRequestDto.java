@@ -7,14 +7,12 @@ import lombok.Data;
 public class DetalleCRequestDto {
 	
 	private int idDetalleC;
-	@NotBlank
 	private String descripcionDetalleC;
-	@NotBlank
+	@NotBlank(message = "El plazo de entrega es obligatorio")
 	private String plazoEntregaDetalleC;
 	private int cantidadPuntosDetalleC;
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
-	@NotBlank
 	private String condicionDetalleC;
 	private int fkCotizacion;
 	private int fkParametro;
