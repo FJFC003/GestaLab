@@ -30,18 +30,18 @@ public class DetalleCEntity {
     @JoinColumn(name = "fk_cotizacion")
     private CotizacionCEntity fkCotizacionCEntity;
  
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "fk_parametro")
     private CatalogoParametrosCEntity fkCatalogoParametroEntity;
- 
+
     @ManyToOne
     @JoinColumn(name = "fk_lmp")
     private LmpCEntity fkLmpEntity;
- 
+
     @ManyToOne
     @JoinColumn(name = "fk_descripcion_servicio")
     private DescripcionServicioCEntity fkDescripcionServicioEntity;
- 
+
     @ManyToOne
     @JoinColumn(name = "fk_plazo_entrega")
     private PlazoEntregaCEntity fkPlazoEntregaEntity;

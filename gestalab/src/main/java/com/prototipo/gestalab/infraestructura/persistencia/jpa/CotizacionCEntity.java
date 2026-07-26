@@ -37,19 +37,19 @@ public class CotizacionCEntity {
 	private double TotalCotizacionC;
 	private boolean estadoCotizacionC;
 	
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "fk_cliente")
     private ClienteCEntity fkClienteCEntity;
     
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "fk_Empleado") 
     private EmpleadoEntity fkEmpleadoEntity;
  
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name = "fk_norma_servicio")
     private CatalogoNormServiCEntity fkCatalogoNormServiEntity;
  
-    @OneToMany(mappedBy = "fkCotizacionCEntity")
+	@OneToMany(mappedBy = "fkCotizacionCEntity")
     private List<DetalleCEntity> listaDetalles = new ArrayList<>();
 
 }

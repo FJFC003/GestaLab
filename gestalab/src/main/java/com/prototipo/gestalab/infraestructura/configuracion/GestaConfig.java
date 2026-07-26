@@ -13,6 +13,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionAmbientalIRU
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionParametroCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICotizacionCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDatosLaboratorioIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDescripcionServicioCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDesviosOrdenOTUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDetalleCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDetalleOrdenTrabajoOTUseCase;
@@ -23,10 +24,13 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.IFirmaElectronicaUseCa
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionAdicionalPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionMatrizPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.ILmpCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ILoginUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.INormaParametroLmpCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IOrdenTrabajoOTUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IParametroAnalizarPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlanMuestreoPLUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlazoEntregaCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IProcedimientoMuePLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRecursosCronoPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IResultadosIRUseCase;
@@ -45,6 +49,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.CondicionAmbientalIRUseCa
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CondicionParametroCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.CotizacionCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DatosLaboratorioIRUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.DescripcionServicioCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DesviosOrdenOTUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DetalleCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DetalleOrdenTrabajoOTImpl;
@@ -55,10 +60,13 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.FirmaElectronicaUseCaseIm
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformacionAdicionalPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformacionMatrizPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformeResultadosIRUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.LmpCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.LoginUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.NormaParametroLmpCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.OrdenTrabajoOTUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ParametroAnalizarPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.PlanMuestreoPLUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.PlazoEntregaCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ProcedimientoMuePLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.RecursosCronoPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ResultadosIRUseCaseImpl;
@@ -77,6 +85,7 @@ import com.prototipo.gestalab.dominio.repositorio.ICondicionAmbientalIRRepositor
 import com.prototipo.gestalab.dominio.repositorio.ICondicionParametroCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.ICotizacionCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDatosLaboratorioIRRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.IDescripcionServicioCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDesviosOrdenOTRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDetalleCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDetalleOrdenTrabajoOTRepositorio;
@@ -87,9 +96,12 @@ import com.prototipo.gestalab.dominio.repositorio.IFirmaElectronicaRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IInformacionAdicionalPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IInformacionMatrizPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IInformeResultadosIRRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.ILmpCRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.INormaParametroLmpCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IOrdenTrabajoOTRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IParametroAnalizarPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IPlanMuestreoPLRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.IPlazoEntregaCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IProcedimientoMuePLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IRecursosCronoPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IResultadosIRRepositorio;
@@ -108,6 +120,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.Condicion
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CondicionParametroCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.CotizacionCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DatosLaboratorioIRRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DescripcionServicioCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DesviosOrdenOTRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DetalleCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DetalleOrdenTrabajoOTRepositorioImpl;
@@ -118,9 +131,12 @@ import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.FirmaElec
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.InformacionAdicionalPLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.InformacionMatrizPLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.InformeResultadosIRRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.LmpCRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.NormaParametroLmpCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.OrdenTrabajoOTRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.ParametroAnalizarPLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.PlanMuestreoPLRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.PlazoEntregaCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.ProcedimientoMuePLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.RecursosCronoPLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.ResultadosIRRepositorioImpl;
@@ -139,6 +155,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICondicion
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICondicionParametroCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ICotizacionCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDatosLaboratorioIRJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDescripcionServicioCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDesviosOrdenOTJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDetalleCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDetalleOrdenTrabajoOTJpaMapper;
@@ -149,9 +166,12 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IFirmaElec
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IInformacionAdicionalPLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IInformacionMatrizPLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IInformeResultadosIRJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ILmpCJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.INormaParametroLmpCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IOrdenTrabajoOTJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IParametroAnalizarPLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IPlanMuestreoPLJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IPlazoEntregaCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IProcedimientoMuePLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IRecursosCronoPLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IResultadosIRJpaMapper;
@@ -170,6 +190,7 @@ import com.prototipo.gestalab.infraestructura.repositorios.ICondicionAmbientalIR
 import com.prototipo.gestalab.infraestructura.repositorios.ICondicionParametroCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICotizacionCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDatosLaboratorioIRJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IDescripcionServicioCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDesviosOrdenOTJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDetalleCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDetalleOrdenTrabajoOTJpaRepositorio;
@@ -180,9 +201,12 @@ import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaR
 import com.prototipo.gestalab.infraestructura.repositorios.IInformacionAdicionalPLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IInformacionMatrizPLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IInformeResultadosIRJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ILmpCJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.INormaParametroLmpCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IOrdenTrabajoOTJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IParametroAnalizarPLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IPlanMuestreoPLJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IPlazoEntregaCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IProcedimientoMuePLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IRecursosCronoPLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IResultadosIRJpaRepositorio;
@@ -348,14 +372,58 @@ public class GestaConfig {
 	@Bean
 	IDetalleCRepositorio detalleCRepositorio(IDetalleCJpaRepositorio jpaRepositorio, IDetalleCJpaMapper mapper,
 			ICotizacionCJpaRepositorio cotizacionCJpaRepositorio, ICatalogoParametroCJpaRepositorio parametroCJpaRepositorio,
-			ICatalogoNormServiCJpaRepositorio normServiCJpaRepositorio) {
-		return new DetalleCRepositorioImpl(jpaRepositorio, mapper, cotizacionCJpaRepositorio, parametroCJpaRepositorio, normServiCJpaRepositorio);
+			ILmpCJpaRepositorio lmpCJpaRepositorio, IDescripcionServicioCJpaRepositorio descripcionServicioCJpaRepositorio,
+			IPlazoEntregaCJpaRepositorio plazoEntregaCJpaRepositorio) {
+		return new DetalleCRepositorioImpl(jpaRepositorio, mapper, cotizacionCJpaRepositorio, parametroCJpaRepositorio,
+				lmpCJpaRepositorio, descripcionServicioCJpaRepositorio, plazoEntregaCJpaRepositorio);
 
 	}
 	
 	@Bean
 	IDetalleCUseCase detalleCUseCase(IDetalleCRepositorio repo) {
 		return new DetalleCUseCaseImpl(repo);
+	}
+
+	@Bean
+	ILmpCRepositorio lmpCRepositorio(ILmpCJpaRepositorio jpaRepositorio, ILmpCJpaMapper mapper) {
+		return new LmpCRepositorioImpl(jpaRepositorio, mapper);
+	}
+
+	@Bean
+	ILmpCUseCase lmpCUseCase(ILmpCRepositorio repo) {
+		return new LmpCUseCaseImpl(repo);
+	}
+
+	@Bean
+	IDescripcionServicioCRepositorio descripcionServicioCRepositorio(IDescripcionServicioCJpaRepositorio jpaRepositorio, IDescripcionServicioCJpaMapper mapper) {
+		return new DescripcionServicioCRepositorioImpl(jpaRepositorio, mapper);
+	}
+
+	@Bean
+	IDescripcionServicioCUseCase descripcionServicioCUseCase(IDescripcionServicioCRepositorio repo) {
+		return new DescripcionServicioCUseCaseImpl(repo);
+	}
+
+	@Bean
+	IPlazoEntregaCRepositorio plazoEntregaCRepositorio(IPlazoEntregaCJpaRepositorio jpaRepositorio, IPlazoEntregaCJpaMapper mapper) {
+		return new PlazoEntregaCRepositorioImpl(jpaRepositorio, mapper);
+	}
+
+	@Bean
+	IPlazoEntregaCUseCase plazoEntregaCUseCase(IPlazoEntregaCRepositorio repo) {
+		return new PlazoEntregaCUseCaseImpl(repo);
+	}
+
+	@Bean
+	INormaParametroLmpCRepositorio normaParametroLmpCRepositorio(INormaParametroLmpCJpaRepositorio jpaRepositorio,
+			INormaParametroLmpCJpaMapper mapper, ICatalogoNormServiCJpaRepositorio normaCJpaRepositorio,
+			ICatalogoParametroCJpaRepositorio parametroCJpaRepositorio, ILmpCJpaRepositorio lmpCJpaRepositorio) {
+		return new NormaParametroLmpCRepositorioImpl(jpaRepositorio, mapper, normaCJpaRepositorio, parametroCJpaRepositorio, lmpCJpaRepositorio);
+	}
+
+	@Bean
+	INormaParametroLmpCUseCase normaParametroLmpCUseCase(INormaParametroLmpCRepositorio repo) {
+		return new NormaParametroLmpCUseCaseImpl(repo);
 	}
 
 	@Bean
@@ -527,4 +595,5 @@ public class GestaConfig {
 		
 		
 
+	
 }

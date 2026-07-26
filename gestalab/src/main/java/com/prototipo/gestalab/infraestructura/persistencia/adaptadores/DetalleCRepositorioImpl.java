@@ -10,7 +10,10 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDetalleCJ
 import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoNormServiCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICatalogoParametroCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ICotizacionCJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IDescripcionServicioCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IDetalleCJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ILmpCJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IPlazoEntregaCJpaRepositorio;
 
 public class DetalleCRepositorioImpl implements IDetalleCRepositorio{
 	
@@ -18,23 +21,29 @@ public class DetalleCRepositorioImpl implements IDetalleCRepositorio{
 	private final IDetalleCJpaMapper entityMapper;
 	private final ICotizacionCJpaRepositorio cotizacionCJpaRepositorio;
 	private final ICatalogoParametroCJpaRepositorio parametroCJpaRepositorio;
-	private final ICatalogoNormServiCJpaRepositorio normServiCJpaRepositorio;
-
+	private final ILmpCJpaRepositorio lmpCJpaRepositorio;
+	private final IDescripcionServicioCJpaRepositorio descripcionServicioCJpaRepositorio;
+	private final IPlazoEntregaCJpaRepositorio plazoEntregaCJpaRepositorio;
+	
 	public DetalleCRepositorioImpl(IDetalleCJpaRepositorio jpaRepositorio, IDetalleCJpaMapper entityMapper,
 			ICotizacionCJpaRepositorio cotizacionCJpaRepositorio,
 			ICatalogoParametroCJpaRepositorio parametroCJpaRepositorio,
-			ICatalogoNormServiCJpaRepositorio normServiCJpaRepositorio) {
+			ILmpCJpaRepositorio lmpCJpaRepositorio,
+			IDescripcionServicioCJpaRepositorio descripcionServicioCJpaRepositorio,
+			IPlazoEntregaCJpaRepositorio plazoEntregaCJpaRepositorio) {
 		super();
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
 		this.cotizacionCJpaRepositorio = cotizacionCJpaRepositorio;
 		this.parametroCJpaRepositorio = parametroCJpaRepositorio;
-		this.normServiCJpaRepositorio = normServiCJpaRepositorio;
+		this.lmpCJpaRepositorio = lmpCJpaRepositorio;
+		this.descripcionServicioCJpaRepositorio = descripcionServicioCJpaRepositorio;
+		this.plazoEntregaCJpaRepositorio = plazoEntregaCJpaRepositorio;
 	}
 
 	@Override
 	public DetalleC guardar(DetalleC nuevoDetalleC) {
-		DetalleCEntity entity = entityMapper.toEntity(nuevoDetalleC);
+DetalleCEntity entity = entityMapper.toEntity(nuevoDetalleC);
 		
 		if (nuevoDetalleC.getFkCotizacion() != null && nuevoDetalleC.getFkCotizacion().getIdCotizacionC() > 0) {
 			entity.setFkCotizacionCEntity(
@@ -50,11 +59,25 @@ public class DetalleCRepositorioImpl implements IDetalleCRepositorio{
 			entity.setFkCatalogoParametroEntity(null);
 		}
 
-		if (nuevoDetalleC.getFkNormaServicio() != null && nuevoDetalleC.getFkNormaServicio().getIdCatalogoNormServi() > 0) {
-			entity.setFkCatalogoNormServiEntity(
-					normServiCJpaRepositorio.findById(nuevoDetalleC.getFkNormaServicio().getIdCatalogoNormServi()).orElse(null));
+		if (nuevoDetalleC.getFkLmp() != null && nuevoDetalleC.getFkLmp().getIdLmpC() > 0) {
+			entity.setFkLmpEntity(
+					lmpCJpaRepositorio.findById(nuevoDetalleC.getFkLmp().getIdLmpC()).orElse(null));
 		} else {
-			entity.setFkCatalogoNormServiEntity(null);
+			entity.setFkLmpEntity(null);
+		}
+
+		if (nuevoDetalleC.getFkDescripcionServicio() != null && nuevoDetalleC.getFkDescripcionServicio().getIdDescripcionServicioC() > 0) {
+			entity.setFkDescripcionServicioEntity(
+					descripcionServicioCJpaRepositorio.findById(nuevoDetalleC.getFkDescripcionServicio().getIdDescripcionServicioC()).orElse(null));
+		} else {
+			entity.setFkDescripcionServicioEntity(null);
+		}
+
+		if (nuevoDetalleC.getFkPlazoEntrega() != null && nuevoDetalleC.getFkPlazoEntrega().getIdPlazoEntregaC() > 0) {
+			entity.setFkPlazoEntregaEntity(
+					plazoEntregaCJpaRepositorio.findById(nuevoDetalleC.getFkPlazoEntrega().getIdPlazoEntregaC()).orElse(null));
+		} else {
+			entity.setFkPlazoEntregaEntity(null);
 		}
 		
 		DetalleCEntity guardar = jpaRepositorio.save(entity);
