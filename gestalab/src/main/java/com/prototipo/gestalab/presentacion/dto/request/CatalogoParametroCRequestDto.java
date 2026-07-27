@@ -20,4 +20,6 @@ public class CatalogoParametroCRequestDto {
 	private String unidadParametroC;
 	@NotBlank
 	private String rangoTrabajoParametroC;
+	@NotBlank
+	private String componenteParametroC;
 }

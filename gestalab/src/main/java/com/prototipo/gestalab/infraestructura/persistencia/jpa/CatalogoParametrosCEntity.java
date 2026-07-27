@@ -27,6 +27,7 @@ public class CatalogoParametrosCEntity {
 	private String normaReferencialParametroC;
 	private String unidadParametroC;
 	private String rangoTrabajoParametroC;
+	private String componenteParametroC;
 	
 
 	@ManyToOne

@@ -10,6 +10,7 @@ public class CatalogoParametroCResponseDto {
 	private String normaReferencialParametroC;
 	private String unidadParametroC;
 	private String rangoTrabajoParametroC;
+	private String componenteParametroC;
 	public int getIdParametroC() {
 		return idParametroC;
 	}
@@ -58,5 +59,12 @@ public class CatalogoParametroCResponseDto {
 	public void setRangoTrabajoParametroC(String rangoTrabajoParametroC) {
 		this.rangoTrabajoParametroC = rangoTrabajoParametroC;
 	}
+	public String getComponenteParametroC() {
+		return componenteParametroC;
+	}
+	public void setComponenteParametroC(String componenteParametroC) {
+		this.componenteParametroC = componenteParametroC;
+	}
+
 
 }

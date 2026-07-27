@@ -10,6 +10,7 @@ public class CatalogoParametroC {
 	private String normaReferencialParametroC;
 	private String unidadParametroC;
 	private String rangoTrabajoParametroC;
+	private String componenteParametroC;
 	private CondicionParametroC fkCondicionParametro;
 	
 	public CondicionParametroC getFkCondicionParametro() {
@@ -59,6 +60,12 @@ public class CatalogoParametroC {
 	}
 	public void setRangoTrabajoParametroC(String rangoTrabajoParametroC) {
 		this.rangoTrabajoParametroC = rangoTrabajoParametroC;
+	}
+	public String getComponenteParametroC() {
+		return componenteParametroC;
+	}
+	public void setComponenteParametroC(String componenteParametroC) {
+		this.componenteParametroC = componenteParametroC;
 	}
 
 }
