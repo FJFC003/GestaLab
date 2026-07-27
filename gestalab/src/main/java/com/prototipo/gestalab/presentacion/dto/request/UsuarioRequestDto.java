@@ -2,6 +2,7 @@ package com.prototipo.gestalab.presentacion.dto.request;
 
 import java.util.Date;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class UsuarioRequestDto {
 	@NotBlank
 	private String nombre;
 	@NotBlank
+	@Email(message = "El correo no tiene un formato válido")
 	private String correo;
 	@NotBlank
 	private String contrasenia;
