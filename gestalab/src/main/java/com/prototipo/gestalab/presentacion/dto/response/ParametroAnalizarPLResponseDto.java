@@ -5,8 +5,14 @@ public class ParametroAnalizarPLResponseDto {
 	private int idParametroPL;
 	private int noParametroPL;
 	private String Parametros;
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
 	
-	
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
 	public int getIdParametroPL() {
 		return idParametroPL;
 	}

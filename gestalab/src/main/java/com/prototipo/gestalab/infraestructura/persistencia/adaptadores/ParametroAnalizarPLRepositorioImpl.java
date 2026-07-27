@@ -46,4 +46,11 @@ public class ParametroAnalizarPLRepositorioImpl implements IParametroAnalizarPLR
 		
 	}
 
+	@Override
+	public List<ParametroAnalizarPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

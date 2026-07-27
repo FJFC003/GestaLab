@@ -11,5 +11,6 @@ public interface IParametroAnalizarPLRepositorio {
 	Optional<ParametroAnalizarPL> buscarPorId(int idParametroPL);
 	List<ParametroAnalizarPL> ListarTodos();
 	void eliminar(int idParametroPL);
+	List<ParametroAnalizarPL> listarPorPlan(int idPlan);
 
 }

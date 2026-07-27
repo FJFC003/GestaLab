@@ -28,33 +28,27 @@ public class PlanMuestreoPLEntity {
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "fk_info_adicional")
-	private InformacionAdicionalPLEntity fkInfoAdicionalEntity;
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<ParametroAnalizarPLEntity> listaParametros = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "fk_tipo_toma")
-	private TipoTomaFreHoraPLEntity fktipotoma;
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<TipoTomaFreHoraPLEntity> listaTiposToma = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "fk_para_analizar")
-	private ParametroAnalizarPLEntity fkparametro;
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<ProcedimientoMuePLEntity> listaProcedimientos = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "fk_proc_muestreo")
-	private ProcedimientoMuePLEntity fkprocedimiento;
-
-	@ManyToOne
-	@JoinColumn(name = "fk_rec_crono")
-	private RecursosCronoPLEntity fkrecursos;
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<RecursosCronoPLEntity> listaRecursos = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<InformacionAdicionalPLEntity> listaInfoAdicional = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<VerificacionPLEntity> listaVerificaciones = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_seguridad")
 	private EEPPLEntity fkeep;
-	
-	@ManyToOne
-	@JoinColumn(name = "fk_verificacion")
-	private VerificacionPLEntity fkverificacion;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_detalle_cotizacion")

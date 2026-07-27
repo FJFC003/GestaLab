@@ -40,4 +40,10 @@ public class ParametroAnalizarPLUseCaseImpl implements IParametroAnalizarPLUseCa
 		
 	}
 
+	@Override
+	public List<ParametroAnalizarPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

@@ -50,5 +50,11 @@ public class ParametroAnalizarPLController {
 		parametroAnalizarPLUseCase.eliminar(idParametroPL);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<ParametroAnalizarPLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return parametroAnalizarPLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }
