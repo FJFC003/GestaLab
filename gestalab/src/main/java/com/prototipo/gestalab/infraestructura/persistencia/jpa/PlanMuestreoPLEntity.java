@@ -29,8 +29,8 @@ public class PlanMuestreoPLEntity {
 	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_info_matriz")
-	private InformacionMatrizPLEntity fkinfomatriz;
+	@JoinColumn(name = "fk_info_adicional")
+	private InformacionAdicionalPLEntity fkInfoAdicionalEntity;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_tipo_toma")
@@ -61,6 +61,6 @@ public class PlanMuestreoPLEntity {
 	private DetalleCEntity fkDetalleCEntity;
 	
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
-    private List<OrdenTrabajoOTEntity> listaOrdenes = new ArrayList<>();
+	private List<OrdenTrabajoOTEntity> listaOrdenes = new ArrayList<>();
 	
 }
