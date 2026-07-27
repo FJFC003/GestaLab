@@ -40,4 +40,10 @@ public class InformacionMatrizPLUseCaseImpl implements IInformacionMatrizPLUseCa
 		
 	}
 
+	@Override
+	public List<InformacionMatrizPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }
