@@ -49,5 +49,23 @@ public class PlanMuestreoPLController {
 		planMuestreoPLUseCase.eliminar(idPlan);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/detalle/{idDetalleC}")
+	public List<PlanMuestreoPLResponseDto> listarPorDetalle(@PathVariable int idDetalleC) {
+		return planMuestreoPLUseCase.listarPorDetalle(idDetalleC)
+				.stream().map(mapper::toResponseDto).toList();
+	}
+
+	@GetMapping("/cotizacion/{idCotizacionC}")
+	public List<PlanMuestreoPLResponseDto> listarPorCotizacion(@PathVariable int idCotizacionC) {
+		return planMuestreoPLUseCase.listarPorCotizacion(idCotizacionC)
+				.stream().map(mapper::toResponseDto).toList();
+	}
+
+	@GetMapping("/responsable/{idEmpleado}")
+	public List<PlanMuestreoPLResponseDto> listarPorResponsable(@PathVariable int idEmpleado) {
+		return planMuestreoPLUseCase.listarPorResponsable(idEmpleado)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

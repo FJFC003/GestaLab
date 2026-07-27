@@ -4,19 +4,11 @@ public class TipoTomaFreHoraPLResponseDto {
 	
 	private int idTipoFre;
 	private int noItem;
+	private String frecuencia;
 	private String tipo;
 	private String alicuotas;
-	
 	private PlanMuestreoPLResponseDto fkPlanMuestreo;
 
-	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
-		return fkPlanMuestreo;
-	}
-
-	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
-		this.fkPlanMuestreo = fkPlanMuestreo;
-	}
-	
 	public int getIdTipoFre() {
 		return idTipoFre;
 	}
@@ -28,6 +20,12 @@ public class TipoTomaFreHoraPLResponseDto {
 	}
 	public void setNoItem(int noItem) {
 		this.noItem = noItem;
+	}
+	public String getFrecuencia() {
+		return frecuencia;
+	}
+	public void setFrecuencia(String frecuencia) {
+		this.frecuencia = frecuencia;
 	}
 	public String getTipo() {
 		return tipo;
@@ -41,7 +39,11 @@ public class TipoTomaFreHoraPLResponseDto {
 	public void setAlicuotas(String alicuotas) {
 		this.alicuotas = alicuotas;
 	}
-	
-	
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
 
 }

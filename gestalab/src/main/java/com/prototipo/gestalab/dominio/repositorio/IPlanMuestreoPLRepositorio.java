@@ -11,5 +11,8 @@ public interface IPlanMuestreoPLRepositorio {
 	Optional<PlanMuestreoPL> buscarPorId(int idPlan);
 	List<PlanMuestreoPL> ListarTodos();
 	void eliminar(int idPlan);
+	List<PlanMuestreoPL> listarPorDetalle(int idDetalleC);
+	List<PlanMuestreoPL> listarPorCotizacion(int idCotizacionC);
+	List<PlanMuestreoPL> listarPorResponsable(int idEmpleado);
 	
 }

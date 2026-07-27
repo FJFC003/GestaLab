@@ -20,7 +20,10 @@ public class ParametroAnalizarPLEntity {
 	private int idParametroPL;
 	private int noParametroPL;
 	private String Parametros;
-	
+	private String unidadMedida;
+	private String sitioMedicion;
+	private String preservacion;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_plan_muestreo")
 	private PlanMuestreoPLEntity fkPlanMuestreoEntity;

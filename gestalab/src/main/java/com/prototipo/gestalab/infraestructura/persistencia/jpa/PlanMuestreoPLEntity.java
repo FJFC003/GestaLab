@@ -1,6 +1,7 @@
 package com.prototipo.gestalab.infraestructura.persistencia.jpa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -22,38 +23,48 @@ public class PlanMuestreoPLEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idPlan;
-	@Column(length = 80)
+
+	@Column(length = 40)
+	private String codigoPlan;
+
+	@Column(length = 500)
 	private String ObjetivoPlan;
-	
+
+	private Date fechaElaboracion;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_responsable")
+	private EmpleadoEntity fkResponsableEntity;
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<ParametroAnalizarPLEntity> listaParametros = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<TipoTomaFreHoraPLEntity> listaTiposToma = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<ProcedimientoMuePLEntity> listaProcedimientos = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<RecursosCronoPLEntity> listaRecursos = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<InformacionAdicionalPLEntity> listaInfoAdicional = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<VerificacionPLEntity> listaVerificaciones = new ArrayList<>();
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_seguridad")
 	private EEPPLEntity fkeep;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_detalle_cotizacion")
 	private DetalleCEntity fkDetalleCEntity;
-	
+
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<OrdenTrabajoOTEntity> listaOrdenes = new ArrayList<>();
 	

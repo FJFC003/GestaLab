@@ -46,4 +46,25 @@ public class PlanMuestreoPLRepositorioImpl implements IPlanMuestreoPLRepositorio
 		
 	}
 
+	@Override
+	public List<PlanMuestreoPL> listarPorDetalle(int idDetalleC) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkDetalleCEntity_IdDetalleC(idDetalleC)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<PlanMuestreoPL> listarPorCotizacion(int idCotizacionC) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkDetalleCEntity_FkCotizacionCEntity_IdCotizacionC(idCotizacionC)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<PlanMuestreoPL> listarPorResponsable(int idEmpleado) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkResponsableEntity_IdEmpleado(idEmpleado)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

@@ -19,9 +19,10 @@ public class TipoTomaFreHoraPLEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTipoFre;
 	private int noItem;
+	private String frecuencia;
 	private String tipo;
 	private String alicuotas;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "fk_plan_muestreo")
 	private PlanMuestreoPLEntity fkPlanMuestreoEntity;

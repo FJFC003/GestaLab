@@ -38,4 +38,22 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 		
 	}
 
+	@Override
+	public List<PlanMuestreoPL> listarPorDetalle(int idDetalleC) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorDetalle(idDetalleC);
+	}
+
+	@Override
+	public List<PlanMuestreoPL> listarPorCotizacion(int idCotizacionC) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorCotizacion(idCotizacionC);
+	}
+
+	@Override
+	public List<PlanMuestreoPL> listarPorResponsable(int idEmpleado) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorResponsable(idEmpleado);
+	}
+
 }
