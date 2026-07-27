@@ -23,6 +23,7 @@ public class UsuarioEntity {
 	private int idUsuario;
 	@Column(length = 80)
 	private String nombre;
+	@Column(unique = true)
 	private String correo;
 	private String contrasenia;
 	private Date fechaCreacion;
