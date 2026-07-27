@@ -3,6 +3,9 @@ package com.prototipo.gestalab.infraestructura.persistencia.adaptadores;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import com.prototipo.gestalab.dominio.entidades.ClienteC;
 import com.prototipo.gestalab.dominio.repositorio.IClienteCRepositorio;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.ClienteCEntity;
@@ -43,6 +46,13 @@ public class ClienteCRepositorioImpl implements IClienteCRepositorio{
 	public void eliminar(int idClienteC) {
 		jpaRepositorio.deleteById(idClienteC);
 		
+	}
+
+	@Override
+	public Page<ClienteC> listarPaginado(int pagina, int tamanio) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findAll(PageRequest.of(pagina, tamanio))
+	            .map(entityMapper::toDomain);
 	}
 
 }

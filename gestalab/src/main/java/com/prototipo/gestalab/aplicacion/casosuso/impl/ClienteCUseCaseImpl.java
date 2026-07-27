@@ -2,6 +2,8 @@ package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IClienteCUseCase;
 import com.prototipo.gestalab.dominio.entidades.ClienteC;
 import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
@@ -36,6 +38,12 @@ public class ClienteCUseCaseImpl implements IClienteCUseCase{
 	public void eliminar(int idClienteC) {
 		repositorio.eliminar(idClienteC);
 		
+	}
+
+	@Override
+	public Page<ClienteC> listarPaginado(int pagina, int tamanio) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPaginado(pagina, tamanio);
 	}
 
 }
