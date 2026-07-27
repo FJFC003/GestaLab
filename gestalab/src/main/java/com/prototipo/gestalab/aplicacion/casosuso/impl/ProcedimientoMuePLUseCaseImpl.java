@@ -40,4 +40,10 @@ public class ProcedimientoMuePLUseCaseImpl implements IProcedimientoMuePLUseCase
 		repositorio.eliminar(idProcedimiento);
 	}
 
+	@Override
+	public List<ProcedimientoMuePL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

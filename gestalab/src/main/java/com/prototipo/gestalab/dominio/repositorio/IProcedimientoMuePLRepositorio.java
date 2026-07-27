@@ -11,6 +11,6 @@ public interface IProcedimientoMuePLRepositorio {
 	Optional<ProcedimientoMuePL> buscarPorId(int idProcedimiento);
 	List<ProcedimientoMuePL> ListarTodos();
 	void eliminar(int idProcedimiento);
-	
+	List<ProcedimientoMuePL> listarPorPlan(int idPlan);
 
 }

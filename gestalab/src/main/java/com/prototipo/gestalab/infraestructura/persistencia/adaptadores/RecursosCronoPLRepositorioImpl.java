@@ -45,4 +45,11 @@ public class RecursosCronoPLRepositorioImpl implements IRecursosCronoPLRepositor
 		
 	}
 
+	@Override
+	public List<RecursosCronoPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

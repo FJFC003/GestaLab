@@ -49,5 +49,11 @@ public class VerificacionPLController {
 		verificacionPLUseCase.eliminar(idVerificacion);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<VerificacionPLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return verificacionPLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

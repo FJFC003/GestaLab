@@ -49,5 +49,11 @@ public class RecursosCronoPLController {
 		recursosCronoPLUseCase.eliminar(idRecursos);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<RecursosCronoPLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return recursosCronoPLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

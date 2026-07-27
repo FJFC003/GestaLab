@@ -10,5 +10,6 @@ public interface IRecursosCronoPLUseCase {
 	RecursosCronoPL buscarPorId(int idRecursos);
 	List<RecursosCronoPL> ListarTodos();
 	void eliminar(int idRecursos);
+	List<RecursosCronoPL> listarPorPlan(int idPlan);
 
 }

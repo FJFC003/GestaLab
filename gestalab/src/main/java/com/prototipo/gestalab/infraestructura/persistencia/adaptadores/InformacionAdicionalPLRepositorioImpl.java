@@ -45,4 +45,11 @@ public class InformacionAdicionalPLRepositorioImpl implements IInformacionAdicio
 		jpaRepositorio.deleteById(idInformacion);
 	}
 
+	@Override
+	public List<InformacionAdicionalPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

@@ -39,4 +39,10 @@ public class InformacionAdicionalPLUseCaseImpl implements IInformacionAdicionalP
 		
 	}
 
+	@Override
+	public List<InformacionAdicionalPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

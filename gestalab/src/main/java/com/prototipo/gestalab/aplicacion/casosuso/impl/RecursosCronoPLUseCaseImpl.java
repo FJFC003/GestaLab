@@ -41,4 +41,10 @@ public class RecursosCronoPLUseCaseImpl implements IRecursosCronoPLUseCase{
 		repositorio.eliminar(idRecursos);
 	}
 
+	@Override
+	public List<RecursosCronoPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

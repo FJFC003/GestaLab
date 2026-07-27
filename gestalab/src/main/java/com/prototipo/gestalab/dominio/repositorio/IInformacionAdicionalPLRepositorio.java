@@ -11,5 +11,6 @@ public interface IInformacionAdicionalPLRepositorio {
 	Optional<InformacionAdicionalPL> buscarPorId(int idInformacion);
 	List<InformacionAdicionalPL> ListarTodos();
 	void eliminar(int idInformacion);
+	List<InformacionAdicionalPL> listarPorPlan(int idPlan);
 
 }

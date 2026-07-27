@@ -46,4 +46,11 @@ public class ProcedimientoMuePLRepositorioImpl implements IProcedimientoMuePLRep
 		
 	}
 
+	@Override
+	public List<ProcedimientoMuePL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

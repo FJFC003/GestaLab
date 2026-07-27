@@ -50,5 +50,11 @@ public class ProcedimientoMuePLController {
 		procedimientoMuePLUseCase.eliminar(idProcedimiento);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<ProcedimientoMuePLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return procedimientoMuePLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

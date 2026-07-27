@@ -41,4 +41,10 @@ public class VerificacionPLUseCaseImpl implements IVerificacionPLUseCase{
 		repositorio.eliminar(idVerificacion);
 	}
 
+	@Override
+	public List<VerificacionPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

@@ -10,5 +10,6 @@ public interface IVerificacionPLUseCase {
 	VerificacionPL buscarPorId(int idVerificacion);
 	List<VerificacionPL> ListarTodos();
 	void eliminar(int idVerificacion);
+	List<VerificacionPL> listarPorPlan(int idPlan);
 
 }
