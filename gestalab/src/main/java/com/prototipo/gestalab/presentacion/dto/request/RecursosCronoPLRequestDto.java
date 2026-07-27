@@ -22,5 +22,8 @@ public class RecursosCronoPLRequestDto {
 
 	@NotNull(message = "La hora definida es obligatoria")
 	private Date horaDefinida;
+	
+	@Positive(message = "Debe pertenecer a un plan de muestreo")
+	private int fkPlanMuestreo;
 
 }

@@ -1,16 +1,18 @@
 package com.prototipo.gestalab.presentacion.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class InformacionAdicionalPLRequestDto {
 
-	@NotBlank
 	private int idInformacion;
-	@NotBlank
+	@NotBlank(message = "La pregunta es obligatoria")
 	private String preguntas;
-	@NotBlank
+	@NotBlank(message = "La respuesta es obligatoria")
 	private String respuesta;
+	@Positive(message = "Debe pertenecer a un plan de muestreo")
+	private int fkPlanMuestreo;
 	
 }

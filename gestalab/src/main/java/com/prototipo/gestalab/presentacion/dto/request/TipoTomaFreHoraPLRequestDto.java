@@ -1,18 +1,20 @@
 package com.prototipo.gestalab.presentacion.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class TipoTomaFreHoraPLRequestDto {
 	
-	@NotBlank
 	private int idTipoFre;
-	@NotBlank
+	@Positive(message = "El número de ítem debe ser mayor a cero")
 	private int noItem;
-	@NotBlank
+	@NotBlank(message = "El tipo es obligatorio")
 	private String tipo;
-	@NotBlank
+	@NotBlank(message = "Las alícuotas son obligatorias")
 	private String alicuotas;
+	@Positive(message = "Debe pertenecer a un plan de muestreo")
+	private int fkPlanMuestreo;
 
 }

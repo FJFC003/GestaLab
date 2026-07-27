@@ -1,20 +1,18 @@
 package com.prototipo.gestalab.presentacion.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class VerificacionPLRequestDto {
 	
-	@NotBlank
 	private int idVerificacion;
-	@NotBlank
+	@Positive(message = "El número de ítem debe ser mayor a cero")
 	private int noItem;
-	@NotBlank
 	private boolean tipoMatrizDeclarada;
-	@NotBlank
 	private boolean frecuanciaDeclarada;
-	@NotBlank
 	private boolean sitiosDeclarados;
+	@Positive(message = "Debe pertenecer a un plan de muestreo")
+	private int fkPlanMuestreo;
 
 }
