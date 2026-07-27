@@ -2,6 +2,8 @@ package com.prototipo.gestalab.presentacion.dto.response;
 
 import java.util.Date;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoAprobacionCotizacion;
+
 import lombok.Data;
 
 @Data
@@ -25,6 +27,11 @@ public class CotizacionCResponseDto {
 	private CatalogoNormServiCResponseDto fkNormaServicio;
 	private LmpCResponseDto fkLmp;
 	
-	
+	private EstadoAprobacionCotizacion estadoAprobacion;
+	private Date fechaEnvioCotizacionC;
+	private Date fechaLimitePagoCotizacionC;
+	private Date fechaPagoCotizacionC;
+	private Date fechaAprobacionCotizacionC;
+	private EmpleadoResponseDto fkEmpleadoAprueba;
 	
 }

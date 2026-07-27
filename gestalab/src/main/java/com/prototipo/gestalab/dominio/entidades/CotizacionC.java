@@ -18,6 +18,62 @@ public class CotizacionC {
 	private double Iva;
 	private double TotalCotizacionC;
 	private boolean estadoCotizacionC;
+	
+	private EstadoAprobacionCotizacion estadoAprobacion;
+	private Date fechaEnvioCotizacionC;
+	private Date fechaLimitePagoCotizacionC;
+	private Date fechaPagoCotizacionC;
+	private Date fechaAprobacionCotizacionC;
+	private Empleado fkEmpleadoAprueba;
+	
+	public EstadoAprobacionCotizacion getEstadoAprobacion() {
+		return estadoAprobacion;
+	}
+
+	public void setEstadoAprobacion(EstadoAprobacionCotizacion estadoAprobacion) {
+		this.estadoAprobacion = estadoAprobacion;
+	}
+
+	public Date getFechaEnvioCotizacionC() {
+		return fechaEnvioCotizacionC;
+	}
+
+	public void setFechaEnvioCotizacionC(Date fechaEnvioCotizacionC) {
+		this.fechaEnvioCotizacionC = fechaEnvioCotizacionC;
+	}
+
+	public Date getFechaLimitePagoCotizacionC() {
+		return fechaLimitePagoCotizacionC;
+	}
+
+	public void setFechaLimitePagoCotizacionC(Date fechaLimitePagoCotizacionC) {
+		this.fechaLimitePagoCotizacionC = fechaLimitePagoCotizacionC;
+	}
+
+	public Date getFechaPagoCotizacionC() {
+		return fechaPagoCotizacionC;
+	}
+
+	public void setFechaPagoCotizacionC(Date fechaPagoCotizacionC) {
+		this.fechaPagoCotizacionC = fechaPagoCotizacionC;
+	}
+
+	public Date getFechaAprobacionCotizacionC() {
+		return fechaAprobacionCotizacionC;
+	}
+
+	public void setFechaAprobacionCotizacionC(Date fechaAprobacionCotizacionC) {
+		this.fechaAprobacionCotizacionC = fechaAprobacionCotizacionC;
+	}
+
+	public Empleado getFkEmpleadoAprueba() {
+		return fkEmpleadoAprueba;
+	}
+
+	public void setFkEmpleadoAprueba(Empleado fkEmpleadoAprueba) {
+		this.fkEmpleadoAprueba = fkEmpleadoAprueba;
+	}
+
 	public boolean isEstadoCotizacionC() {
 		return estadoCotizacionC;
 	}

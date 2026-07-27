@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoAprobacionCotizacion;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -55,5 +59,17 @@ public class CotizacionCEntity {
  
 	@OneToMany(mappedBy = "fkCotizacionCEntity")
     private List<DetalleCEntity> listaDetalles = new ArrayList<>();
+	
+	@Enumerated(EnumType.STRING)
+	private EstadoAprobacionCotizacion estadoAprobacion;
+	private Date fechaEnvioCotizacionC;
+	private Date fechaLimitePagoCotizacionC;
+	private Date fechaPagoCotizacionC;
+	private Date fechaAprobacionCotizacionC;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_empleado_aprueba")
+	private EmpleadoEntity fkEmpleadoApruebaEntity;
+	
 
 }

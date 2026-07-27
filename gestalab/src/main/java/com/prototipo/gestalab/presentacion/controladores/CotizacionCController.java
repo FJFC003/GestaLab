@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICotizacionCUseCase;
+import com.prototipo.gestalab.presentacion.dto.request.AprobacionCotizacionRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.CotizacionCRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.CotizacionCResponseDto;
 import com.prototipo.gestalab.presentacion.mapeadores.ICotizacionCDtoMapper;
@@ -53,6 +55,18 @@ public class CotizacionCController {
 	{
 		cotizacionCUseCase.eliminar(idCotizacionC);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping("/aprobar/{idCotizacionC}")
+	public CotizacionCResponseDto aprobar(@PathVariable int idCotizacionC,
+			@Valid @RequestBody AprobacionCotizacionRequestDto request) {
+		return mapper.toResponseDto(cotizacionCUseCase.aprobar(
+				idCotizacionC, request.getFkEmpleadoAprueba(), request.getFechaPago()));
+	}
+
+	@PutMapping("/rechazar/{idCotizacionC}")
+	public CotizacionCResponseDto rechazar(@PathVariable int idCotizacionC) {
+		return mapper.toResponseDto(cotizacionCUseCase.rechazar(idCotizacionC));
 	}
 
 }
