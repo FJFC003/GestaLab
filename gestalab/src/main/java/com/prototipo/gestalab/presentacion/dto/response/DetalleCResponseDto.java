@@ -14,5 +14,9 @@ public class DetalleCResponseDto {
 	private LmpCResponseDto fkLmp;
 	private DescripcionServicioCResponseDto fkDescripcionServicio;
 	private PlazoEntregaCResponseDto fkPlazoEntrega;
+
+	
+	private CotizacionCResponseDto fkCotizacion;
+
 	
 }

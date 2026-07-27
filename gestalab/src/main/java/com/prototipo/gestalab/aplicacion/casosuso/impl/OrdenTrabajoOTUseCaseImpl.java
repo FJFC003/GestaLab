@@ -49,4 +49,10 @@ public class OrdenTrabajoOTUseCaseImpl implements IOrdenTrabajoOTUseCase{
 		return repositorio.listarPorTecnico(idEmpleado);
 	}
 
+	@Override
+	public List<OrdenTrabajoOT> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

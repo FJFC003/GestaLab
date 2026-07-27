@@ -10,4 +10,6 @@ public interface IOrdenTrabajoOTJpaRepositorio extends JpaRepository<OrdenTrabaj
 	
 	List<OrdenTrabajoOTEntity> findByFkTecnicoAsignadoEntity_IdEmpleado(int idEmpleado);
 
+	List<OrdenTrabajoOTEntity> findByFkPlanMuestreoEntity_IdPlan(int idPlan);
+
 }

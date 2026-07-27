@@ -23,37 +23,47 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/gestalab/ordentrabajo")
 @RestController
 public class OrdenTrabajoOTController {
-	
+
 	private final IOrdenTrabajoOTUseCase ordenTrabajoOTUseCase;
 	private final IOrdenTrabajoOTDtoMapper mapper;
-	
+
 	public OrdenTrabajoOTController(IOrdenTrabajoOTUseCase ordenTrabajoOTUseCase, IOrdenTrabajoOTDtoMapper mapper) {
-		super();
 		this.ordenTrabajoOTUseCase = ordenTrabajoOTUseCase;
 		this.mapper = mapper;
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrdenTrabajoOTResponseDto guardar(@Valid @RequestBody OrdenTrabajoOTRequestDto requestOT) {
 		return mapper.toResponseDto(ordenTrabajoOTUseCase.guardar(mapper.toDomain(requestOT)));
 	}
-	
+
 	@GetMapping
 	public List<OrdenTrabajoOTResponseDto> listarTodos(){
 		return ordenTrabajoOTUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idOT}")
+	public OrdenTrabajoOTResponseDto buscarPorId(@PathVariable int idOT) {
+		return mapper.toResponseDto(ordenTrabajoOTUseCase.buscarPorId(idOT));
+	}
+
 	@DeleteMapping("/{idOT}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idOT)
 	{
 		ordenTrabajoOTUseCase.eliminar(idOT);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@GetMapping("/tecnico/{idEmpleado}")
 	public List<OrdenTrabajoOTResponseDto> listarPorTecnico(@PathVariable int idEmpleado) {
 		return ordenTrabajoOTUseCase.listarPorTecnico(idEmpleado)
+				.stream().map(mapper::toResponseDto).toList();
+	}
+
+	@GetMapping("/plan/{idPlan}")
+	public List<OrdenTrabajoOTResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return ordenTrabajoOTUseCase.listarPorPlan(idPlan)
 				.stream().map(mapper::toResponseDto).toList();
 	}
 

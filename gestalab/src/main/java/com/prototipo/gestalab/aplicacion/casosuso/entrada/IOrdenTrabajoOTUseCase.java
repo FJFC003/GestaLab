@@ -11,5 +11,6 @@ public interface IOrdenTrabajoOTUseCase {
 	List<OrdenTrabajoOT> ListarTodos();
 	void eliminar (int idOt);
 	List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado);
+	List<OrdenTrabajoOT> listarPorPlan(int idPlan);
 
 }

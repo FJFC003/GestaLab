@@ -10,14 +10,13 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IOrdenTrab
 import com.prototipo.gestalab.infraestructura.repositorios.IOrdenTrabajoOTJpaRepositorio;
 
 public class OrdenTrabajoOTRepositorioImpl implements IOrdenTrabajoOTRepositorio{
-	
+
 	private final IOrdenTrabajoOTJpaRepositorio jpaRepositorio;
 	private final IOrdenTrabajoOTJpaMapper entityMapper;
 
-	public OrdenTrabajoOTRepositorioImpl(IOrdenTrabajoOTJpaRepositorio jpaRespositorio,
+	public OrdenTrabajoOTRepositorioImpl(IOrdenTrabajoOTJpaRepositorio jpaRepositorio,
 			IOrdenTrabajoOTJpaMapper entityMapper) {
-		super();
-		this.jpaRepositorio = jpaRespositorio;
+		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
 	}
 
@@ -30,28 +29,29 @@ public class OrdenTrabajoOTRepositorioImpl implements IOrdenTrabajoOTRepositorio
 
 	@Override
 	public Optional<OrdenTrabajoOT> buscarPorId(int idOT) {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findById(idOT).map(entityMapper::toDomain);
 	}
 
 	@Override
 	public List<OrdenTrabajoOT> ListarTodos() {
-		// TODO Auto-generated method stub
-		return jpaRepositorio.findAll().stream().map(entityMapper:: toDomain).toList();
+		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idOt) {
-		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idOt);
 	}
 
 	@Override
 	public List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado) {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findByFkTecnicoAsignadoEntity_IdEmpleado(idEmpleado)
 				.stream().map(entityMapper::toDomain).toList();
 	}
-	
+
+	@Override
+	public List<OrdenTrabajoOT> listarPorPlan(int idPlan) {
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
 
 }
