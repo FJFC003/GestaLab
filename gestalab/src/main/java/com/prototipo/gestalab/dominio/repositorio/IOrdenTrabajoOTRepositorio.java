@@ -10,6 +10,7 @@ public interface IOrdenTrabajoOTRepositorio {
 	OrdenTrabajoOT guardar (OrdenTrabajoOT nuevaOrdenTrabajoOT);
 	Optional<OrdenTrabajoOT> buscarPorId (int idOT);
 	List<OrdenTrabajoOT> ListarTodos();
+	List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado);
 	void eliminar (int idOt);
 
 }

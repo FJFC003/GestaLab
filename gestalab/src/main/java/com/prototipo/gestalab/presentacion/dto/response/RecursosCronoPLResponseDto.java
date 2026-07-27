@@ -6,7 +6,13 @@ public class RecursosCronoPLResponseDto {
 	
 	private int idRecursos;
 	private Date fechaMuestreo;
-	private String nombreTecnico;
+	private EmpleadoResponseDto fkTecnico;
+	public EmpleadoResponseDto getFkTecnico() {
+		return fkTecnico;
+	}
+	public void setFkTecnico(EmpleadoResponseDto fkTecnico) {
+		this.fkTecnico = fkTecnico;
+	}
 	private String recurso;
 	private Date horaDefinida;
 	public int getIdRecursos() {
@@ -21,12 +27,7 @@ public class RecursosCronoPLResponseDto {
 	public void setFechaMuestreo(Date fechaMuestreo) {
 		this.fechaMuestreo = fechaMuestreo;
 	}
-	public String getNombreTecnico() {
-		return nombreTecnico;
-	}
-	public void setNombreTecnico(String nombreTecnico) {
-		this.nombreTecnico = nombreTecnico;
-	}
+	
 	public String getRecurso() {
 		return recurso;
 	}

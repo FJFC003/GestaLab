@@ -3,24 +3,32 @@ package com.prototipo.gestalab.presentacion.dto.request;
 import java.util.Date;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class OrdenTrabajoOTRequestDto {
 	
-	@NotBlank
 	private int idOT;
-	@NotBlank
+	@Positive(message = "El número de ítem debe ser mayor a cero")
 	private int noItemOT;
-	@NotBlank
+
+	@NotNull(message = "La fecha de emisión es obligatoria")
 	private Date fechaEmisionOT;
-	@NotBlank
-	private String responsableEmsionOT;
-	@NotBlank
-	private String tecnicoLaboratorioOT;
-	@NotBlank
+
+	@Positive(message = "Debe indicar el responsable de emisión")
+	private int fkResponsableEmision;
+
+	@Positive(message = "Debe indicar el técnico asignado")
+	private int fkTecnicoAsignado;
+
+	@NotBlank(message = "El nombre de la persona de contacto es obligatorio")
 	private String nombrePersonaContactoOT;
-	@NotBlank
+
 	private Date fechaCierreCampoOT;
+
+	@Positive(message = "La orden debe pertenecer a un plan de muestreo")
+	private int fkPlanMuestreo;
 
 }

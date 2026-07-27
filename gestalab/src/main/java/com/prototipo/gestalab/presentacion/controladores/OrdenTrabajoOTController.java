@@ -50,5 +50,11 @@ public class OrdenTrabajoOTController {
 		ordenTrabajoOTUseCase.eliminar(idOT);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/tecnico/{idEmpleado}")
+	public List<OrdenTrabajoOTResponseDto> listarPorTecnico(@PathVariable int idEmpleado) {
+		return ordenTrabajoOTUseCase.listarPorTecnico(idEmpleado)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

@@ -26,8 +26,6 @@ public class OrdenTrabajoOTEntity {
 	@Column(length = 80)
 	private int noItemOT;
 	private Date fechaEmisionOT;
-	private String responsableEmsionOT;
-	private String tecnicoLaboratorioOT;
 	private String nombrePersonaContactoOT;
 	private Date fechaCierreCampoOT;
 	
@@ -45,6 +43,14 @@ public class OrdenTrabajoOTEntity {
 	
 	@OneToMany(mappedBy = "fkOrdenTrabajoEntity")
     private List<InformeResultadosIREntity> listaInformen = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_responsable_emision")
+	private EmpleadoEntity fkResponsableEmisionEntity;
+
+	@ManyToOne
+	@JoinColumn(name = "fk_tecnico_asignado")
+	private EmpleadoEntity fkTecnicoAsignadoEntity;
 
 
 

@@ -8,10 +8,30 @@ public class OrdenTrabajoOT {
 	private int idOT;
 	private int noItemOT;
 	private Date fechaEmisionOT;
-	private String responsableEmsionOT;
-	private String tecnicoLaboratorioOT;
 	private String nombrePersonaContactoOT;
 	private Date fechaCierreCampoOT;
+	private Empleado fkResponsableEmision;
+	private Empleado fkTecnicoAsignado;
+	private PlanMuestreoPL fkPlanMuestreo;
+	
+	public Empleado getFkResponsableEmision() {
+		return fkResponsableEmision;
+	}
+	public void setFkResponsableEmision(Empleado fkResponsableEmision) {
+		this.fkResponsableEmision = fkResponsableEmision;
+	}
+	public Empleado getFkTecnicoAsignado() {
+		return fkTecnicoAsignado;
+	}
+	public void setFkTecnicoAsignado(Empleado fkTecnicoAsignado) {
+		this.fkTecnicoAsignado = fkTecnicoAsignado;
+	}
+	public PlanMuestreoPL getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+	public void setFkPlanMuestreo(PlanMuestreoPL fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
 	public int getIdOT() {
 		return idOT;
 	}
@@ -30,18 +50,7 @@ public class OrdenTrabajoOT {
 	public void setFechaEmisionOT(Date fechaEmisionOT) {
 		this.fechaEmisionOT = fechaEmisionOT;
 	}
-	public String getResponsableEmsionOT() {
-		return responsableEmsionOT;
-	}
-	public void setResponsableEmsionOT(String responsableEmsionOT) {
-		this.responsableEmsionOT = responsableEmsionOT;
-	}
-	public String getTecnicoLaboratorioOT() {
-		return tecnicoLaboratorioOT;
-	}
-	public void setTecnicoLaboratorioOT(String tecnicoLaboratorioOT) {
-		this.tecnicoLaboratorioOT = tecnicoLaboratorioOT;
-	}
+	
 	public String getNombrePersonaContactoOT() {
 		return nombrePersonaContactoOT;
 	}

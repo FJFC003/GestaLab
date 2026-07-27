@@ -45,6 +45,13 @@ public class OrdenTrabajoOTRepositorioImpl implements IOrdenTrabajoOTRepositorio
 		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idOt);
 	}
+
+	@Override
+	public List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkTecnicoAsignadoEntity_IdEmpleado(idEmpleado)
+				.stream().map(entityMapper::toDomain).toList();
+	}
 	
 
 }
