@@ -9,9 +9,9 @@ import lombok.Data;
 public class LoginRequestDto {
 
 		@NotBlank
+		@Email(message = "El correo no tiene un formato válido")
 		private String correo;
 		@NotBlank
-		@Email(message = "El correo no tiene un formato válido")
 		private String contrasenia;
 
 }
