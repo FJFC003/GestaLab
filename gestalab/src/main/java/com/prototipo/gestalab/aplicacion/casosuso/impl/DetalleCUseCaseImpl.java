@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDetalleCUseCase;
 import com.prototipo.gestalab.dominio.entidades.DetalleC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IDetalleCRepositorio;
 
 public class DetalleCUseCaseImpl implements IDetalleCUseCase{
@@ -27,7 +28,7 @@ public class DetalleCUseCaseImpl implements IDetalleCUseCase{
 		// TODO Auto-generated method stub
 		return repositorio
 				.buscarPorId(idDetalleC)
-				.orElseThrow(() -> new RuntimeException("No se encontro los datos"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

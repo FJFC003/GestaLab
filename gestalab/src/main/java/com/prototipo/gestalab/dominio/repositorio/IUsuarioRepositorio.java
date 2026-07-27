@@ -11,6 +11,8 @@ public interface IUsuarioRepositorio {
 	Optional<Usuario> buscarPorId(int idUsuario);
 	List<Usuario> ListarTodos();
 	
+	Optional<Usuario> buscarPorCorreo(String correo);
+	
 	void eliminar(int idUsuario);
 
 }

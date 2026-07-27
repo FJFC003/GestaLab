@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IAreaUseCase;
 import com.prototipo.gestalab.dominio.entidades.Area;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IAreaRepositorio;
 
 
@@ -24,7 +25,7 @@ public class AreaUseCaseImpl implements IAreaUseCase{
 	public Area buscarPorId(int idArea) {
 		return repositorio
 				.buscarPorId(idArea)
-				.orElseThrow(() -> new RuntimeException("No se encontro los datos"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

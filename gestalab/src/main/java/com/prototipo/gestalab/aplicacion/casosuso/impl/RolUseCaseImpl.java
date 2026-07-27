@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRolUseCase;
 import com.prototipo.gestalab.dominio.entidades.Rol;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IRolRepositorio;
 
 public class RolUseCaseImpl implements IRolUseCase{
@@ -25,7 +26,7 @@ public class RolUseCaseImpl implements IRolUseCase{
 	public Rol buscarPorId(int idRol) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idRol)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrado"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.prototipo.gestalab.presentacion.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -20,7 +21,10 @@ public class ClienteCRequestDto {
 	@NotBlank
 	private String telefonoClienteC;
 	@NotBlank
+	@Email(message = "El correo no tiene un formato válido")
 	private String correoClienteC;
 	private boolean estadoClienteC;
+	
+	
 
 }

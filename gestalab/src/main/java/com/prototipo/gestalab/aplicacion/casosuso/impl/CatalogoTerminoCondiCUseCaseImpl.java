@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoTerminoCondiCUseCase;
 import com.prototipo.gestalab.dominio.entidades.CatalogoTerminoCondiC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICatalogoTerminoCondiCRepositorio;
 
 public class CatalogoTerminoCondiCUseCaseImpl implements ICatalogoTerminoCondiCUseCase{
@@ -24,7 +25,7 @@ public class CatalogoTerminoCondiCUseCaseImpl implements ICatalogoTerminoCondiCU
 	@Override
 	public CatalogoTerminoCondiC buscarPorId(int idTerminoC) {
 		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idTerminoC).orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+		return repositorio.buscarPorId(idTerminoC).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

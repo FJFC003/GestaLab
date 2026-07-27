@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IFirmaElectronicaUseCase;
 import com.prototipo.gestalab.dominio.entidades.FirmaElectronica;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IFirmaElectronicaRepositorio;
 
 public class FirmaElectronicaUseCaseImpl implements IFirmaElectronicaUseCase{
@@ -25,7 +26,7 @@ public class FirmaElectronicaUseCaseImpl implements IFirmaElectronicaUseCase{
 	public FirmaElectronica buscarPorId(int idFirma) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idFirma)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrado"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

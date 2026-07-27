@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionAdicionalPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.InformacionAdicionalPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IInformacionAdicionalPLRepositorio;
 
 public class InformacionAdicionalPLUseCaseImpl implements IInformacionAdicionalPLUseCase{
@@ -24,7 +25,7 @@ public class InformacionAdicionalPLUseCaseImpl implements IInformacionAdicionalP
 	@Override
 	public InformacionAdicionalPL buscarPorId(int idInformacion) {
 		return repositorio.buscarPorId(idInformacion)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

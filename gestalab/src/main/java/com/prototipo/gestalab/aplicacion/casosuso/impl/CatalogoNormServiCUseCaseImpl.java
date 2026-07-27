@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoNormServiCUseCase;
 import com.prototipo.gestalab.dominio.entidades.CatalogoNormServiC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICatalogoNormServiCRepositorio;
 
 public class CatalogoNormServiCUseCaseImpl implements ICatalogoNormServiCUseCase{
@@ -24,7 +25,7 @@ public class CatalogoNormServiCUseCaseImpl implements ICatalogoNormServiCUseCase
 	@Override
 	public CatalogoNormServiC buscarPorId(int idCatalogoNormServi) {
 		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idCatalogoNormServi).orElseThrow(() -> new RuntimeException("Informacion no encontreda"));
+		return repositorio.buscarPorId(idCatalogoNormServi).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

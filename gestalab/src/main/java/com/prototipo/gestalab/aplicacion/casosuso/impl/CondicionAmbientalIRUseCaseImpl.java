@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionAmbientalIRUseCase;
 import com.prototipo.gestalab.dominio.entidades.CondicionAmbientalIR;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICondicionAmbientalIRRepositorio;
 
 public class CondicionAmbientalIRUseCaseImpl implements ICondicionAmbientalIRUseCase{
@@ -24,7 +25,7 @@ public class CondicionAmbientalIRUseCaseImpl implements ICondicionAmbientalIRUse
 	@Override
 	public CondicionAmbientalIR buscarPorId(int idCondi) {
 		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idCondi).orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+		return repositorio.buscarPorId(idCondi).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

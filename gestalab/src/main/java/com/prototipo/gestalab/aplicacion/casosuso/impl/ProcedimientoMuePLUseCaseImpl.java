@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IProcedimientoMuePLUseCase;
 import com.prototipo.gestalab.dominio.entidades.ProcedimientoMuePL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IProcedimientoMuePLRepositorio;
 
 public class ProcedimientoMuePLUseCaseImpl implements IProcedimientoMuePLUseCase{
@@ -24,7 +25,7 @@ public class ProcedimientoMuePLUseCaseImpl implements IProcedimientoMuePLUseCase
 	public ProcedimientoMuePL buscarPorId(int idProcedimiento) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idProcedimiento)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

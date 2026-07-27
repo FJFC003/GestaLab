@@ -44,5 +44,10 @@ public class UsuarioRepositorioImpl implements IUsuarioRepositorio{
 		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idUsuario);
 	}
+	
+	@Override
+	public Optional<Usuario> buscarPorCorreo(String correo) {
+	    return jpaRepositorio.findByCorreo(correo).map(entityMapper::toDomain);
+	}
 
 }

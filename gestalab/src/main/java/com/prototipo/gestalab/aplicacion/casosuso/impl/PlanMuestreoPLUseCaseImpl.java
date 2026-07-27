@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlanMuestreoPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.PlanMuestreoPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IPlanMuestreoPLRepositorio;
 
 public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
@@ -23,7 +24,7 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 	@Override
 	public PlanMuestreoPL buscarPorId(int idPlan) {
 	return repositorio.buscarPorId(idPlan)
-			.orElseThrow(() -> new RuntimeException("Informacion no econtrada"));
+			.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

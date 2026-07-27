@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEEPPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.EEPPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IEEPPLRepositorio;
 
 public class EEPPLUseCaseImpl implements IEEPPLUseCase{
@@ -25,7 +26,7 @@ public class EEPPLUseCaseImpl implements IEEPPLUseCase{
 	@Override
 	public EEPPL buscarPorId(int idEEP) {
 		return repositorio.buscarPorId(idEEP)
-				.orElseThrow(() -> new RuntimeException("no se encontro informacion"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

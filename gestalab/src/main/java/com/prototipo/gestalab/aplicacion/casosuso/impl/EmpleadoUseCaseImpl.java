@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEmpleadoUseCase;
 import com.prototipo.gestalab.dominio.entidades.Empleado;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IEmpleadoRepositorio;
 
 public class EmpleadoUseCaseImpl implements IEmpleadoUseCase{
@@ -34,7 +35,7 @@ public class EmpleadoUseCaseImpl implements IEmpleadoUseCase{
 	public Empleado buscarPorId(int idEmpleado) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idEmpleado)
-				.orElseThrow(() -> new RuntimeException("Informacion no se encontro"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

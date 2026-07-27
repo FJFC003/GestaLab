@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IOrdenTrabajoOTUseCase;
 import com.prototipo.gestalab.dominio.entidades.OrdenTrabajoOT;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IOrdenTrabajoOTRepositorio;
 
 public class OrdenTrabajoOTUseCaseImpl implements IOrdenTrabajoOTUseCase{
@@ -27,7 +28,7 @@ public class OrdenTrabajoOTUseCaseImpl implements IOrdenTrabajoOTUseCase{
 	public OrdenTrabajoOT buscarPorId(int idOT) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idOT)
-				.orElseThrow(()->new RuntimeException("Informacion no enconrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

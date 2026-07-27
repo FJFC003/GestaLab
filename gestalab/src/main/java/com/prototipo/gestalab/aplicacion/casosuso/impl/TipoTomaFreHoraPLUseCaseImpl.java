@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ITipoTomaFreHoraPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.TipoTomaFreHoraPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ITipoTomaFreHoraPLRepositorio;
 
 public class TipoTomaFreHoraPLUseCaseImpl implements ITipoTomaFreHoraPLUseCase{
@@ -25,7 +26,7 @@ public class TipoTomaFreHoraPLUseCaseImpl implements ITipoTomaFreHoraPLUseCase{
 	public TipoTomaFreHoraPL buscarPorId(int idTipoFre) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idTipoFre)
-				.orElseThrow(() -> new RuntimeException("Informacio no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

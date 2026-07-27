@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.INormaParametroLmpCUseCase;
 import com.prototipo.gestalab.dominio.entidades.NormaParametroLmpC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.INormaParametroLmpCRepositorio;
 
 public class NormaParametroLmpCUseCaseImpl implements INormaParametroLmpCUseCase{
@@ -25,7 +26,7 @@ public class NormaParametroLmpCUseCaseImpl implements INormaParametroLmpCUseCase
 	public NormaParametroLmpC buscarPorId(int idNormaParametroLmpC) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idNormaParametroLmpC)
-				.orElseThrow(() -> new RuntimeException("No se encontró la asociación Norma-Parámetro-LMP"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

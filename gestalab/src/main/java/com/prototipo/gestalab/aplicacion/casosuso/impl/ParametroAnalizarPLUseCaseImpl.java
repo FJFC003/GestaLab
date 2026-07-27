@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IParametroAnalizarPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.ParametroAnalizarPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IParametroAnalizarPLRepositorio;
 
 public class ParametroAnalizarPLUseCaseImpl implements IParametroAnalizarPLUseCase{
@@ -25,7 +26,7 @@ public class ParametroAnalizarPLUseCaseImpl implements IParametroAnalizarPLUseCa
 	@Override
 	public ParametroAnalizarPL buscarPorId(int idParametroPL) {
 		return repositorio.buscarPorId(idParametroPL)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

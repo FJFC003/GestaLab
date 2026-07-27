@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionParametroCUseCase;
 import com.prototipo.gestalab.dominio.entidades.CondicionParametroC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICondicionParametroCRepositorio;
 
 public class CondicionParametroCUseCaseImpl implements ICondicionParametroCUseCase{
@@ -24,7 +25,7 @@ public class CondicionParametroCUseCaseImpl implements ICondicionParametroCUseCa
 	@Override
 	public CondicionParametroC buscarPorId(int idCondicionParametroC) {
 		return repositorio.buscarPorId(idCondicionParametroC)
-				.orElseThrow(() -> new RuntimeException("No se encontró la condición"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

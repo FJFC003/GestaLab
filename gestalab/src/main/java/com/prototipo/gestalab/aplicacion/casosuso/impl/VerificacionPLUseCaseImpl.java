@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IVerificacionPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.VerificacionPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IVerificacionPLRepositorio;
 
 public class VerificacionPLUseCaseImpl implements IVerificacionPLUseCase{
@@ -25,7 +26,7 @@ public class VerificacionPLUseCaseImpl implements IVerificacionPLUseCase{
 	public VerificacionPL buscarPorId(int idVerificacion) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idVerificacion)
-				.orElseThrow(() -> new RuntimeException("Infoemacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

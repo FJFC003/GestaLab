@@ -2,6 +2,8 @@ package com.prototipo.gestalab.infraestructura.configuracion;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IAreaUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICargoUseCase;
@@ -268,8 +270,8 @@ public class GestaConfig {
 	}
 	
 	@Bean
-	IUsuarioUseCase usuarioUseCase(IUsuarioRepositorio repo) {
-		return new UsuarioUseCaseImpl(repo);
+	IUsuarioUseCase usuarioUseCase(IUsuarioRepositorio repo, PasswordEncoder passwordEncoder) {
+		return new UsuarioUseCaseImpl(repo, passwordEncoder);
 	}
 	
 	@Bean
@@ -581,8 +583,8 @@ public class GestaConfig {
 		}
 		
 		@Bean
-		ILoginUseCase authUseCase(IUsuarioRepositorio usuarioRepositorio) {
-			return new LoginUseCaseImpl(usuarioRepositorio);
+		ILoginUseCase authUseCase(IUsuarioRepositorio usuarioRepositorio, PasswordEncoder passwordEncoder) {
+		    return new LoginUseCaseImpl(usuarioRepositorio, passwordEncoder);
 		}
 		
 		@Bean
@@ -593,6 +595,11 @@ public class GestaConfig {
 		@Bean
 		ICondicionParametroCUseCase condicionParametroCUseCase(ICondicionParametroCRepositorio repo) {
 			return new CondicionParametroCUseCaseImpl(repo);
+		}
+		
+		@Bean
+		PasswordEncoder passwordEncoder() {
+		    return new BCryptPasswordEncoder();
 		}
 		
 		

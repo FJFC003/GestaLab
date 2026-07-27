@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICotizacionCUseCase;
 import com.prototipo.gestalab.dominio.entidades.CotizacionC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICotizacionCRepositorio;
 
 public class CotizacionCUseCaseImpl implements ICotizacionCUseCase{
@@ -28,7 +29,7 @@ public class CotizacionCUseCaseImpl implements ICotizacionCUseCase{
 		// TODO Auto-generated method stub
 		return repositorio
 				.buscarPorId(idCotizacionC)
-				.orElseThrow(() -> new RuntimeException("No se encontro los datos"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

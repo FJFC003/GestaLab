@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICatalogoParametroUseCase;
 import com.prototipo.gestalab.dominio.entidades.CatalogoParametroC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICatalogoParametroCRepositorio;
 
 public class CatalogoParametroUseCaseImpl implements ICatalogoParametroUseCase{
@@ -24,7 +25,7 @@ public class CatalogoParametroUseCaseImpl implements ICatalogoParametroUseCase{
 	@Override
 	public CatalogoParametroC buscarPorId(int idParametroC) {
 		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idParametroC).orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+		return repositorio.buscarPorId(idParametroC).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

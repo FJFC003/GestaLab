@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IClienteCUseCase;
 import com.prototipo.gestalab.dominio.entidades.ClienteC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IClienteCRepositorio;
 
 public class ClienteCUseCaseImpl implements IClienteCUseCase{
@@ -23,7 +24,7 @@ public class ClienteCUseCaseImpl implements IClienteCUseCase{
 
 	@Override
 	public ClienteC buscarPorId(int idClienteC) {
-		return repositorio.buscarPorId(idClienteC).orElseThrow(() -> new RuntimeException("Informacion no enconrada"));
+		return repositorio.buscarPorId(idClienteC).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

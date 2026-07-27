@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
 import com.prototipo.gestalab.dominio.entidades.InformeResultadosIR;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IInformeResultadosIRRepositorio;
 
 public class InformeResultadosIRUseCaseImpl implements IInformeResultadosIRUseCase{
@@ -24,7 +25,7 @@ public class InformeResultadosIRUseCaseImpl implements IInformeResultadosIRUseCa
 	@Override
 	public InformeResultadosIR buscarPorId(int idInforme) {
 		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idInforme).orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+		return repositorio.buscarPorId(idInforme).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

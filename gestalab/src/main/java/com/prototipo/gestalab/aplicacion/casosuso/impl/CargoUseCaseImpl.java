@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICargoUseCase;
 import com.prototipo.gestalab.dominio.entidades.Cargo;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ICargoRepositorio;
 
 public class CargoUseCaseImpl implements ICargoUseCase{
@@ -23,7 +24,7 @@ public class CargoUseCaseImpl implements ICargoUseCase{
 	public Cargo buscarPorId(int idCargo) {
 		return repositorio
 				.buscarPorId(idCargo)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

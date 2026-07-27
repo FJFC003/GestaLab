@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ILmpCUseCase;
 import com.prototipo.gestalab.dominio.entidades.LmpC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.ILmpCRepositorio;
 
 public class LmpCUseCaseImpl implements ILmpCUseCase{
@@ -25,7 +26,7 @@ public class LmpCUseCaseImpl implements ILmpCUseCase{
 	public LmpC buscarPorId(int idLmpC) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idLmpC)
-				.orElseThrow(() -> new RuntimeException("No se encontró: LMP"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

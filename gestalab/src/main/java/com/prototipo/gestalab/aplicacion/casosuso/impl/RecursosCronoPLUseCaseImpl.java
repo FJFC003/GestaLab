@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRecursosCronoPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.RecursosCronoPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IRecursosCronoPLRepositorio;
 
 public class RecursosCronoPLUseCaseImpl implements IRecursosCronoPLUseCase{
@@ -25,7 +26,7 @@ public class RecursosCronoPLUseCaseImpl implements IRecursosCronoPLUseCase{
 	public RecursosCronoPL buscarPorId(int idRecursos) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idRecursos)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

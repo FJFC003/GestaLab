@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionMatrizPLUseCase;
 import com.prototipo.gestalab.dominio.entidades.InformacionMatrizPL;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IInformacionMatrizPLRepositorio;
 
 public class InformacionMatrizPLUseCaseImpl implements IInformacionMatrizPLUseCase{
@@ -25,7 +26,7 @@ public class InformacionMatrizPLUseCaseImpl implements IInformacionMatrizPLUseCa
 	@Override
 	public InformacionMatrizPL buscarPorId(int idInfoMatriz) {
 		return repositorio.buscarPorId(idInfoMatriz)
-				.orElseThrow(() -> new RuntimeException("Informacion no encontrada"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDescripcionServicioCUseCase;
 import com.prototipo.gestalab.dominio.entidades.DescripcionServicioC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IDescripcionServicioCRepositorio;
 
 public class DescripcionServicioCUseCaseImpl implements IDescripcionServicioCUseCase{
@@ -25,7 +26,7 @@ public class DescripcionServicioCUseCaseImpl implements IDescripcionServicioCUse
 	public DescripcionServicioC buscarPorId(int idDescripcionServicioC) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idDescripcionServicioC)
-				.orElseThrow(() -> new RuntimeException("No se encontró: Descripción de Servicio"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override

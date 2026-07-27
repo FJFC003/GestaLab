@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlazoEntregaCUseCase;
 import com.prototipo.gestalab.dominio.entidades.PlazoEntregaC;
+import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IPlazoEntregaCRepositorio;
 
 public class PlazoEntregaCUseCaseImpl implements IPlazoEntregaCUseCase{
@@ -25,7 +26,7 @@ public class PlazoEntregaCUseCaseImpl implements IPlazoEntregaCUseCase{
 	public PlazoEntregaC buscarPorId(int idPlazoEntregaC) {
 		// TODO Auto-generated method stub
 		return repositorio.buscarPorId(idPlazoEntregaC)
-				.orElseThrow(() -> new RuntimeException("No se encontró: Plazo de Entrega"));
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override
