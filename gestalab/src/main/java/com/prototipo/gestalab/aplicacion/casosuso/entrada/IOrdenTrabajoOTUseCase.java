@@ -10,5 +10,6 @@ public interface IOrdenTrabajoOTUseCase {
 	OrdenTrabajoOT buscarPorId (int idOT);
 	List<OrdenTrabajoOT> ListarTodos();
 	void eliminar (int idOt);
+	List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado);
 
 }
