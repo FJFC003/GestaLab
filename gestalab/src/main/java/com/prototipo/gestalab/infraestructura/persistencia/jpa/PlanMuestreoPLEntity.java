@@ -25,9 +25,8 @@ public class PlanMuestreoPLEntity {
 	@Column(length = 80)
 	private String ObjetivoPlan;
 	
-	@ManyToOne
-	@JoinColumn(name = "fk_info_adicional")
-	private InformacionAdicionalPLEntity fkInfoAdicionalEntity;
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_info_matriz")

@@ -8,7 +8,14 @@ public class InformacionMatrizPLResponseDto {
 	private String Ubicacion;
 	private String descripcionDelPunto;
 	private String Accesibilidad;
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
 	
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
 	public int getIdInfoMatriz() {
 		return idInfoMatriz;
 	}

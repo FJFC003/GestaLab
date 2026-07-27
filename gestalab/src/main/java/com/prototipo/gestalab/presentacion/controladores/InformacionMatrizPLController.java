@@ -50,5 +50,11 @@ public class InformacionMatrizPLController {
 		informacionMatrizPLUseCase.eliminar(idInfoMatriz);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<InformacionMatrizPLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return informacionMatrizPLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

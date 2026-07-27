@@ -4,6 +4,14 @@ public class PlanMuestreoPL {
 	
 	private int idPlan;
 	private String ObjetivoPlan;
+	private DetalleC fkDetalleCotizacion;
+	
+	public DetalleC getFkDetalleCotizacion() {
+		return fkDetalleCotizacion;
+	}
+	public void setFkDetalleCotizacion(DetalleC fkDetalleCotizacion) {
+		this.fkDetalleCotizacion = fkDetalleCotizacion;
+	}
 	public int getIdPlan() {
 		return idPlan;
 	}

@@ -11,5 +11,6 @@ public interface IInformacionMatrizPLRepositorio {
 	Optional<InformacionMatrizPL> buscarPorId(int idInfoMatriz);
 	List<InformacionMatrizPL> ListarTodos();
 	void eliminar(int idInfoMatriz);
+	List<InformacionMatrizPL> listarPorPlan(int idPlan);
 
 }
