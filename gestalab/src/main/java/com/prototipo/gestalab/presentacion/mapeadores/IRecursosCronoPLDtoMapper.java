@@ -7,10 +7,11 @@ import com.prototipo.gestalab.dominio.entidades.RecursosCronoPL;
 import com.prototipo.gestalab.presentacion.dto.request.RecursosCronoPLRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.RecursosCronoPLResponseDto;
 
-@Mapper(componentModel = "spring", uses = { IEmpleadoDtoMapper.class })
+@Mapper(componentModel = "spring", uses = { IEmpleadoDtoMapper.class, IPlanMuestreoPLDtoMapper.class })
 public interface IRecursosCronoPLDtoMapper {
 	
 	@Mapping(target = "fkTecnico.idEmpleado", source = "fkTecnico")
+	@Mapping(target = "fkPlanMuestreo.idPlan", source = "fkPlanMuestreo")
 	RecursosCronoPL toDomain(RecursosCronoPLRequestDto dto);
 	
 	RecursosCronoPLResponseDto toResponseDto(RecursosCronoPL recursosCronoPojo);

@@ -6,6 +6,16 @@ public class InformacionAdicionalPLResponseDto {
 	private String preguntas;
 	private String respuesta;
 	
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdInformacion() {
 		return idInformacion;
 	}

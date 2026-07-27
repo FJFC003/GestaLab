@@ -7,6 +7,17 @@ public class RecursosCronoPLResponseDto {
 	private int idRecursos;
 	private Date fechaMuestreo;
 	private EmpleadoResponseDto fkTecnico;
+	
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public EmpleadoResponseDto getFkTecnico() {
 		return fkTecnico;
 	}

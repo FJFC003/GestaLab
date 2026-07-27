@@ -5,6 +5,17 @@ public class InformacionAdicionalPL {
 	private int idInformacion;
 	private String preguntas;
 	private String respuesta;
+	
+	private PlanMuestreoPL fkPlanMuestreo;
+
+	public PlanMuestreoPL getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPL fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdInformacion() {
 		return idInformacion;
 	}

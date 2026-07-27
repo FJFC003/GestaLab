@@ -11,5 +11,6 @@ public interface ITipoTomaFreHoraPLRepositorio {
 	Optional<TipoTomaFreHoraPL> buscarPorId(int idTipoFre);
 	List<TipoTomaFreHoraPL> ListarTodos();
 	void eliminar(int idTipoFre);
+	List<TipoTomaFreHoraPL> listarPorPlan(int idPlan);
 
 }

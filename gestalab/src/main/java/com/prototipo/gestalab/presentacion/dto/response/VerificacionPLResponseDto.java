@@ -7,6 +7,17 @@ public class VerificacionPLResponseDto {
 	private boolean tipoMatrizDeclarada;
 	private boolean frecuanciaDeclarada;
 	private boolean sitiosDeclarados;
+	
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdVerificacion() {
 		return idVerificacion;
 	}

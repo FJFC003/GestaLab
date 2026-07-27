@@ -6,6 +6,17 @@ public class TipoTomaFreHoraPLResponseDto {
 	private int noItem;
 	private String tipo;
 	private String alicuotas;
+	
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdTipoFre() {
 		return idTipoFre;
 	}

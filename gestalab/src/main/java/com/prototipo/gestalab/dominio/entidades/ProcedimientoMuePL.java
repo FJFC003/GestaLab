@@ -7,6 +7,17 @@ public class ProcedimientoMuePL {
 	private String Tipo;
 	private String descripcion;
 	private String precausiones;
+	
+	private PlanMuestreoPL fkPlanMuestreo;
+
+	public PlanMuestreoPL getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPL fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdProcedimiento() {
 		return idProcedimiento;
 	}

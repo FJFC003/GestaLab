@@ -8,6 +8,16 @@ public class ProcedimientoMuePLResponseDto {
 	private String descripcion;
 	private String precausiones;
 	
+	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+
+	public PlanMuestreoPLResponseDto getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPLResponseDto fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public int getIdProcedimiento() {
 		return idProcedimiento;
 	}

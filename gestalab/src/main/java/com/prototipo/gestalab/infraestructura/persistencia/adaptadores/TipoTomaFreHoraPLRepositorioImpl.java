@@ -44,4 +44,11 @@ public class TipoTomaFreHoraPLRepositorioImpl implements ITipoTomaFreHoraPLRepos
 		
 	}
 
+	@Override
+	public List<TipoTomaFreHoraPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkPlanMuestreoEntity_IdPlan(idPlan)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

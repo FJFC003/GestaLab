@@ -10,5 +10,6 @@ public interface ITipoTomaFreHoraPLUseCase {
 	TipoTomaFreHoraPL buscarPorId(int idTipoFre);
 	List<TipoTomaFreHoraPL> ListarTodos();
 	void eliminar(int idTipoFre);
+	List<TipoTomaFreHoraPL> listarPorPlan(int idPlan);
 
 }

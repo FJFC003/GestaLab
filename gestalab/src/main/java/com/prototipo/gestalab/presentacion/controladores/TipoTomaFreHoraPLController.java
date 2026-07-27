@@ -50,5 +50,11 @@ public class TipoTomaFreHoraPLController {
 		tipoTomaFreHoraPLUseCase.eliminar(idTipoFre);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/plan/{idPlan}")
+	public List<TipoTomaFreHoraPLResponseDto> listarPorPlan(@PathVariable int idPlan) {
+		return tipoTomaFreHoraPLUseCase.listarPorPlan(idPlan)
+				.stream().map(mapper::toResponseDto).toList();
+	}
 
 }

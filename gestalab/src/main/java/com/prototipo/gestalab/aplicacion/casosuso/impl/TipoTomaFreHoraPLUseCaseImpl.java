@@ -41,4 +41,10 @@ public class TipoTomaFreHoraPLUseCaseImpl implements ITipoTomaFreHoraPLUseCase{
 		repositorio.eliminar(idTipoFre);
 	}
 
+	@Override
+	public List<TipoTomaFreHoraPL> listarPorPlan(int idPlan) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorPlan(idPlan);
+	}
+
 }

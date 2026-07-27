@@ -10,6 +10,16 @@ public class RecursosCronoPL {
 	private Date horaDefinida;
 	private Empleado fkTecnico;
 	
+	private PlanMuestreoPL fkPlanMuestreo;
+
+	public PlanMuestreoPL getFkPlanMuestreo() {
+		return fkPlanMuestreo;
+	}
+
+	public void setFkPlanMuestreo(PlanMuestreoPL fkPlanMuestreo) {
+		this.fkPlanMuestreo = fkPlanMuestreo;
+	}
+	
 	public Empleado getFkTecnico() {
 		return fkTecnico;
 	}
