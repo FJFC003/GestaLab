@@ -59,9 +59,10 @@ public class ClienteCController {
 	
 	@GetMapping("/paginado")
 	public Page<ClienteCResponseDto> listarPaginado(
-	        @RequestParam(defaultValue = "0") int pagina,
+			@RequestParam(defaultValue = "0") int pagina,
 	        @RequestParam(defaultValue = "20") int tamanio) {
-	    return clienteCUseCase.listarPaginado(pagina, tamanio);
+	    return clienteCUseCase.listarPaginado(pagina, tamanio)
+	            .map(mapper::toResponseDto);
 	}
 
 }
