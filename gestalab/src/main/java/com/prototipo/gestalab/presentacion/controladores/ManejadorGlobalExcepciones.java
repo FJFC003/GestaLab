@@ -40,7 +40,9 @@ public class ManejadorGlobalExcepciones {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> handleGenerico(RuntimeException ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno del servidor");
+    	ex.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error: " + ex.getClass().getSimpleName() + " - " + ex.getMessage());
     }
 
 }
