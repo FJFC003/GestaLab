@@ -7,7 +7,6 @@ public class UsuarioResponseDto {
 	private int idUsuario;
 	private String nombre;
 	private String correo;
-	private String contrasenia;
 	private Date fechaCreacion;
 	private boolean estadoUsuario;
 	public int getIdUsuario() {
@@ -27,12 +26,6 @@ public class UsuarioResponseDto {
 	}
 	public void setCorreo(String correo) {
 		this.correo = correo;
-	}
-	public String getContrasenia() {
-		return contrasenia;
-	}
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
 	}
 	public Date getFechaCreacion() {
 		return fechaCreacion;
