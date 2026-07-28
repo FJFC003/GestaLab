@@ -1,9 +1,14 @@
 package com.prototipo.gestalab.infraestructura.repositorios;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.DesviosOrdenOTEntity;
 
 public interface IDesviosOrdenOTJpaRepositorio extends JpaRepository<DesviosOrdenOTEntity, Integer>{
+	
+	List<DesviosOrdenOTEntity> findByFkOrdenTrabajoEntity_IdOT(int idOT);
+
 
 }
