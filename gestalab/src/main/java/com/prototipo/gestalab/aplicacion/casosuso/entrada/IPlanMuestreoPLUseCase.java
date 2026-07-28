@@ -14,4 +14,8 @@ public interface IPlanMuestreoPLUseCase {
 	List<PlanMuestreoPL> listarPorCotizacion(int idCotizacionC);
 	List<PlanMuestreoPL> listarPorResponsable(int idEmpleado);
 
+	PlanMuestreoPL enviarATecnico(int idPlan);
+	PlanMuestreoPL devolverAElaboracion(int idPlan);
+	PlanMuestreoPL marcarCompletado(int idPlan);
+
 }

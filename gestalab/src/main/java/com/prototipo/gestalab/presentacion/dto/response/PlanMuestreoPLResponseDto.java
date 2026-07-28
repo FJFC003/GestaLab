@@ -2,6 +2,8 @@ package com.prototipo.gestalab.presentacion.dto.response;
 
 import java.util.Date;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoPlanMuestreo;
+
 public class PlanMuestreoPLResponseDto {
 	
 	private int idPlan;
@@ -11,13 +13,8 @@ public class PlanMuestreoPLResponseDto {
 	private EmpleadoResponseDto fkResponsable;
 	private DetalleCResponseDto fkDetalleCotizacion;
 	private EEPPLResponseDto fkeep;
-
-	public EEPPLResponseDto getFkeep() {
-		return fkeep;
-	}
-	public void setFkeep(EEPPLResponseDto fkeep) {
-		this.fkeep = fkeep;
-	}
+	private EstadoPlanMuestreo estadoPlan;
+	private Date fechaEnvioTecnico;
 	public int getIdPlan() {
 		return idPlan;
 	}
@@ -54,5 +51,25 @@ public class PlanMuestreoPLResponseDto {
 	public void setFkDetalleCotizacion(DetalleCResponseDto fkDetalleCotizacion) {
 		this.fkDetalleCotizacion = fkDetalleCotizacion;
 	}
+	public EEPPLResponseDto getFkeep() {
+		return fkeep;
+	}
+	public void setFkeep(EEPPLResponseDto fkeep) {
+		this.fkeep = fkeep;
+	}
+	public EstadoPlanMuestreo getEstadoPlan() {
+		return estadoPlan;
+	}
+	public void setEstadoPlan(EstadoPlanMuestreo estadoPlan) {
+		this.estadoPlan = estadoPlan;
+	}
+	public Date getFechaEnvioTecnico() {
+		return fechaEnvioTecnico;
+	}
+	public void setFechaEnvioTecnico(Date fechaEnvioTecnico) {
+		this.fechaEnvioTecnico = fechaEnvioTecnico;
+	}
+
+	
 	
 }

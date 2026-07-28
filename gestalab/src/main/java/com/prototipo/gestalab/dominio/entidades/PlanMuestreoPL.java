@@ -11,13 +11,9 @@ public class PlanMuestreoPL {
 	private Empleado fkResponsable;
 	private DetalleC fkDetalleCotizacion;
 	private EEPPL fkeep;
-
-	public EEPPL getFkeep() {
-		return fkeep;
-	}
-	public void setFkeep(EEPPL fkeep) {
-		this.fkeep = fkeep;
-	}
+	private EstadoPlanMuestreo estadoPlan;
+	private Date fechaEnvioTecnico;
+	
 	public int getIdPlan() {
 		return idPlan;
 	}
@@ -54,8 +50,25 @@ public class PlanMuestreoPL {
 	public void setFkDetalleCotizacion(DetalleC fkDetalleCotizacion) {
 		this.fkDetalleCotizacion = fkDetalleCotizacion;
 	}
-	
-	
+	public EEPPL getFkeep() {
+		return fkeep;
+	}
+	public void setFkeep(EEPPL fkeep) {
+		this.fkeep = fkeep;
+	}
+	public EstadoPlanMuestreo getEstadoPlan() {
+		return estadoPlan;
+	}
+	public void setEstadoPlan(EstadoPlanMuestreo estadoPlan) {
+		this.estadoPlan = estadoPlan;
+	}
+	public Date getFechaEnvioTecnico() {
+		return fechaEnvioTecnico;
+	}
+	public void setFechaEnvioTecnico(Date fechaEnvioTecnico) {
+		this.fechaEnvioTecnico = fechaEnvioTecnico;
+	}
+
 	
 	
 

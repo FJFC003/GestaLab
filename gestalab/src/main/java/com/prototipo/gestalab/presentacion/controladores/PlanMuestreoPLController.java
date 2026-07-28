@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -43,7 +44,6 @@ public class PlanMuestreoPLController {
 		return planMuestreoPLUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 
-	// ESTE ERA EL QUE FALTABA: sin el, /plan/detalle/{id} de la Interfaz recibe 404
 	@GetMapping("/{idPlan}")
 	public PlanMuestreoPLResponseDto buscarPorId(@PathVariable int idPlan) {
 		return mapper.toResponseDto(planMuestreoPLUseCase.buscarPorId(idPlan));
@@ -72,6 +72,21 @@ public class PlanMuestreoPLController {
 	public List<PlanMuestreoPLResponseDto> listarPorResponsable(@PathVariable int idEmpleado) {
 		return planMuestreoPLUseCase.listarPorResponsable(idEmpleado)
 				.stream().map(mapper::toResponseDto).toList();
+	}
+
+	@PutMapping("/enviar/{idPlan}")
+	public PlanMuestreoPLResponseDto enviarATecnico(@PathVariable int idPlan) {
+		return mapper.toResponseDto(planMuestreoPLUseCase.enviarATecnico(idPlan));
+	}
+
+	@PutMapping("/devolver/{idPlan}")
+	public PlanMuestreoPLResponseDto devolverAElaboracion(@PathVariable int idPlan) {
+		return mapper.toResponseDto(planMuestreoPLUseCase.devolverAElaboracion(idPlan));
+	}
+
+	@PutMapping("/completar/{idPlan}")
+	public PlanMuestreoPLResponseDto marcarCompletado(@PathVariable int idPlan) {
+		return mapper.toResponseDto(planMuestreoPLUseCase.marcarCompletado(idPlan));
 	}
 
 }

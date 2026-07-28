@@ -2,6 +2,8 @@ package com.prototipo.gestalab.presentacion.dto.request;
 
 import java.util.Date;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoPlanMuestreo;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -28,5 +30,7 @@ public class PlanMuestreoPLRequestDto {
 	private int fkDetalleCotizacion;
 
 	private int fkeep;
+
+	private EstadoPlanMuestreo estadoPlan;
 	
 }

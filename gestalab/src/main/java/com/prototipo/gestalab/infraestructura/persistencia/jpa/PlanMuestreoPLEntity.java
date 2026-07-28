@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoPlanMuestreo;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,10 @@ public class PlanMuestreoPLEntity {
 	private String ObjetivoPlan;
 
 	private Date fechaElaboracion;
+
+	private EstadoPlanMuestreo estadoPlan;
+
+	private Date fechaEnvioTecnico;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_responsable")

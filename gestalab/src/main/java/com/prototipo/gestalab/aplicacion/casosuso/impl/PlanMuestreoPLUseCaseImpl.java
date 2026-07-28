@@ -1,8 +1,10 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IPlanMuestreoPLUseCase;
+import com.prototipo.gestalab.dominio.entidades.EstadoPlanMuestreo;
 import com.prototipo.gestalab.dominio.entidades.PlanMuestreoPL;
 import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
 import com.prototipo.gestalab.dominio.repositorio.IPlanMuestreoPLRepositorio;
@@ -60,4 +62,39 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 		return repositorio.listarPorResponsable(idEmpleado);
 	}
 
+	@Override
+	public PlanMuestreoPL enviarATecnico(int idPlan) {
+		// TODO Auto-generated method stub
+		PlanMuestreoPL plan = buscarPorId(idPlan);
+
+		if (plan.getEstadoPlan() == EstadoPlanMuestreo.ENVIADO) {
+			throw new IllegalStateException("El plan ya fue enviado al Técnico de Campo");
+		}
+
+		plan.setEstadoPlan(EstadoPlanMuestreo.ENVIADO);
+		plan.setFechaEnvioTecnico(new Date());
+		return repositorio.guardar(plan);
+	}
+
+	@Override
+	public PlanMuestreoPL devolverAElaboracion(int idPlan) {
+		// TODO Auto-generated method stub
+		PlanMuestreoPL plan = buscarPorId(idPlan);
+		plan.setEstadoPlan(EstadoPlanMuestreo.EN_ELABORACION);
+		plan.setFechaEnvioTecnico(null);
+		return repositorio.guardar(plan);
+	}
+
+	@Override
+	public PlanMuestreoPL marcarCompletado(int idPlan) {
+		// TODO Auto-generated method stub
+		PlanMuestreoPL plan = buscarPorId(idPlan);
+
+		if (plan.getEstadoPlan() != EstadoPlanMuestreo.ENVIADO) {
+			throw new IllegalStateException("Solo se puede completar un plan que fue enviado al técnico");
+		}
+
+		plan.setEstadoPlan(EstadoPlanMuestreo.COMPLETADO);
+		return repositorio.guardar(plan);
+	}
 }
