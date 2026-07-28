@@ -52,4 +52,11 @@ public class RecursosCronoPLRepositorioImpl implements IRecursosCronoPLRepositor
 				.stream().map(entityMapper::toDomain).toList();
 	}
 
+	@Override
+	public List<RecursosCronoPL> listarPorTecnico(int idEmpleado) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkTecnicoEntity_IdEmpleado(idEmpleado)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

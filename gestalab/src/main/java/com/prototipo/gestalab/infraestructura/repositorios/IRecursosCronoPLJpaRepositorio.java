@@ -9,5 +9,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.jpa.RecursosCronoPLEn
 public interface IRecursosCronoPLJpaRepositorio extends JpaRepository<RecursosCronoPLEntity, Integer>{
 	
 	List<RecursosCronoPLEntity> findByFkPlanMuestreoEntity_IdPlan(int idPlan);
+	
+	List<RecursosCronoPLEntity> findByFkTecnicoEntity_IdEmpleado(int idEmpleado);
 
 }

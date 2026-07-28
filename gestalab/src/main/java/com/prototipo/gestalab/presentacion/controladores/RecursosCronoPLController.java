@@ -55,5 +55,12 @@ public class RecursosCronoPLController {
 		return recursosCronoPLUseCase.listarPorPlan(idPlan)
 				.stream().map(mapper::toResponseDto).toList();
 	}
+	
+	// NUEVO: trabajos de campo asignados a un tecnico
+		@GetMapping("/tecnico/{idEmpleado}")
+		public List<RecursosCronoPLResponseDto> listarPorTecnico(@PathVariable int idEmpleado) {
+			return recursosCronoPLUseCase.listarPorTecnico(idEmpleado)
+					.stream().map(mapper::toResponseDto).toList();
+		}
 
 }

@@ -11,5 +11,6 @@ public interface IRecursosCronoPLUseCase {
 	List<RecursosCronoPL> ListarTodos();
 	void eliminar(int idRecursos);
 	List<RecursosCronoPL> listarPorPlan(int idPlan);
+	List<RecursosCronoPL> listarPorTecnico(int idEmpleado);
 
 }
