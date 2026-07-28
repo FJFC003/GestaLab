@@ -5,6 +5,8 @@ import java.util.Date;
 public class DetalleOrdenTrabajoOTResponseDto {
 	
 	private int idDetalleOrdenOT;
+	private int noItemDetalleOrdenOT;
+	private String descripcionActividadDetalleOrdenOT;
 	private Date fechaPlanificadaDetalleOrdenOT;
 	private int puntosPlanificadosDetalleOrdenOT;
 	private int puntosEjecutadosDetalleOrdenOT;
@@ -13,6 +15,18 @@ public class DetalleOrdenTrabajoOTResponseDto {
 	}
 	public void setIdDetalleOrdenOT(int idDetalleOrdenOT) {
 		this.idDetalleOrdenOT = idDetalleOrdenOT;
+	}
+	public int getNoItemDetalleOrdenOT() {
+		return noItemDetalleOrdenOT;
+	}
+	public void setNoItemDetalleOrdenOT(int noItemDetalleOrdenOT) {
+		this.noItemDetalleOrdenOT = noItemDetalleOrdenOT;
+	}
+	public String getDescripcionActividadDetalleOrdenOT() {
+		return descripcionActividadDetalleOrdenOT;
+	}
+	public void setDescripcionActividadDetalleOrdenOT(String descripcionActividadDetalleOrdenOT) {
+		this.descripcionActividadDetalleOrdenOT = descripcionActividadDetalleOrdenOT;
 	}
 	public Date getFechaPlanificadaDetalleOrdenOT() {
 		return fechaPlanificadaDetalleOrdenOT;
@@ -32,8 +46,6 @@ public class DetalleOrdenTrabajoOTResponseDto {
 	public void setPuntosEjecutadosDetalleOrdenOT(int puntosEjecutadosDetalleOrdenOT) {
 		this.puntosEjecutadosDetalleOrdenOT = puntosEjecutadosDetalleOrdenOT;
 	}
-	
-	
 	
 
 }

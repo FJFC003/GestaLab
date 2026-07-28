@@ -6,14 +6,29 @@ import java.util.Date;
 public class DetalleOrdenTrabajoOT {
 	
 	private int idDetalleOrdenOT;
+	private int noItemDetalleOrdenOT;
+	private String descripcionActividadDetalleOrdenOT;
 	private Date fechaPlanificadaDetalleOrdenOT;
 	private int puntosPlanificadosDetalleOrdenOT;
 	private int puntosEjecutadosDetalleOrdenOT;
+	private OrdenTrabajoOT fkOrdenTrabajo;
 	public int getIdDetalleOrdenOT() {
 		return idDetalleOrdenOT;
 	}
 	public void setIdDetalleOrdenOT(int idDetalleOrdenOT) {
 		this.idDetalleOrdenOT = idDetalleOrdenOT;
+	}
+	public int getNoItemDetalleOrdenOT() {
+		return noItemDetalleOrdenOT;
+	}
+	public void setNoItemDetalleOrdenOT(int noItemDetalleOrdenOT) {
+		this.noItemDetalleOrdenOT = noItemDetalleOrdenOT;
+	}
+	public String getDescripcionActividadDetalleOrdenOT() {
+		return descripcionActividadDetalleOrdenOT;
+	}
+	public void setDescripcionActividadDetalleOrdenOT(String descripcionActividadDetalleOrdenOT) {
+		this.descripcionActividadDetalleOrdenOT = descripcionActividadDetalleOrdenOT;
 	}
 	public Date getFechaPlanificadaDetalleOrdenOT() {
 		return fechaPlanificadaDetalleOrdenOT;
@@ -33,7 +48,11 @@ public class DetalleOrdenTrabajoOT {
 	public void setPuntosEjecutadosDetalleOrdenOT(int puntosEjecutadosDetalleOrdenOT) {
 		this.puntosEjecutadosDetalleOrdenOT = puntosEjecutadosDetalleOrdenOT;
 	}
-	
-	
+	public OrdenTrabajoOT getFkOrdenTrabajo() {
+		return fkOrdenTrabajo;
+	}
+	public void setFkOrdenTrabajo(OrdenTrabajoOT fkOrdenTrabajo) {
+		this.fkOrdenTrabajo = fkOrdenTrabajo;
+	}
 
 }

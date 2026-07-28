@@ -51,4 +51,11 @@ public class DetalleOrdenTrabajoOTRepositorioImpl implements IDetalleOrdenTrabaj
 		jpaRepositorio.deleteById(idDetalleOrdenOT);
 	}
 
+	@Override
+	public List<DetalleOrdenTrabajoOT> listarPorOrden(int idOT) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkOrdenTrabajoEntity_IdOT(idOT)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

@@ -43,4 +43,10 @@ public class DesviosOrdenOTUseCaseImpl implements IDesviosOrdenOTUseCase{
 		repositorio.eliminar(idDesviosOrdenOT);
 	}
 
+	@Override
+	public List<DesviosOrdenOT> listarPorOrden(int idOT) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorOrden(idOT);
+	}
+
 }

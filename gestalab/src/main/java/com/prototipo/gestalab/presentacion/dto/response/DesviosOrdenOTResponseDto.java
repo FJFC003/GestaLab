@@ -3,6 +3,7 @@ package com.prototipo.gestalab.presentacion.dto.response;
 public class DesviosOrdenOTResponseDto {
 	
 	private int idDesviosOrdenOT;
+	private int noItemDesviosOrdenOT;
 	private String descripcionDesviosOrdenOT;
 	private int puntosModificadosDesviosOrdenOT;
 	public int getIdDesviosOrdenOT() {
@@ -10,6 +11,12 @@ public class DesviosOrdenOTResponseDto {
 	}
 	public void setIdDesviosOrdenOT(int idDesviosOrdenOT) {
 		this.idDesviosOrdenOT = idDesviosOrdenOT;
+	}
+	public int getNoItemDesviosOrdenOT() {
+		return noItemDesviosOrdenOT;
+	}
+	public void setNoItemDesviosOrdenOT(int noItemDesviosOrdenOT) {
+		this.noItemDesviosOrdenOT = noItemDesviosOrdenOT;
 	}
 	public String getDescripcionDesviosOrdenOT() {
 		return descripcionDesviosOrdenOT;
@@ -24,6 +31,4 @@ public class DesviosOrdenOTResponseDto {
 		this.puntosModificadosDesviosOrdenOT = puntosModificadosDesviosOrdenOT;
 	}
 	
-	
-
 }

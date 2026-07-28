@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,33 +17,32 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Orden de ejecucion del trabajo")
+@Table(name = "orden_trabajo")
 public class OrdenTrabajoOTEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idOT;
-	@Column(length = 80)
+
 	private int noItemOT;
 	private Date fechaEmisionOT;
 	private String nombrePersonaContactoOT;
 	private Date fechaCierreCampoOT;
-	
+
+	// Las lineas son PARTE de la orden: se borran con ella
+	@OneToMany(mappedBy = "fkOrdenTrabajoEntity", cascade = CascadeType.REMOVE)
+	private List<DetalleOrdenTrabajoOTEntity> listaMonitoreos = new ArrayList<>();
+
+	@OneToMany(mappedBy = "fkOrdenTrabajoEntity", cascade = CascadeType.REMOVE)
+	private List<DesviosOrdenOTEntity> listaDesvios = new ArrayList<>();
+
 	@ManyToOne
-    @JoinColumn(name = "fk_Monitoreos")
-    private DetalleOrdenTrabajoOTEntity fkMonitoreos;
-	
-	@ManyToOne
-    @JoinColumn(name = "fk_Desvio")
-    private DesviosOrdenOTEntity fkDesvio;
-	
-	@ManyToOne
-    @JoinColumn(name = "fkPlanMuestreoEntity")
-    private PlanMuestreoPLEntity fkPlanMuestreoEntity;
-	
+	@JoinColumn(name = "fk_plan_muestreo")
+	private PlanMuestreoPLEntity fkPlanMuestreoEntity;
+
 	@OneToMany(mappedBy = "fkOrdenTrabajoEntity")
-    private List<InformeResultadosIREntity> listaInformen = new ArrayList<>();
-	
+	private List<InformeResultadosIREntity> listaInformen = new ArrayList<>();
+
 	@ManyToOne
 	@JoinColumn(name = "fk_responsable_emision")
 	private EmpleadoEntity fkResponsableEmisionEntity;
@@ -51,7 +50,5 @@ public class OrdenTrabajoOTEntity {
 	@ManyToOne
 	@JoinColumn(name = "fk_tecnico_asignado")
 	private EmpleadoEntity fkTecnicoAsignadoEntity;
-
-
 
 }

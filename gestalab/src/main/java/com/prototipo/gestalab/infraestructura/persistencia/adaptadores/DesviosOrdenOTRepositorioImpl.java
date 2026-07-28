@@ -48,4 +48,11 @@ public class DesviosOrdenOTRepositorioImpl implements IDesviosOrdenOTRepositorio
 		jpaRepositorio.deleteById(idDesviosOrdenOT);
 	}
 
+	@Override
+	public List<DesviosOrdenOT> listarPorOrden(int idOT) {
+		// TODO Auto-generated method stub
+		return jpaRepositorio.findByFkOrdenTrabajoEntity_IdOT(idOT)
+				.stream().map(entityMapper::toDomain).toList();
+	}
+
 }

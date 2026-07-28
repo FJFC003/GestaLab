@@ -1,32 +1,38 @@
 package com.prototipo.gestalab.infraestructura.persistencia.jpa;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Monitoreos y monitoreo planificados y estipulados en el contrato")
+@Table(name = "detalle_orden_trabajo")
 public class DetalleOrdenTrabajoOTEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDetalleOrdenOT;
-	@Column(length = 80)
+
+	private int noItemDetalleOrdenOT;
+
+	private String descripcionActividadDetalleOrdenOT;
+
 	private Date fechaPlanificadaDetalleOrdenOT;
+
 	private int puntosPlanificadosDetalleOrdenOT;
+
+	// Lo escribe la Coordinacion Tecnica al cerrar la orden
 	private int puntosEjecutadosDetalleOrdenOT;
-	
-	@OneToMany(mappedBy = "fkMonitoreos")
-    private List<OrdenTrabajoOTEntity> listaOrdenesTrabajo = new ArrayList<>();
+
+	@ManyToOne
+	@JoinColumn(name = "fk_orden_trabajo")
+	private OrdenTrabajoOTEntity fkOrdenTrabajoEntity;
 
 }

@@ -43,4 +43,10 @@ public class DetalleOrdenTrabajoOTImpl implements IDetalleOrdenTrabajoOTUseCase{
 		repositorio.eliminar(idDetalleOrdenOT);
 	}
 
+	@Override
+	public List<DetalleOrdenTrabajoOT> listarPorOrden(int idOT) {
+		// TODO Auto-generated method stub
+		return repositorio.listarPorOrden(idOT);
+	}
+
 }

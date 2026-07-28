@@ -7,10 +7,10 @@ import com.prototipo.gestalab.dominio.entidades.DetalleOrdenTrabajoOT;
 
 public interface IDetalleOrdenTrabajoOTRepositorio {
 	
-	DetalleOrdenTrabajoOT guardar (DetalleOrdenTrabajoOT nuevoDetalleOrdenTrabajo);
+	DetalleOrdenTrabajoOT guardar(DetalleOrdenTrabajoOT nuevo);
 	Optional<DetalleOrdenTrabajoOT> buscarPorId(int idDetalleOrdenOT);
 	List<DetalleOrdenTrabajoOT> ListarTodos();
-	
-	void eliminar (int idDetalleOrdenOT);
+	void eliminar(int idDetalleOrdenOT);
+	List<DetalleOrdenTrabajoOT> listarPorOrden(int idOT);
 
 }

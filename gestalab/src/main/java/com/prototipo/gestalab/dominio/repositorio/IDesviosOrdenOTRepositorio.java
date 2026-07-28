@@ -7,10 +7,10 @@ import com.prototipo.gestalab.dominio.entidades.DesviosOrdenOT;
 
 public interface IDesviosOrdenOTRepositorio {
 	
-	DesviosOrdenOT guardar (DesviosOrdenOT nuevoDesviosOrdenOT);
+	DesviosOrdenOT guardar(DesviosOrdenOT nuevo);
 	Optional<DesviosOrdenOT> buscarPorId(int idDesviosOrdenOT);
 	List<DesviosOrdenOT> ListarTodos();
-	
-	void eliminar (int idDesviosOrdenOT);
+	void eliminar(int idDesviosOrdenOT);
+	List<DesviosOrdenOT> listarPorOrden(int idOT);
 
 }
