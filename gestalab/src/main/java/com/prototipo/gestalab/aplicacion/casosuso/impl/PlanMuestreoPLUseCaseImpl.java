@@ -18,7 +18,11 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 
 	@Override
 	public PlanMuestreoPL guardar(PlanMuestreoPL nuevoPlan) {
-		return repositorio.guardar(nuevoPlan);
+		
+				if (nuevoPlan.getFkeep() != null && nuevoPlan.getFkeep().getIdEEP() <= 0) {
+					nuevoPlan.setFkeep(null);
+				}
+				return repositorio.guardar(nuevoPlan);
 	}
 
 	@Override
