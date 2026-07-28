@@ -6,8 +6,11 @@ import java.util.List;
 
 import com.prototipo.gestalab.dominio.entidades.EstadoPlanMuestreo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +37,7 @@ public class PlanMuestreoPLEntity {
 
 	private Date fechaElaboracion;
 
+	@Enumerated(EnumType.STRING)
 	private EstadoPlanMuestreo estadoPlan;
 
 	private Date fechaEnvioTecnico;
@@ -42,25 +46,25 @@ public class PlanMuestreoPLEntity {
 	@JoinColumn(name = "fk_responsable")
 	private EmpleadoEntity fkResponsableEntity;
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ParametroAnalizarPLEntity> listaParametros = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TipoTomaFreHoraPLEntity> listaTiposToma = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProcedimientoMuePLEntity> listaProcedimientos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RecursosCronoPLEntity> listaRecursos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<InformacionAdicionalPLEntity> listaInfoAdicional = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VerificacionPLEntity> listaVerificaciones = new ArrayList<>();
 
 	@ManyToOne
