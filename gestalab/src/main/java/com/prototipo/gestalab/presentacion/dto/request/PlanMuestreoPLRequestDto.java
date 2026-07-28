@@ -27,4 +27,6 @@ public class PlanMuestreoPLRequestDto {
 	@Positive(message = "El plan debe nacer de una línea de cotización")
 	private int fkDetalleCotizacion;
 
+	private int fkeep;
+	
 }

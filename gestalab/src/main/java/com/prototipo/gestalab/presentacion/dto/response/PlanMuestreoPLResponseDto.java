@@ -10,7 +10,14 @@ public class PlanMuestreoPLResponseDto {
 	private Date fechaElaboracion;
 	private EmpleadoResponseDto fkResponsable;
 	private DetalleCResponseDto fkDetalleCotizacion;
+	private EEPPLResponseDto fkeep;
 
+	public EEPPLResponseDto getFkeep() {
+		return fkeep;
+	}
+	public void setFkeep(EEPPLResponseDto fkeep) {
+		this.fkeep = fkeep;
+	}
 	public int getIdPlan() {
 		return idPlan;
 	}

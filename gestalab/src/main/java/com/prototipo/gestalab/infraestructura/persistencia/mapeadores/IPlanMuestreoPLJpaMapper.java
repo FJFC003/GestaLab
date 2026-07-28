@@ -6,7 +6,8 @@ import org.mapstruct.Mapping;
 import com.prototipo.gestalab.dominio.entidades.PlanMuestreoPL;
 import com.prototipo.gestalab.infraestructura.persistencia.jpa.PlanMuestreoPLEntity;
 
-@Mapper(componentModel = "spring", uses = { IDetalleCJpaMapper.class, IEmpleadoJpaMapper.class })
+@Mapper(componentModel = "spring", uses = { IDetalleCJpaMapper.class, IEmpleadoJpaMapper.class,
+		IEEPPLJpaMapper.class })
 public interface IPlanMuestreoPLJpaMapper {
 	
 	@Mapping(target = "fkDetalleCotizacion", source = "fkDetalleCEntity")
