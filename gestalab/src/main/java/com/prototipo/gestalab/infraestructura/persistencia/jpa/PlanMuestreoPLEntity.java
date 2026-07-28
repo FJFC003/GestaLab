@@ -46,25 +46,35 @@ public class PlanMuestreoPLEntity {
 	@JoinColumn(name = "fk_responsable")
 	private EmpleadoEntity fkResponsableEntity;
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	// IMPORTANTE: solo CascadeType.REMOVE, NUNCA orphanRemoval.
+	//
+	// REMOVE basta para que al borrar el plan se borren sus 7 secciones.
+	//
+	// orphanRemoval seria un error grave aqui: MapStruct construye la entidad
+	// con estas listas VACIAS, asi que al actualizar el plan (por ejemplo al
+	// guardar el EPP) Hibernate entenderia que hay que borrar todas las
+	// secciones, y lanza:
+	//   "A collection with cascade=all-delete-orphan was no longer referenced"
+
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<InformacionMatrizPLEntity> listaMatrices = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<ParametroAnalizarPLEntity> listaParametros = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<TipoTomaFreHoraPLEntity> listaTiposToma = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<ProcedimientoMuePLEntity> listaProcedimientos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<RecursosCronoPLEntity> listaRecursos = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<InformacionAdicionalPLEntity> listaInfoAdicional = new ArrayList<>();
 
-	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "fkPlanMuestreoEntity", cascade = CascadeType.REMOVE)
 	private List<VerificacionPLEntity> listaVerificaciones = new ArrayList<>();
 
 	@ManyToOne
@@ -75,6 +85,8 @@ public class PlanMuestreoPLEntity {
 	@JoinColumn(name = "fk_detalle_cotizacion")
 	private DetalleCEntity fkDetalleCEntity;
 
+	// Las Ordenes de Trabajo NO se borran en cascada: son documentos con valor
+	// propio. Si el plan tiene OT, hay que eliminarlas primero.
 	@OneToMany(mappedBy = "fkPlanMuestreoEntity")
 	private List<OrdenTrabajoOTEntity> listaOrdenes = new ArrayList<>();
 	
