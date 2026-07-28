@@ -37,19 +37,25 @@ public class PlanMuestreoPLController {
 	public PlanMuestreoPLResponseDto guardar(@Valid @RequestBody PlanMuestreoPLRequestDto requestPlan) {
 		return mapper.toResponseDto(planMuestreoPLUseCase.guardar(mapper.toDomain(requestPlan)));
 	}
-	
+
 	@GetMapping
 	public List<PlanMuestreoPLResponseDto> listarTodos(){
 		return planMuestreoPLUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
-	
+
+	// ESTE ERA EL QUE FALTABA: sin el, /plan/detalle/{id} de la Interfaz recibe 404
+	@GetMapping("/{idPlan}")
+	public PlanMuestreoPLResponseDto buscarPorId(@PathVariable int idPlan) {
+		return mapper.toResponseDto(planMuestreoPLUseCase.buscarPorId(idPlan));
+	}
+
 	@DeleteMapping("/{idPlan}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idPlan)
 	{
 		planMuestreoPLUseCase.eliminar(idPlan);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@GetMapping("/detalle/{idDetalleC}")
 	public List<PlanMuestreoPLResponseDto> listarPorDetalle(@PathVariable int idDetalleC) {
 		return planMuestreoPLUseCase.listarPorDetalle(idDetalleC)
