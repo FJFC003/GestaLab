@@ -10,7 +10,6 @@ public class InformacionAdicionalPLRequestDto {
 	private int idInformacion;
 	@NotBlank(message = "La pregunta es obligatoria")
 	private String preguntas;
-	@NotBlank(message = "La respuesta es obligatoria")
 	private String respuesta;
 	@Positive(message = "Debe pertenecer a un plan de muestreo")
 	private int fkPlanMuestreo;

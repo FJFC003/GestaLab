@@ -18,13 +18,11 @@ public class InformacionMatrizPLRequestDto {
 	@NotBlank(message = "La ubicación es obligatoria")
 	private String Ubicacion;
 
-	@NotBlank(message = "La descripción del punto es obligatoria")
 	private String descripcionDelPunto;
-
-	@NotBlank(message = "La accesibilidad es obligatoria")
 	private String Accesibilidad;
 
-	@Positive(message = "La matriz debe pertenecer a un plan de muestreo")
+	@Positive(message = "Debe pertenecer a un plan de muestreo")
 	private int fkPlanMuestreo;
+
 
 }

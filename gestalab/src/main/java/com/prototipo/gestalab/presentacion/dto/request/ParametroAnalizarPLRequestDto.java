@@ -19,10 +19,7 @@ public class ParametroAnalizarPLRequestDto {
 	@NotBlank(message = "La unidad de medida es obligatoria")
 	private String unidadMedida;
 
-	@NotBlank(message = "El sitio de medición es obligatorio")
 	private String sitioMedicion;
-
-	@NotBlank(message = "La preservación es obligatoria")
 	private String preservacion;
 
 	@Positive(message = "Debe pertenecer a un plan de muestreo")
