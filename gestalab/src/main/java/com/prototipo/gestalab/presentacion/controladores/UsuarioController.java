@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IUsuarioUseCase;
+import com.prototipo.gestalab.presentacion.dto.request.CambioContraseniaRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.UsuarioRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.UsuarioResponseDto;
 import com.prototipo.gestalab.presentacion.mapeadores.IUsuarioDtoMapper;
@@ -34,20 +36,33 @@ public class UsuarioController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UsuarioResponseDto guardar(@Valid @RequestBody UsuarioRequestDto requestUsuario ) {
+	public UsuarioResponseDto guardar(@Valid @RequestBody UsuarioRequestDto requestUsuario) {
 		return mapper.toResponseDto(usuarioUseCase.guardar(mapper.toDomain(requestUsuario)));
 	}
-	
+
 	@GetMapping
 	public List<UsuarioResponseDto> listarTodos(){
 		return usuarioUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idUsuario}")
+	public UsuarioResponseDto buscarPorId(@PathVariable int idUsuario) {
+		return mapper.toResponseDto(usuarioUseCase.buscarPorId(idUsuario));
+	}
+
 	@DeleteMapping("/{idUsuario}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idUsuario)
 	{
 		usuarioUseCase.eliminar(idUsuario);
 		return ResponseEntity.noContent().build();
+	}
+
+	
+	@PutMapping("/contrasenia/{idUsuario}")
+	public UsuarioResponseDto cambiarContrasenia(@PathVariable int idUsuario,
+			@Valid @RequestBody CambioContraseniaRequestDto request) {
+		return mapper.toResponseDto(
+				usuarioUseCase.cambiarContrasenia(idUsuario, request.getContrasenia()));
 	}
 
 }

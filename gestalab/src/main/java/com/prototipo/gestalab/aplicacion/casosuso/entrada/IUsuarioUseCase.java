@@ -9,7 +9,8 @@ public interface IUsuarioUseCase {
 	Usuario guardar(Usuario nuevoUsuario);
 	Usuario buscarPorId(int idUsuario);
 	List<Usuario> ListarTodos();
-	
 	void eliminar(int idUsuario);
+
+	Usuario cambiarContrasenia(int idUsuario, String contraseniaEnClaro);
 
 }
