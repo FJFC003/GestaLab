@@ -43,10 +43,15 @@ public class DesviosOrdenOTController {
 		return desviosOrdenOTUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/orden/{idOT}")
+	public List<DesviosOrdenOTResponseDto> listarPorOrden(@PathVariable int idOT){
+		return desviosOrdenOTUseCase.listarPorOrden(idOT).stream().map(mapper :: toResponseDto).toList();
+	}
+	
 	@DeleteMapping("/{idDesviosOrdenOT}")
-	public ResponseEntity<Void> eliminar (@PathVariable int ididDesviosOrdenOT)
+	public ResponseEntity<Void> eliminar (@PathVariable int idDesviosOrdenOT)
 	{
-		desviosOrdenOTUseCase.eliminar(ididDesviosOrdenOT);
+		desviosOrdenOTUseCase.eliminar(idDesviosOrdenOT);
 		return ResponseEntity.noContent().build();
 	}
 	

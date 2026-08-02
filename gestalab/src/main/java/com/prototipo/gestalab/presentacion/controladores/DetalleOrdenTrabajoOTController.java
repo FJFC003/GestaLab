@@ -44,6 +44,11 @@ public class DetalleOrdenTrabajoOTController {
 		return detalleOrdenTrabajoOTUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
 	
+	@GetMapping("/orden/{idOT}")
+	public List<DetalleOrdenTrabajoOTResponseDto> listarPorOrden(@PathVariable int idOT){
+		return detalleOrdenTrabajoOTUseCase.listarPorOrden(idOT).stream().map(mapper :: toResponseDto).toList();
+	}
+	
 	@DeleteMapping("/{idDetalleOrdenOT}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idDetalleOrdenOT)
 	{
