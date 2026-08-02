@@ -578,8 +578,12 @@ public class GestaConfig {
 		}
 		
 		@Bean
-	IInformeResultadosIRUseCase informeResultadosIRUseCase(IInformeResultadosIRRepositorio repo) {
-			return new InformeResultadosIRUseCaseImpl(repo);
+		IInformeResultadosIRUseCase informeResultadosIRUseCase(
+				IInformeResultadosIRRepositorio repo,
+				IResultadosIRRepositorio resultadosRepo,
+				ICondicionAmbientalIRRepositorio condicionesRepo,
+				IEquiposUtilizadosIRRepositorio equiposRepo) {
+			return new InformeResultadosIRUseCaseImpl(repo, resultadosRepo, condicionesRepo, equiposRepo);
 		}
 		
 		@Bean
