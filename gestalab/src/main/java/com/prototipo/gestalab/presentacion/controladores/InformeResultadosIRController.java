@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.ICondicionAmbientalIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEquiposUtilizadosIRUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IResultadosIRUseCase;
 import com.prototipo.gestalab.dominio.entidades.CondicionAmbientalIR;
 import com.prototipo.gestalab.dominio.entidades.EquiposUtilizadosIR;
 import com.prototipo.gestalab.dominio.entidades.ResultadosIR;
 import com.prototipo.gestalab.presentacion.dto.integrador.InformeCompletoIRRequestDto;
+import com.prototipo.gestalab.presentacion.dto.integrador.InformeCompletoIRResponseDto;
 import com.prototipo.gestalab.presentacion.dto.request.CondicionAmbientalIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.EquiposUtilizadosIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.InformeResultadosIRRequestDto;
@@ -40,16 +44,24 @@ public class InformeResultadosIRController {
 	private final IResultadosIRDtoMapper resultadosMapper;
 	private final ICondicionAmbientalIRDtoMapper condicionesMapper;
 	private final IEquiposUtilizadosIRDtoMapper equiposMapper;
+	private final IResultadosIRUseCase resultadosUseCase;
+	private final ICondicionAmbientalIRUseCase condicionesUseCase;
+	private final IEquiposUtilizadosIRUseCase equiposUseCase;
 
 	public InformeResultadosIRController(IInformeResultadosIRUseCase informeUseCase,
 			IInformeResultadosIRDtoMapper mapper, IResultadosIRDtoMapper resultadosMapper,
-			ICondicionAmbientalIRDtoMapper condicionesMapper, IEquiposUtilizadosIRDtoMapper equiposMapper) {
+			ICondicionAmbientalIRDtoMapper condicionesMapper, IEquiposUtilizadosIRDtoMapper equiposMapper,
+			IResultadosIRUseCase resultadosUseCase, ICondicionAmbientalIRUseCase condicionesUseCase,
+			IEquiposUtilizadosIRUseCase equiposUseCase) {
 		super();
 		this.informeUseCase = informeUseCase;
 		this.mapper = mapper;
 		this.resultadosMapper = resultadosMapper;
 		this.condicionesMapper = condicionesMapper;
 		this.equiposMapper = equiposMapper;
+		this.resultadosUseCase = resultadosUseCase;
+		this.condicionesUseCase = condicionesUseCase;
+		this.equiposUseCase = equiposUseCase;
 	}
 
 	@PostMapping
@@ -106,6 +118,29 @@ public class InformeResultadosIRController {
 
 		return mapper.toResponseDto(informeUseCase.guardarInformeCompleto(
 				mapper.toDomain(request.getInforme()), resultados, condiciones, equipos));
+	}
+
+
+	@GetMapping("/completo/{idOT}")
+	public ResponseEntity<InformeCompletoIRResponseDto> buscarCompletoPorOrden(@PathVariable int idOT) {
+
+		var informe = informeUseCase.buscarPorOrden(idOT);
+		if (informe == null) {
+			return ResponseEntity.noContent().build();
+		}
+
+		int idInforme = informe.getIdInforme();
+
+		InformeCompletoIRResponseDto respuesta = new InformeCompletoIRResponseDto();
+		respuesta.setInforme(mapper.toResponseDto(informe));
+		respuesta.setListaResultados(resultadosUseCase.listarPorInforme(idInforme)
+				.stream().map(resultadosMapper :: toResponseDto).toList());
+		respuesta.setListaCondiciones(condicionesUseCase.listarPorInforme(idInforme)
+				.stream().map(condicionesMapper :: toResponseDto).toList());
+		respuesta.setListaEquipos(equiposUseCase.listarPorInforme(idInforme)
+				.stream().map(equiposMapper :: toResponseDto).toList());
+
+		return ResponseEntity.ok(respuesta);
 	}
 
 }
