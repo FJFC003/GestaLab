@@ -21,6 +21,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDetalleCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IDetalleOrdenTrabajoOTUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEEPPLUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEmpleadoUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEquipoLaboratorioUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IEquiposUtilizadosIRUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IFirmaElectronicaUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformacionAdicionalPLUseCase;
@@ -57,6 +58,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.DetalleCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.DetalleOrdenTrabajoOTImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.EEPPLUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.EmpleadoUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.EquipoLaboratorioUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.EquiposUtilizadosIRUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.FirmaElectronicaUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.InformacionAdicionalPLUseCaseImpl;
@@ -93,6 +95,7 @@ import com.prototipo.gestalab.dominio.repositorio.IDetalleCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IDetalleOrdenTrabajoOTRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IEEPPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IEmpleadoRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.IEquipoLaboratorioRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IEquiposUtilizadosIRRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IFirmaElectronicaRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IInformacionAdicionalPLRepositorio;
@@ -128,6 +131,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DetalleCR
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.DetalleOrdenTrabajoOTRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.EEPPLRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.EmpleadoRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.EquipoLaboratorioRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.EquiposUtilizadosIRRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.FirmaElectronicaRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.InformacionAdicionalPLRepositorioImpl;
@@ -163,6 +167,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDetalleCJ
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IDetalleOrdenTrabajoOTJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IEEPPLJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IEmpleadoJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IEquipoLaboratorioJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IEquiposUtilizadosIRJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IFirmaElectronicaJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IInformacionAdicionalPLJpaMapper;
@@ -198,6 +203,7 @@ import com.prototipo.gestalab.infraestructura.repositorios.IDetalleCJpaRepositor
 import com.prototipo.gestalab.infraestructura.repositorios.IDetalleOrdenTrabajoOTJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEEPPLJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEmpleadoJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.IEquipoLaboratorioJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IEquiposUtilizadosIRJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IFirmaElectronicaJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IInformacionAdicionalPLJpaRepositorio;
@@ -606,7 +612,16 @@ public class GestaConfig {
 		    return new BCryptPasswordEncoder();
 		}
 		
-		
+		// EquipoLaboratorio (catalogo de equipos)
+				@Bean
+				IEquipoLaboratorioRepositorio equipoLaboratorioRepositorio(IEquipoLaboratorioJpaRepositorio jpaRepositorio, IEquipoLaboratorioJpaMapper mapper) {
+					return new EquipoLaboratorioRepositorioImpl(jpaRepositorio, mapper);
+				}
+
+				@Bean
+				IEquipoLaboratorioUseCase equipoLaboratorioUseCase(IEquipoLaboratorioRepositorio repo) {
+					return new EquipoLaboratorioUseCaseImpl(repo);
+				}
 
 	
 }
