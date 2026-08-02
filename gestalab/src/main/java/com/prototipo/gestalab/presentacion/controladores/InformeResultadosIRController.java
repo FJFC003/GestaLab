@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -141,6 +142,18 @@ public class InformeResultadosIRController {
 				.stream().map(equiposMapper :: toResponseDto).toList());
 
 		return ResponseEntity.ok(respuesta);
+	}
+
+	// ================= FLUJO HACIA LA COORDINACION TECNICA =================
+
+	@PutMapping("/enviar-coordinacion/{idInforme}")
+	public InformeResultadosIRResponseDto enviarACoordinacion(@PathVariable int idInforme) {
+		return mapper.toResponseDto(informeUseCase.enviarACoordinacion(idInforme));
+	}
+
+	@GetMapping("/enviados")
+	public List<InformeResultadosIRResponseDto> listarEnviados(){
+		return informeUseCase.listarEnviados().stream().map(mapper :: toResponseDto).toList();
 	}
 
 }

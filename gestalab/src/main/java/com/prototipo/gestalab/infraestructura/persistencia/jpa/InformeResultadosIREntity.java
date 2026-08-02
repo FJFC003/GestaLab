@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoInformeIR;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,6 +43,12 @@ public class InformeResultadosIREntity {
 	@Column(length = 30)
 	private String conformidadGeneral;
 
+	// Estado del flujo hacia la Coordinacion Tecnica.
+	@Enumerated(EnumType.STRING)
+	private EstadoInformeIR estadoInforme = EstadoInformeIR.EN_ELABORACION;
+
+	private Date fechaEnvioCoordinacion;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_datos_laboratorio")
 	private DatosLaboratorioIREntity fkDatosLaboratorioEntity;
@@ -55,5 +65,6 @@ public class InformeResultadosIREntity {
 
 	@OneToMany(mappedBy = "fkInformeEntity", cascade = CascadeType.REMOVE)
 	private List<EquiposUtilizadosIREntity> listaEquipos = new ArrayList<>();
+
 
 }

@@ -21,4 +21,8 @@ public interface IInformeResultadosIRUseCase {
 			List<CondicionAmbientalIR> condiciones,
 			List<EquiposUtilizadosIR> equipos);
 
+
+	InformeResultadosIR enviarACoordinacion(int idInforme);
+	List<InformeResultadosIR> listarEnviados();
+
 }

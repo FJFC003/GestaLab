@@ -12,7 +12,21 @@ public class InformeResultadosIR {
 	private String conformidadGeneral;
 	private DatosLaboratorioIR fkDatosLaboratorio;
 	private OrdenTrabajoOT fkOrdenTrabajo;
+	private EstadoInformeIR estadoInforme;
+	private Date fechaEnvioCoordinacion;
 	
+	public EstadoInformeIR getEstadoInforme() {
+		return estadoInforme;
+	}
+	public void setEstadoInforme(EstadoInformeIR estadoInforme) {
+		this.estadoInforme = estadoInforme;
+	}
+	public Date getFechaEnvioCoordinacion() {
+		return fechaEnvioCoordinacion;
+	}
+	public void setFechaEnvioCoordinacion(Date fechaEnvioCoordinacion) {
+		this.fechaEnvioCoordinacion = fechaEnvioCoordinacion;
+	}
 	public int getIdInforme() {
 		return idInforme;
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
 import com.prototipo.gestalab.dominio.entidades.CondicionAmbientalIR;
 import com.prototipo.gestalab.dominio.entidades.EquiposUtilizadosIR;
+import com.prototipo.gestalab.dominio.entidades.EstadoInformeIR;
 import com.prototipo.gestalab.dominio.entidades.InformeResultadosIR;
 import com.prototipo.gestalab.dominio.entidades.ResultadosIR;
 import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
@@ -72,6 +73,9 @@ public class InformeResultadosIRUseCaseImpl implements IInformeResultadosIRUseCa
 		if (informe.getFechaEmisionInforme() == null) {
 			informe.setFechaEmisionInforme(new Date());
 		}
+		if (informe.getEstadoInforme() == null) {
+			informe.setEstadoInforme(EstadoInformeIR.EN_ELABORACION);
+		}
 		InformeResultadosIR guardado = repositorio.guardar(informe);
 
 		InformeResultadosIR referencia = new InformeResultadosIR();
@@ -111,6 +115,31 @@ public class InformeResultadosIRUseCaseImpl implements IInformeResultadosIRUseCa
 		}
 
 		return guardado;
+	}
+
+	/**
+	 * El Tecnico de Laboratorio da por terminado el informe y lo pone a
+	 * disposicion de la Coordinacion Tecnica, que solo puede consultarlo.
+	 */
+	@Override
+	public InformeResultadosIR enviarACoordinacion(int idInforme) {
+		InformeResultadosIR informe = buscarPorId(idInforme);
+
+		if (informe.getEstadoInforme() == EstadoInformeIR.ENVIADO_COORDINACION) {
+			throw new IllegalStateException("El informe ya fue enviado a Coordinacion Tecnica");
+		}
+
+		informe.setEstadoInforme(EstadoInformeIR.ENVIADO_COORDINACION);
+		informe.setFechaEnvioCoordinacion(new Date());
+		return repositorio.guardar(informe);
+	}
+
+	/** Bandeja de la Coordinacion Tecnica: solo los informes ya enviados. */
+	@Override
+	public List<InformeResultadosIR> listarEnviados() {
+		return repositorio.ListarTodos().stream()
+				.filter(i -> i.getEstadoInforme() == EstadoInformeIR.ENVIADO_COORDINACION)
+				.toList();
 	}
 
 	private boolean esVacio(String s) {
