@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -65,6 +66,23 @@ public class OrdenTrabajoOTController {
 	public List<OrdenTrabajoOTResponseDto> listarPorPlan(@PathVariable int idPlan) {
 		return ordenTrabajoOTUseCase.listarPorPlan(idPlan)
 				.stream().map(mapper::toResponseDto).toList();
+	}
+
+	// ================= FLUJO HACIA EL LABORATORIO =================
+
+	@PutMapping("/enviar-laboratorio/{idOT}")
+	public OrdenTrabajoOTResponseDto enviarALaboratorio(@PathVariable int idOT) {
+		return mapper.toResponseDto(ordenTrabajoOTUseCase.enviarALaboratorio(idOT));
+	}
+
+	@PutMapping("/devolver/{idOT}")
+	public OrdenTrabajoOTResponseDto devolverACoordinacion(@PathVariable int idOT) {
+		return mapper.toResponseDto(ordenTrabajoOTUseCase.devolverACoordinacion(idOT));
+	}
+
+	@GetMapping("/laboratorio")
+	public List<OrdenTrabajoOTResponseDto> listarParaLaboratorio() {
+		return ordenTrabajoOTUseCase.listarParaLaboratorio().stream().map(mapper :: toResponseDto).toList();
 	}
 
 }

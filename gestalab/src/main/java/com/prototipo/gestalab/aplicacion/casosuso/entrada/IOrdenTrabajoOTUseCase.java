@@ -13,4 +13,8 @@ public interface IOrdenTrabajoOTUseCase {
 	List<OrdenTrabajoOT> listarPorTecnico(int idEmpleado);
 	List<OrdenTrabajoOT> listarPorPlan(int idPlan);
 
+	OrdenTrabajoOT enviarALaboratorio(int idOT);
+	OrdenTrabajoOT devolverACoordinacion(int idOT);
+	List<OrdenTrabajoOT> listarParaLaboratorio();
+
 }

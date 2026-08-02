@@ -12,7 +12,21 @@ public class OrdenTrabajoOTResponseDto {
 	private EmpleadoResponseDto fkResponsableEmision;
 	private EmpleadoResponseDto fkTecnicoAsignado;
 	private PlanMuestreoPLResponseDto fkPlanMuestreo;
+	private String estadoOT;
+	private Date fechaEnvioLaboratorio;
 	
+	public String getEstadoOT() {
+		return estadoOT;
+	}
+	public void setEstadoOT(String estadoOT) {
+		this.estadoOT = estadoOT;
+	}
+	public Date getFechaEnvioLaboratorio() {
+		return fechaEnvioLaboratorio;
+	}
+	public void setFechaEnvioLaboratorio(Date fechaEnvioLaboratorio) {
+		this.fechaEnvioLaboratorio = fechaEnvioLaboratorio;
+	}
 	public EmpleadoResponseDto getFkResponsableEmision() {
 		return fkResponsableEmision;
 	}

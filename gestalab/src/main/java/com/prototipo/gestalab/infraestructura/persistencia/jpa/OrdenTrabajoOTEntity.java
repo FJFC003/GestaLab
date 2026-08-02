@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.prototipo.gestalab.dominio.entidades.EstadoOrdenTrabajo;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,7 +33,11 @@ public class OrdenTrabajoOTEntity {
 	private String nombrePersonaContactoOT;
 	private Date fechaCierreCampoOT;
 
-	// Las lineas son PARTE de la orden: se borran con ella
+	@Enumerated(EnumType.STRING)
+	private EstadoOrdenTrabajo estadoOT = EstadoOrdenTrabajo.EN_EJECUCION;
+
+	private Date fechaEnvioLaboratorio;
+
 	@OneToMany(mappedBy = "fkOrdenTrabajoEntity", cascade = CascadeType.REMOVE)
 	private List<DetalleOrdenTrabajoOTEntity> listaMonitoreos = new ArrayList<>();
 

@@ -13,6 +13,21 @@ public class OrdenTrabajoOT {
 	private Empleado fkResponsableEmision;
 	private Empleado fkTecnicoAsignado;
 	private PlanMuestreoPL fkPlanMuestreo;
+	private EstadoOrdenTrabajo estadoOT;
+	
+	public EstadoOrdenTrabajo getEstadoOT() {
+		return estadoOT;
+	}
+	public void setEstadoOT(EstadoOrdenTrabajo estadoOT) {
+		this.estadoOT = estadoOT;
+	}
+	public Date getFechaEnvioLaboratorio() {
+		return fechaEnvioLaboratorio;
+	}
+	public void setFechaEnvioLaboratorio(Date fechaEnvioLaboratorio) {
+		this.fechaEnvioLaboratorio = fechaEnvioLaboratorio;
+	}
+	private Date fechaEnvioLaboratorio;
 	
 	public Empleado getFkResponsableEmision() {
 		return fkResponsableEmision;
