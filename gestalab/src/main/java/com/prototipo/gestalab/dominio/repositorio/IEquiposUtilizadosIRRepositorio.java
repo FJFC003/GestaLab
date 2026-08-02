@@ -7,9 +7,10 @@ import com.prototipo.gestalab.dominio.entidades.EquiposUtilizadosIR;
 
 public interface IEquiposUtilizadosIRRepositorio {
 	
-	EquiposUtilizadosIR guardar(EquiposUtilizadosIR nuevoEquiposUtilizadosIR);
+	EquiposUtilizadosIR guardar(EquiposUtilizadosIR nuevo);
 	Optional<EquiposUtilizadosIR> buscarPorId(int idEquipos);
 	List<EquiposUtilizadosIR> ListarTodos();
 	void eliminar(int idEquipos);
+	List<EquiposUtilizadosIR> listarPorInforme(int idInforme);
 
 }

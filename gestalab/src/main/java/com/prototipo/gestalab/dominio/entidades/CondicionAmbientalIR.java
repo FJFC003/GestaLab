@@ -8,6 +8,14 @@ public class CondicionAmbientalIR {
 	private String temperatura;
 	private String humedad;
 	private String precipitacion;
+	private InformeResultadosIR fkInforme;
+	
+	public InformeResultadosIR getFkInforme() {
+		return fkInforme;
+	}
+	public void setFkInforme(InformeResultadosIR fkInforme) {
+		this.fkInforme = fkInforme;
+	}
 	public int getIdCondi() {
 		return idCondi;
 	}

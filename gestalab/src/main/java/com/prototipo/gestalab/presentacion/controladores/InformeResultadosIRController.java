@@ -1,5 +1,6 @@
 package com.prototipo.gestalab.presentacion.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IInformeResultadosIRUseCase;
+import com.prototipo.gestalab.dominio.entidades.CondicionAmbientalIR;
+import com.prototipo.gestalab.dominio.entidades.EquiposUtilizadosIR;
+import com.prototipo.gestalab.dominio.entidades.ResultadosIR;
+import com.prototipo.gestalab.presentacion.dto.integrador.InformeCompletoIRRequestDto;
+import com.prototipo.gestalab.presentacion.dto.request.CondicionAmbientalIRRequestDto;
+import com.prototipo.gestalab.presentacion.dto.request.EquiposUtilizadosIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.InformeResultadosIRRequestDto;
+import com.prototipo.gestalab.presentacion.dto.request.ResultadosIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.InformeResultadosIRResponseDto;
+import com.prototipo.gestalab.presentacion.mapeadores.ICondicionAmbientalIRDtoMapper;
+import com.prototipo.gestalab.presentacion.mapeadores.IEquiposUtilizadosIRDtoMapper;
 import com.prototipo.gestalab.presentacion.mapeadores.IInformeResultadosIRDtoMapper;
+import com.prototipo.gestalab.presentacion.mapeadores.IResultadosIRDtoMapper;
 
 import jakarta.validation.Valid;
 
@@ -24,32 +35,77 @@ import jakarta.validation.Valid;
 @RestController
 public class InformeResultadosIRController {
 	
-	private final IInformeResultadosIRUseCase resultadosIRUseCase;
+	private final IInformeResultadosIRUseCase informeUseCase;
 	private final IInformeResultadosIRDtoMapper mapper;
-	
-	public InformeResultadosIRController(IInformeResultadosIRUseCase resultadosIRUseCase,
-			IInformeResultadosIRDtoMapper mapper) {
+	private final IResultadosIRDtoMapper resultadosMapper;
+	private final ICondicionAmbientalIRDtoMapper condicionesMapper;
+	private final IEquiposUtilizadosIRDtoMapper equiposMapper;
+
+	public InformeResultadosIRController(IInformeResultadosIRUseCase informeUseCase,
+			IInformeResultadosIRDtoMapper mapper, IResultadosIRDtoMapper resultadosMapper,
+			ICondicionAmbientalIRDtoMapper condicionesMapper, IEquiposUtilizadosIRDtoMapper equiposMapper) {
 		super();
-		this.resultadosIRUseCase = resultadosIRUseCase;
+		this.informeUseCase = informeUseCase;
 		this.mapper = mapper;
+		this.resultadosMapper = resultadosMapper;
+		this.condicionesMapper = condicionesMapper;
+		this.equiposMapper = equiposMapper;
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public InformeResultadosIRResponseDto guardar(@Valid @RequestBody InformeResultadosIRRequestDto requestInforme) {
-		return mapper.toResponseDto(resultadosIRUseCase.guardar(mapper.toDomain(requestInforme)));
+	public InformeResultadosIRResponseDto guardar(@Valid @RequestBody InformeResultadosIRRequestDto request) {
+		return mapper.toResponseDto(informeUseCase.guardar(mapper.toDomain(request)));
 	}
-	
+
 	@GetMapping
 	public List<InformeResultadosIRResponseDto> listarTodos(){
-		return resultadosIRUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
+		return informeUseCase.ListarTodos().stream().map(mapper :: toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idInforme}")
+	public InformeResultadosIRResponseDto buscarPorId(@PathVariable int idInforme) {
+		return mapper.toResponseDto(informeUseCase.buscarPorId(idInforme));
+	}
+
+	@GetMapping("/orden/{idOT}")
+	public ResponseEntity<InformeResultadosIRResponseDto> buscarPorOrden(@PathVariable int idOT) {
+		var informe = informeUseCase.buscarPorOrden(idOT);
+		if (informe == null) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(mapper.toResponseDto(informe));
+	}
+
 	@DeleteMapping("/{idInforme}")
 	public ResponseEntity<Void> eliminar (@PathVariable int idInforme)
 	{
-		resultadosIRUseCase.eliminar(idInforme);
+		informeUseCase.eliminar(idInforme);
 		return ResponseEntity.noContent().build();
+	}
+
+	@PostMapping("/completo")
+	@ResponseStatus(HttpStatus.CREATED)
+	public InformeResultadosIRResponseDto guardarCompleto(
+			@Valid @RequestBody InformeCompletoIRRequestDto request) {
+
+		List<ResultadosIR> resultados = new ArrayList<>();
+		for (ResultadosIRRequestDto dto : request.getListaResultados()) {
+			resultados.add(resultadosMapper.toDomain(dto));
+		}
+
+		List<CondicionAmbientalIR> condiciones = new ArrayList<>();
+		for (CondicionAmbientalIRRequestDto dto : request.getListaCondiciones()) {
+			condiciones.add(condicionesMapper.toDomain(dto));
+		}
+
+		List<EquiposUtilizadosIR> equipos = new ArrayList<>();
+		for (EquiposUtilizadosIRRequestDto dto : request.getListaEquipos()) {
+			equipos.add(equiposMapper.toDomain(dto));
+		}
+
+		return mapper.toResponseDto(informeUseCase.guardarInformeCompleto(
+				mapper.toDomain(request.getInforme()), resultados, condiciones, equipos));
 	}
 
 }

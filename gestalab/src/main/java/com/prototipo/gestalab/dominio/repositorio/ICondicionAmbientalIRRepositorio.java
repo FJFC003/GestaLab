@@ -7,9 +7,10 @@ import com.prototipo.gestalab.dominio.entidades.CondicionAmbientalIR;
 
 public interface ICondicionAmbientalIRRepositorio {
 	
-	CondicionAmbientalIR guardar(CondicionAmbientalIR nuevoCondicionAmbientalIR);
+	CondicionAmbientalIR guardar(CondicionAmbientalIR nuevo);
 	Optional<CondicionAmbientalIR> buscarPorId(int idCondi);
 	List<CondicionAmbientalIR> ListarTodos();
 	void eliminar(int idCondi);
+	List<CondicionAmbientalIR> listarPorInforme(int idInforme);
 
 }

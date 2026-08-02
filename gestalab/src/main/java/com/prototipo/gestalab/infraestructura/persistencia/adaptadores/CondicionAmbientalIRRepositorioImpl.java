@@ -24,28 +24,31 @@ public class CondicionAmbientalIRRepositorioImpl implements ICondicionAmbientalI
 	}
 
 	@Override
-	public CondicionAmbientalIR guardar(CondicionAmbientalIR nuevoCondicionAmbientalIR) {
-		CondicionAmbientalIREntity entity = entityMapper.toEntity(nuevoCondicionAmbientalIR);
+	public CondicionAmbientalIR guardar(CondicionAmbientalIR nuevo) {
+		CondicionAmbientalIREntity entity = entityMapper.toEntity(nuevo);
 		CondicionAmbientalIREntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}
 
 	@Override
 	public Optional<CondicionAmbientalIR> buscarPorId(int idCondi) {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findById(idCondi).map(entityMapper::toDomain);
 	}
 
 	@Override
 	public List<CondicionAmbientalIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idCondi) {
-		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idCondi);
+	}
+
+	@Override
+	public List<CondicionAmbientalIR> listarPorInforme(int idInforme) {
+		return jpaRepositorio.findByFkInformeEntity_IdInforme(idInforme)
+				.stream().map(entityMapper::toDomain).toList();
 	}
 
 }

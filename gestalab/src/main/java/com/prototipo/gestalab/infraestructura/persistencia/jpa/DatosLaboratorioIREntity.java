@@ -14,18 +14,25 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Datos del Labboratorio")
+@Table(name = "datos_laboratorio_ir")
 public class DatosLaboratorioIREntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDatos;
-	@Column(length = 80)
+
+	@Column(length = 150)
 	private String organizacion;
+
+	@Column(length = 200)
 	private String direccion;
+
+	@Column(length = 40)
 	private String telefono;
+
+	@Column(length = 120)
 	private String correo;
-	
+
 	@OneToMany(mappedBy = "fkDatosLaboratorioEntity")
 	private List<InformeResultadosIREntity> listarInforme = new ArrayList<>();
 

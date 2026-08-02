@@ -3,6 +3,7 @@ package com.prototipo.gestalab.dominio.entidades;
 public class ResultadosIR {
 	
 	private int idResultados;
+	private int noItem;
 	private String parametros;
 	private String metodoReferencial;
 	private String unidad;
@@ -10,6 +11,20 @@ public class ResultadosIR {
 	private String incertidumbre;
 	private String LMP;
 	private String conformidad;
+	private InformeResultadosIR fkInforme;
+	
+	public int getNoItem() {
+		return noItem;
+	}
+	public void setNoItem(int noItem) {
+		this.noItem = noItem;
+	}
+	public InformeResultadosIR getFkInforme() {
+		return fkInforme;
+	}
+	public void setFkInforme(InformeResultadosIR fkInforme) {
+		this.fkInforme = fkInforme;
+	}
 	public int getIdResultados() {
 		return idResultados;
 	}

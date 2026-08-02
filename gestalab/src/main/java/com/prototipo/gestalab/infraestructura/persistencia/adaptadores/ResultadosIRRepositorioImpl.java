@@ -22,28 +22,31 @@ public class ResultadosIRRepositorioImpl implements IResultadosIRRepositorio{
 	}
 
 	@Override
-	public ResultadosIR guardar(ResultadosIR nuevoResultadosIR) {
-		ResultadosIREntity entity = entityMapper.toEntity(nuevoResultadosIR);
+	public ResultadosIR guardar(ResultadosIR nuevo) {
+		ResultadosIREntity entity = entityMapper.toEntity(nuevo);
 		ResultadosIREntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}
 
 	@Override
 	public Optional<ResultadosIR> buscarPorId(int idResultados) {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findById(idResultados).map(entityMapper::toDomain);
 	}
 
 	@Override
 	public List<ResultadosIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idResultados) {
-		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idResultados);
+	}
+
+	@Override
+	public List<ResultadosIR> listarPorInforme(int idInforme) {
+		return jpaRepositorio.findByFkInformeEntity_IdInforme(idInforme)
+				.stream().map(entityMapper::toDomain).toList();
 	}
 
 }

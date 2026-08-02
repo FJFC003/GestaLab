@@ -22,28 +22,30 @@ public class InformeResultadosIRRepositorioImpl implements IInformeResultadosIRR
 	}
 
 	@Override
-	public InformeResultadosIR guardar(InformeResultadosIR nuevoInformeResultadosIR) {
-		InformeResultadosIREntity entity = entityMapper.toEntity(nuevoInformeResultadosIR);
+	public InformeResultadosIR guardar(InformeResultadosIR nuevoInforme) {
+		InformeResultadosIREntity entity = entityMapper.toEntity(nuevoInforme);
 		InformeResultadosIREntity guardar = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardar);
 	}
 
 	@Override
 	public Optional<InformeResultadosIR> buscarPorId(int idInforme) {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findById(idInforme).map(entityMapper::toDomain);
 	}
 
 	@Override
 	public List<InformeResultadosIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idInforme) {
-		// TODO Auto-generated method stub
 		jpaRepositorio.deleteById(idInforme);
+	}
+
+	@Override
+	public Optional<InformeResultadosIR> buscarPorOrden(int idOT) {
+		return jpaRepositorio.findByFkOrdenTrabajoEntity_IdOT(idOT).map(entityMapper::toDomain);
 	}
 
 }

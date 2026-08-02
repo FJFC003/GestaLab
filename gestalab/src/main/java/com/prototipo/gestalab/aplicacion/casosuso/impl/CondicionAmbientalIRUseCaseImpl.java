@@ -17,27 +17,29 @@ public class CondicionAmbientalIRUseCaseImpl implements ICondicionAmbientalIRUse
 	}
 
 	@Override
-	public CondicionAmbientalIR guardar(CondicionAmbientalIR nuevoCondicionAmbientalIR) {
-		// TODO Auto-generated method stub
-		return repositorio.guardar(nuevoCondicionAmbientalIR);
+	public CondicionAmbientalIR guardar(CondicionAmbientalIR nuevo) {
+		return repositorio.guardar(nuevo);
 	}
 
 	@Override
 	public CondicionAmbientalIR buscarPorId(int idCondi) {
-		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idCondi).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
+		return repositorio.buscarPorId(idCondi)
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override
 	public List<CondicionAmbientalIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return repositorio.ListarTodos();
 	}
 
 	@Override
 	public void eliminar(int idCondi) {
-		// TODO Auto-generated method stub
 		repositorio.eliminar(idCondi);
+	}
+
+	@Override
+	public List<CondicionAmbientalIR> listarPorInforme(int idInforme) {
+		return repositorio.listarPorInforme(idInforme);
 	}
 
 }

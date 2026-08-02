@@ -8,13 +8,17 @@ import lombok.Data;
 public class DatosLaboratorioIRRequestDto {
 
 	private int idDatos;
-	@NotBlank
+
+	@NotBlank(message = "La organización es obligatoria")
 	private String organizacion;
-	@NotBlank
+
+	@NotBlank(message = "La dirección es obligatoria")
 	private String direccion;
-	@NotBlank
+
+	@NotBlank(message = "El teléfono es obligatorio")
 	private String telefono;
-	@NotBlank
+
+	@NotBlank(message = "El correo es obligatorio")
 	@Email(message = "El correo no tiene un formato válido")
 	private String correo;
 

@@ -7,9 +7,10 @@ import com.prototipo.gestalab.dominio.entidades.InformeResultadosIR;
 
 public interface IInformeResultadosIRRepositorio {
 	
-	InformeResultadosIR guardar(InformeResultadosIR nuevoInformeResultadosIR);
+	InformeResultadosIR guardar(InformeResultadosIR nuevoInforme);
 	Optional<InformeResultadosIR> buscarPorId(int idInforme);
 	List<InformeResultadosIR> ListarTodos();
 	void eliminar(int idInforme);
+	Optional<InformeResultadosIR> buscarPorOrden(int idOT);
 
 }

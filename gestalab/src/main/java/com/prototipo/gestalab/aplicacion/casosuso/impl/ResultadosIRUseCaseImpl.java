@@ -17,27 +17,29 @@ public class ResultadosIRUseCaseImpl implements IResultadosIRUseCase{
 	}
 
 	@Override
-	public ResultadosIR guardar(ResultadosIR nuevoResultadosIR) {
-		// TODO Auto-generated method stub
-		return repositorio.guardar(nuevoResultadosIR);
+	public ResultadosIR guardar(ResultadosIR nuevo) {
+		return repositorio.guardar(nuevo);
 	}
 
 	@Override
 	public ResultadosIR buscarPorId(int idResultados) {
-		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idResultados).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
+		return repositorio.buscarPorId(idResultados)
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override
 	public List<ResultadosIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return repositorio.ListarTodos();
 	}
 
 	@Override
 	public void eliminar(int idResultados) {
-		// TODO Auto-generated method stub
 		repositorio.eliminar(idResultados);
+	}
+
+	@Override
+	public List<ResultadosIR> listarPorInforme(int idInforme) {
+		return repositorio.listarPorInforme(idInforme);
 	}
 	
 	

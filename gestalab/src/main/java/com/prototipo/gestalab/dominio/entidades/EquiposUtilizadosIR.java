@@ -8,6 +8,14 @@ public class EquiposUtilizadosIR {
 	private String modelo;
 	private String serie;
 	private String codigoInterno;
+	private InformeResultadosIR fkInforme;
+	
+	public InformeResultadosIR getFkInforme() {
+		return fkInforme;
+	}
+	public void setFkInforme(InformeResultadosIR fkInforme) {
+		this.fkInforme = fkInforme;
+	}
 	public int getIdEquipos() {
 		return idEquipos;
 	}

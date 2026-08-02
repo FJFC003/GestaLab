@@ -17,27 +17,29 @@ public class EquiposUtilizadosIRUseCaseImpl implements IEquiposUtilizadosIRUseCa
 	}
 
 	@Override
-	public EquiposUtilizadosIR guardar(EquiposUtilizadosIR nuevoEquiposUtilizadosIR) {
-		// TODO Auto-generated method stub
-		return repositorio.guardar(nuevoEquiposUtilizadosIR);
+	public EquiposUtilizadosIR guardar(EquiposUtilizadosIR nuevo) {
+		return repositorio.guardar(nuevo);
 	}
 
 	@Override
 	public EquiposUtilizadosIR buscarPorId(int idEquipos) {
-		// TODO Auto-generated method stub
-		return repositorio.buscarPorId(idEquipos).orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
+		return repositorio.buscarPorId(idEquipos)
+				.orElseThrow(() -> new RecursoNoEncontradoException("Información no encontrada"));
 	}
 
 	@Override
 	public List<EquiposUtilizadosIR> ListarTodos() {
-		// TODO Auto-generated method stub
 		return repositorio.ListarTodos();
 	}
 
 	@Override
 	public void eliminar(int idEquipos) {
-		// TODO Auto-generated method stub
 		repositorio.eliminar(idEquipos);
+	}
+
+	@Override
+	public List<EquiposUtilizadosIR> listarPorInforme(int idInforme) {
+		return repositorio.listarPorInforme(idInforme);
 	}
 
 }

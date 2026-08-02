@@ -1,35 +1,50 @@
 package com.prototipo.gestalab.infraestructura.persistencia.jpa;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity
 @Data
-@Table(name = "Resultados")
+@Entity
+@Table(name = "resultados_ir")
 public class ResultadosIREntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idResultados;
-	@Column(length = 80)
+
+	private int noItem;
+
+	@Column(length = 150)
 	private String parametros;
+
+	@Column(length = 150)
 	private String metodoReferencial;
+
+	@Column(length = 40)
 	private String unidad;
+
+	@Column(length = 60)
 	private String resultado;
+
+	@Column(length = 60)
 	private String incertidumbre;
+
+	@Column(length = 60)
 	private String LMP;
+
+	@Column(length = 30)
 	private String conformidad;
-	
-	@OneToMany(mappedBy = "fkResultadosEntity")
-	private List<InformeResultadosIREntity> listarInforme = new ArrayList<>();
+
+	@ManyToOne
+	@JoinColumn(name = "fk_informe")
+	private InformeResultadosIREntity fkInformeEntity;
 
 }

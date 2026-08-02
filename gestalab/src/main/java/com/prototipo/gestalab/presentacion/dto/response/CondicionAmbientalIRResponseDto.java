@@ -1,5 +1,8 @@
 package com.prototipo.gestalab.presentacion.dto.response;
 
+import lombok.Data;
+
+@Data
 public class CondicionAmbientalIRResponseDto {
 	
 	private int idCondi;
@@ -8,41 +11,5 @@ public class CondicionAmbientalIRResponseDto {
 	private String temperatura;
 	private String humedad;
 	private String precipitacion;
-	public int getIdCondi() {
-		return idCondi;
-	}
-	public void setIdCondi(int idCondi) {
-		this.idCondi = idCondi;
-	}
-	public String getNoAlicuota() {
-		return noAlicuota;
-	}
-	public void setNoAlicuota(String noAlicuota) {
-		this.noAlicuota = noAlicuota;
-	}
-	public String getHoraToma() {
-		return horaToma;
-	}
-	public void setHoraToma(String horaToma) {
-		this.horaToma = horaToma;
-	}
-	public String getTemperatura() {
-		return temperatura;
-	}
-	public void setTemperatura(String temperatura) {
-		this.temperatura = temperatura;
-	}
-	public String getHumedad() {
-		return humedad;
-	}
-	public void setHumedad(String humedad) {
-		this.humedad = humedad;
-	}
-	public String getPrecipitacion() {
-		return precipitacion;
-	}
-	public void setPrecipitacion(String precipitacion) {
-		this.precipitacion = precipitacion;
-	}
 
 }
