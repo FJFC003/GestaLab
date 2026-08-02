@@ -1,6 +1,7 @@
 package com.prototipo.gestalab.presentacion.mapeadores;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.prototipo.gestalab.dominio.entidades.EquiposUtilizadosIR;
 import com.prototipo.gestalab.presentacion.dto.request.EquiposUtilizadosIRRequestDto;
@@ -9,6 +10,7 @@ import com.prototipo.gestalab.presentacion.dto.response.EquiposUtilizadosIRRespo
 @Mapper(componentModel = "spring")
 public interface IEquiposUtilizadosIRDtoMapper {
 	
+	@Mapping(target = "fkInforme.idInforme", source = "fkInforme")
 	EquiposUtilizadosIR toDomain(EquiposUtilizadosIRRequestDto dto);
 	EquiposUtilizadosIRResponseDto toResponseDto(EquiposUtilizadosIR equiposUtilizadosIRPojo);
 
