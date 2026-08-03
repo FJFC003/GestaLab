@@ -1,5 +1,6 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,11 +21,69 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 
 	@Override
 	public PlanMuestreoPL guardar(PlanMuestreoPL nuevoPlan) {
-		
-				if (nuevoPlan.getFkeep() != null && nuevoPlan.getFkeep().getIdEEP() <= 0) {
-					nuevoPlan.setFkeep(null);
+
+		if (nuevoPlan.getFkeep() != null && nuevoPlan.getFkeep().getIdEEP() <= 0) {
+			nuevoPlan.setFkeep(null);
+		}
+
+		// La identificacion la genera el sistema y no puede repetirse.
+		if (nuevoPlan.getCodigoPlan() == null || nuevoPlan.getCodigoPlan().isBlank()) {
+			nuevoPlan.setCodigoPlan(generarCodigoPlan());
+		} else {
+			validarCodigoUnico(nuevoPlan);
+		}
+
+		if (nuevoPlan.getFechaElaboracion() == null) {
+			nuevoPlan.setFechaElaboracion(new Date());
+		}
+
+		return repositorio.guardar(nuevoPlan);
+	}
+
+	/**
+	 * Genera identificaciones del tipo PM-2026-0007. Toma el numero mas alto que
+	 * ya existe para el anio en curso y suma uno; si el resultado ya estuviera
+	 * ocupado, sigue avanzando hasta encontrar uno libre.
+	 */
+	private String generarCodigoPlan() {
+		int anio = Calendar.getInstance().get(Calendar.YEAR);
+		String prefijo = "PM-" + anio + "-";
+
+		List<PlanMuestreoPL> existentes = repositorio.ListarTodos();
+
+		int mayor = 0;
+		for (PlanMuestreoPL plan : existentes) {
+			String codigo = plan.getCodigoPlan();
+			if (codigo != null && codigo.startsWith(prefijo)) {
+				try {
+					mayor = Math.max(mayor, Integer.parseInt(codigo.substring(prefijo.length())));
+				} catch (NumberFormatException ignorado) {
+					// Un codigo con otro formato no participa en la numeracion.
 				}
-				return repositorio.guardar(nuevoPlan);
+			}
+		}
+
+		String candidato;
+		do {
+			mayor++;
+			candidato = prefijo + String.format("%04d", mayor);
+		} while (codigoOcupado(existentes, candidato, 0));
+
+		return candidato;
+	}
+
+	private void validarCodigoUnico(PlanMuestreoPL plan) {
+		if (codigoOcupado(repositorio.ListarTodos(), plan.getCodigoPlan().trim(), plan.getIdPlan())) {
+			throw new IllegalStateException(
+					"Ya existe un plan con la identificacion \"" + plan.getCodigoPlan().trim() + "\".");
+		}
+	}
+
+	private boolean codigoOcupado(List<PlanMuestreoPL> planes, String codigo, int idPropio) {
+		return planes.stream()
+				.filter(plan -> plan.getIdPlan() != idPropio)
+				.anyMatch(plan -> plan.getCodigoPlan() != null
+						&& plan.getCodigoPlan().trim().equalsIgnoreCase(codigo));
 	}
 
 	@Override
@@ -97,4 +156,5 @@ public class PlanMuestreoPLUseCaseImpl implements IPlanMuestreoPLUseCase{
 		plan.setEstadoPlan(EstadoPlanMuestreo.COMPLETADO);
 		return repositorio.guardar(plan);
 	}
+
 }

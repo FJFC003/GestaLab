@@ -17,7 +17,30 @@ public class CargoUseCaseImpl implements ICargoUseCase{
 
 	@Override
 	public Cargo guardar(Cargo nuevoCargo) {
+		validarNombreUnico(nuevoCargo);
 		return repositorio.guardar(nuevoCargo);
+	}
+
+	/**
+	 * El nombre no puede repetirse. Se compara sin distinguir mayusculas ni
+	 * espacios sobrantes, y se excluye el propio registro para que editar
+	 * sin cambiar el nombre siga funcionando.
+	 */
+	private void validarNombreUnico(Cargo candidato) {
+		if (candidato.getNombre() == null || candidato.getNombre().isBlank()) {
+			return;
+		}
+		String nombreLimpio = candidato.getNombre().trim();
+
+		boolean repetido = repositorio.ListarTodos().stream()
+				.filter(existente -> existente.getIdCargo() != candidato.getIdCargo())
+				.anyMatch(existente -> existente.getNombre() != null
+						&& existente.getNombre().trim().equalsIgnoreCase(nombreLimpio));
+
+		if (repetido) {
+			throw new IllegalStateException(
+					"Ya existe un registro con el nombre \"" + nombreLimpio + "\". Use uno diferente.");
+		}
 	}
 
 	@Override
@@ -36,5 +59,6 @@ public class CargoUseCaseImpl implements ICargoUseCase{
 	public void eliminar(int idCargo) {
 		repositorio.eliminar(idCargo);
 	}
+
 
 }

@@ -18,7 +18,30 @@ public class EquipoLaboratorioUseCaseImpl implements IEquipoLaboratorioUseCase{
 
 	@Override
 	public EquipoLaboratorio guardar(EquipoLaboratorio nuevoEquipoLaboratorio) {
+		validarCodigoInternoUnico(nuevoEquipoLaboratorio);
 		return repositorio.guardar(nuevoEquipoLaboratorio);
+	}
+
+	/**
+	 * El codigo interno identifica al equipo dentro del laboratorio, asi que no
+	 * puede repetirse. El nombre, la marca, el modelo y la serie si pueden: es
+	 * normal tener dos equipos iguales comprados en lotes distintos.
+	 */
+	private void validarCodigoInternoUnico(EquipoLaboratorio candidato) {
+		if (candidato.getCodigoInterno() == null || candidato.getCodigoInterno().isBlank()) {
+			return;
+		}
+		String codigoLimpio = candidato.getCodigoInterno().trim();
+
+		boolean repetido = repositorio.ListarTodos().stream()
+				.filter(existente -> existente.getIdEquipoLab() != candidato.getIdEquipoLab())
+				.anyMatch(existente -> existente.getCodigoInterno() != null
+						&& existente.getCodigoInterno().trim().equalsIgnoreCase(codigoLimpio));
+
+		if (repetido) {
+			throw new IllegalStateException(
+					"Ya existe un equipo con el codigo interno \"" + codigoLimpio + "\". Use uno diferente.");
+		}
 	}
 
 	@Override
@@ -44,5 +67,6 @@ public class EquipoLaboratorioUseCaseImpl implements IEquipoLaboratorioUseCase{
 	public void eliminar(int idEquipoLab) {
 		repositorio.eliminar(idEquipoLab);
 	}
+
 
 }

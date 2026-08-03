@@ -18,7 +18,30 @@ public class AreaUseCaseImpl implements IAreaUseCase{
 
 	@Override
 	public Area guardar(Area nuevaArea) {
+		validarNombreUnico(nuevaArea);
 		return repositorio.guardar(nuevaArea);
+	}
+
+	/**
+	 * El nombre no puede repetirse. Se compara sin distinguir mayusculas ni
+	 * espacios sobrantes, y se excluye el propio registro para que editar
+	 * sin cambiar el nombre siga funcionando.
+	 */
+	private void validarNombreUnico(Area candidato) {
+		if (candidato.getNombre() == null || candidato.getNombre().isBlank()) {
+			return;
+		}
+		String nombreLimpio = candidato.getNombre().trim();
+
+		boolean repetido = repositorio.ListarTodos().stream()
+				.filter(existente -> existente.getIdArea() != candidato.getIdArea())
+				.anyMatch(existente -> existente.getNombre() != null
+						&& existente.getNombre().trim().equalsIgnoreCase(nombreLimpio));
+
+		if (repetido) {
+			throw new IllegalStateException(
+					"Ya existe un registro con el nombre \"" + nombreLimpio + "\". Use uno diferente.");
+		}
 	}
 
 	@Override
@@ -37,5 +60,6 @@ public class AreaUseCaseImpl implements IAreaUseCase{
 	public void eliminar(int idArea) {
 		repositorio.eliminar(idArea);
 	}
+
 
 }

@@ -18,8 +18,30 @@ public class RolUseCaseImpl implements IRolUseCase{
 
 	@Override
 	public Rol guardar(Rol nuevoRol) {
-		// TODO Auto-generated method stub
+		validarNombreUnico(nuevoRol);
 		return repositorio.guardar(nuevoRol);
+	}
+
+	/**
+	 * El nombre no puede repetirse. Se compara sin distinguir mayusculas ni
+	 * espacios sobrantes, y se excluye el propio registro para que editar
+	 * sin cambiar el nombre siga funcionando.
+	 */
+	private void validarNombreUnico(Rol candidato) {
+		if (candidato.getNombre() == null || candidato.getNombre().isBlank()) {
+			return;
+		}
+		String nombreLimpio = candidato.getNombre().trim();
+
+		boolean repetido = repositorio.ListarTodos().stream()
+				.filter(existente -> existente.getIdRol() != candidato.getIdRol())
+				.anyMatch(existente -> existente.getNombre() != null
+						&& existente.getNombre().trim().equalsIgnoreCase(nombreLimpio));
+
+		if (repetido) {
+			throw new IllegalStateException(
+					"Ya existe un registro con el nombre \"" + nombreLimpio + "\". Use uno diferente.");
+		}
 	}
 
 	@Override
@@ -40,7 +62,5 @@ public class RolUseCaseImpl implements IRolUseCase{
 		// TODO Auto-generated method stub
 		repositorio.eliminar(idRol);
 	}
-	
-	
 
 }
