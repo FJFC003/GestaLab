@@ -10,7 +10,13 @@ public class Usuario {
 	private String contrasenia;
 	private Date fechaCreacion;
 	private boolean estadoUsuario;
-	
+
+	/** Pregunta elegida por el usuario para recuperar el acceso. Texto visible. */
+	private String preguntaSeguridad;
+
+	/** Respuesta a la pregunta, guardada con BCrypt igual que la contrasenia. */
+	private String respuestaSeguridad;
+
 	public int getIdUsuario() {
 		return idUsuario;
 	}
@@ -47,7 +53,17 @@ public class Usuario {
 	public void setEstadoUsuario(boolean estadoUsuario) {
 		this.estadoUsuario = estadoUsuario;
 	}
-	
-	
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
+	}
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
+	}
+	public String getRespuestaSeguridad() {
+		return respuestaSeguridad;
+	}
+	public void setRespuestaSeguridad(String respuestaSeguridad) {
+		this.respuestaSeguridad = respuestaSeguridad;
+	}	
 	
 }

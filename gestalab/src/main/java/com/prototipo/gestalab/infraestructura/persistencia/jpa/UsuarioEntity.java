@@ -37,6 +37,18 @@ public class UsuarioEntity {
 
 	private boolean estadoUsuario;
 
+	/**
+	 * Pregunta de seguridad para recuperar el acceso.
+	 * Nullable a proposito: las cuentas ya existentes no la tienen configurada
+	 * y deben poder seguir funcionando sin cambios.
+	 */
+	@Column(length = 150)
+	private String preguntaSeguridad;
+
+	/** Respuesta guardada como hash BCrypt (60 caracteres). */
+	@Column(length = 100)
+	private String respuestaSeguridad;
+
 	@OneToMany(mappedBy = "fkUsuarioEntity")
 	private List<EmpleadoEntity> listarEmpleado = new ArrayList<>();
 
