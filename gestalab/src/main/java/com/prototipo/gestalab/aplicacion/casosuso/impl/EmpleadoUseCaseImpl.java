@@ -19,15 +19,26 @@ public class EmpleadoUseCaseImpl implements IEmpleadoUseCase{
 
 	@Override
 	public Empleado guardar(Empleado nuevoEmpleado) {
+
+		if (nuevoEmpleado.getCi() == null || nuevoEmpleado.getCi().isBlank()) {
+			throw new IllegalStateException("La cédula del empleado es obligatoria.");
+		}
+
+		// Se normaliza antes de comparar y antes de guardar: sin esto, la misma
+		// cédula con un espacio al final se toma como distinta y entra dos veces.
+		String cedulaLimpia = nuevoEmpleado.getCi().trim();
+		nuevoEmpleado.setCi(cedulaLimpia);
+
 		Optional<Empleado> existente = repositorio.ListarTodo().stream()
-				.filter(e -> e.getCi() != null && e.getCi().equalsIgnoreCase(nuevoEmpleado.getCi()))
 				.filter(e -> e.getIdEmpleado() != nuevoEmpleado.getIdEmpleado())
+				.filter(e -> e.getCi() != null && e.getCi().trim().equalsIgnoreCase(cedulaLimpia))
 				.findFirst();
 
 		if (existente.isPresent()) {
 			throw new IllegalStateException(
-					"Ya existe un empleado registrado con la cédula " + nuevoEmpleado.getCi());
+					"Ya existe un empleado registrado con ese número de cédula");
 		}
+
 		return repositorio.guardar(nuevoEmpleado);
 	}
 

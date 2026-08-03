@@ -18,8 +18,23 @@ public class RolUseCaseImpl implements IRolUseCase{
 
 	@Override
 	public Rol guardar(Rol nuevoRol) {
+		validarDatosObligatorios(nuevoRol);
 		validarNombreUnico(nuevoRol);
 		return repositorio.guardar(nuevoRol);
+	}
+
+	/**
+	 * Nombre y descripcion son obligatorios. Se valida aqui, en el caso de uso,
+	 * para que el mensaje llegue a la interfaz como un aviso legible y no como
+	 * el mapa de errores de la validacion automatica.
+	 */
+	private void validarDatosObligatorios(Rol candidato) {
+		if (candidato.getNombre() == null || candidato.getNombre().isBlank()) {
+			throw new IllegalStateException("El nombre no puede quedar vacío.");
+		}
+		if (candidato.getDescripcion() == null || candidato.getDescripcion().isBlank()) {
+			throw new IllegalStateException("El apartado de descripción no puede quedar vacío.");
+		}
 	}
 
 	/**
@@ -62,5 +77,4 @@ public class RolUseCaseImpl implements IRolUseCase{
 		// TODO Auto-generated method stub
 		repositorio.eliminar(idRol);
 	}
-
 }

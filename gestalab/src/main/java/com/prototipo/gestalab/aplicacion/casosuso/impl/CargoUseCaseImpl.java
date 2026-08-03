@@ -17,8 +17,23 @@ public class CargoUseCaseImpl implements ICargoUseCase{
 
 	@Override
 	public Cargo guardar(Cargo nuevoCargo) {
+		validarDatosObligatorios(nuevoCargo);
 		validarNombreUnico(nuevoCargo);
 		return repositorio.guardar(nuevoCargo);
+	}
+
+	/**
+	 * Nombre y descripcion son obligatorios. Se valida aqui, en el caso de uso,
+	 * para que el mensaje llegue a la interfaz como un aviso legible y no como
+	 * el mapa de errores de la validacion automatica.
+	 */
+	private void validarDatosObligatorios(Cargo candidato) {
+		if (candidato.getNombre() == null || candidato.getNombre().isBlank()) {
+			throw new IllegalStateException("El nombre no puede quedar vacío.");
+		}
+		if (candidato.getDescripcion() == null || candidato.getDescripcion().isBlank()) {
+			throw new IllegalStateException("El apartado de descripción no puede quedar vacío.");
+		}
 	}
 
 	/**
