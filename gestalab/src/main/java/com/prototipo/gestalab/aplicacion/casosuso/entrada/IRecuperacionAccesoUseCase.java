@@ -2,16 +2,13 @@ package com.prototipo.gestalab.aplicacion.casosuso.entrada;
 
 public interface IRecuperacionAccesoUseCase {
 	
-	/** Devuelve la pregunta configurada para ese correo, si procede. */
-	String obtenerPregunta(String correo);
+	String solicitarEnlace(String correoLaboral);
 
-	/** Valida la respuesta y fija una contrasenia nueva. */
-	void restablecerContrasenia(String correo, String respuesta, String nuevaContrasenia);
+	/** Comprueba que el enlace siga siendo valido. Lanza excepcion si no. */
+	void validarToken(String token);
 
-	/** Configura o cambia la pregunta y la respuesta de una cuenta. */
-	void configurarPregunta(int idUsuario, String pregunta, String respuesta);
+	/** Fija la contrasena nueva y quema el token. */
+	void restablecerConToken(String token, String nuevaContrasenia);
 
-	/** Indica si la cuenta ya tiene pregunta y respuesta configuradas. */
-	boolean tienePreguntaConfigurada(int idUsuario);
 
 }

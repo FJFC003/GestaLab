@@ -1,112 +1,166 @@
 package com.prototipo.gestalab.aplicacion.casosuso.impl;
 
-import java.text.Normalizer;
-import java.util.Locale;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HexFormat;
+import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRecuperacionAccesoUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.salida.INotificadorRecuperacion;
+import com.prototipo.gestalab.dominio.entidades.Empleado;
+import com.prototipo.gestalab.dominio.entidades.TokenRecuperacion;
 import com.prototipo.gestalab.dominio.entidades.Usuario;
 import com.prototipo.gestalab.dominio.excepciones.CredencialesInvalidasException;
-import com.prototipo.gestalab.dominio.excepciones.RecursoNoEncontradoException;
+import com.prototipo.gestalab.dominio.repositorio.IEmpleadoRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.ITokenRecuperacionRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IUsuarioRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IUsuariohasRolRepositorio;
+
 
 public class RecuperacionAccesoUseCaseImpl implements IRecuperacionAccesoUseCase{
 	
 	private static final String ROL_AUTORIZADO = "Gerente General";
 
-	/** Mismo mensaje para todos los rechazos: no distinguir correo inexistente de rol equivocado. */
 	private static final String MENSAJE_RECHAZO =
-			"No existe una cuenta de Gerente General activa con ese correo.";
+			"No se pudo iniciar la recuperación con ese correo. "
+			+ "Verifique que sea el correo laboral de la Gerente General.";
 
 	private static final int LONGITUD_MINIMA_CONTRASENIA = 8;
 
+	private static final int BYTES_DEL_TOKEN = 32;
+
 	private final IUsuarioRepositorio usuarioRepositorio;
 	private final IUsuariohasRolRepositorio usuariohasRolRepositorio;
+	private final IEmpleadoRepositorio empleadoRepositorio;
+	private final ITokenRecuperacionRepositorio tokenRepositorio;
+	private final INotificadorRecuperacion notificador;
 	private final PasswordEncoder passwordEncoder;
+	private final String baseUrlCliente;
+	private final int minutosValidez;
+
+	private final SecureRandom aleatorio = new SecureRandom();
 
 	public RecuperacionAccesoUseCaseImpl(IUsuarioRepositorio usuarioRepositorio,
 			IUsuariohasRolRepositorio usuariohasRolRepositorio,
-			PasswordEncoder passwordEncoder) {
+			IEmpleadoRepositorio empleadoRepositorio,
+			ITokenRecuperacionRepositorio tokenRepositorio,
+			INotificadorRecuperacion notificador,
+			PasswordEncoder passwordEncoder,
+			String baseUrlCliente,
+			int minutosValidez) {
 		super();
 		this.usuarioRepositorio = usuarioRepositorio;
 		this.usuariohasRolRepositorio = usuariohasRolRepositorio;
+		this.empleadoRepositorio = empleadoRepositorio;
+		this.tokenRepositorio = tokenRepositorio;
+		this.notificador = notificador;
 		this.passwordEncoder = passwordEncoder;
+		this.baseUrlCliente = baseUrlCliente;
+		this.minutosValidez = minutosValidez;
 	}
 
 	@Override
-	public String obtenerPregunta(String correo) {
-		Usuario usuario = usuarioAutorizado(correo);
+	public String solicitarEnlace(String correoLaboral) {
 
-		if (!tieneValor(usuario.getPreguntaSeguridad())) {
+		Usuario usuario = usuarioAutorizado(correoLaboral);
+		Empleado empleado = fichaDelUsuario(usuario);
+
+		String correoPersonal = empleado.getCorreo();
+		if (correoPersonal == null || correoPersonal.isBlank()) {
 			throw new IllegalStateException(
-					"Esta cuenta todavia no tiene configurada una pregunta de seguridad. "
-					+ "Debe configurarla desde el sistema antes de poder recuperar el acceso.");
+					"Esa cuenta no tiene un correo personal registrado en su ficha de empleado. "
+					+ "Sin ese dato no hay a donde enviar el enlace.");
 		}
-		return usuario.getPreguntaSeguridad();
+
+		invalidarAnteriores(usuario.getIdUsuario());
+
+		String tokenEnClaro = generarToken();
+
+		TokenRecuperacion registro = new TokenRecuperacion();
+		registro.setHashToken(huella(tokenEnClaro));
+		registro.setFkUsuario(usuario);
+		registro.setFechaCreacion(new Date());
+		registro.setFechaExpiracion(
+				new Date(System.currentTimeMillis() + (long) minutosValidez * 60_000L));
+		registro.setUsado(false);
+		tokenRepositorio.guardar(registro);
+
+		String enlace = baseUrlCliente + "/recuperar/token/" + tokenEnClaro;
+		notificador.enviarEnlaceRecuperacion(
+				correoPersonal, usuario.getNombre(), enlace, minutosValidez);
+
+		return enmascarar(correoPersonal);
 	}
 
 	@Override
-	public void restablecerContrasenia(String correo, String respuesta, String nuevaContrasenia) {
-		Usuario usuario = usuarioAutorizado(correo);
+	public void validarToken(String token) {
+		tokenVigente(token);
+	}
 
-		if (!tieneValor(usuario.getPreguntaSeguridad()) || !tieneValor(usuario.getRespuestaSeguridad())) {
+	@Override
+	public void restablecerConToken(String token, String nuevaContrasenia) {
+
+		TokenRecuperacion registro = tokenVigente(token);
+
+		if (nuevaContrasenia == null || nuevaContrasenia.trim().length() < LONGITUD_MINIMA_CONTRASENIA) {
 			throw new IllegalStateException(
-					"Esta cuenta no tiene configurada una pregunta de seguridad.");
+					"La nueva contraseña debe tener al menos " + LONGITUD_MINIMA_CONTRASENIA + " caracteres.");
 		}
 
-		if (!tieneValor(nuevaContrasenia) || nuevaContrasenia.trim().length() < LONGITUD_MINIMA_CONTRASENIA) {
-			throw new IllegalStateException(
-					"La nueva contrasena debe tener al menos " + LONGITUD_MINIMA_CONTRASENIA + " caracteres.");
-		}
-
-		if (!passwordEncoder.matches(normalizar(respuesta), usuario.getRespuestaSeguridad())) {
-			throw new CredencialesInvalidasException("La respuesta no coincide con la registrada.");
-		}
+		Usuario usuario = usuarioRepositorio.buscarPorId(registro.getFkUsuario().getIdUsuario())
+				.orElseThrow(() -> new CredencialesInvalidasException(MENSAJE_RECHAZO));
 
 		usuario.setContrasenia(passwordEncoder.encode(nuevaContrasenia.trim()));
 		usuarioRepositorio.guardar(usuario);
+
+		registro.setUsado(true);
+		tokenRepositorio.guardar(registro);
 	}
 
-	@Override
-	public void configurarPregunta(int idUsuario, String pregunta, String respuesta) {
-		Usuario usuario = usuarioRepositorio.buscarPorId(idUsuario)
-				.orElseThrow(() -> new RecursoNoEncontradoException(
-						"No existe el usuario con id " + idUsuario));
 
-		if (!esGerenteGeneral(usuario)) {
+	private TokenRecuperacion tokenVigente(String token) {
+		if (token == null || token.isBlank()) {
+			throw new CredencialesInvalidasException("El enlace no es válido.");
+		}
+
+		TokenRecuperacion registro = tokenRepositorio.buscarPorHash(huella(token))
+				.orElseThrow(() -> new CredencialesInvalidasException(
+						"El enlace no es válido. Solicite uno nuevo."));
+
+		if (registro.isUsado()) {
 			throw new IllegalStateException(
-					"Solo la cuenta de Gerente General puede configurar una pregunta de seguridad.");
+					"Ese enlace ya se utilizó. Solicite uno nuevo.");
 		}
 
-		if (!tieneValor(pregunta)) {
-			throw new IllegalStateException("Debe elegir una pregunta de seguridad.");
+		if (registro.getFechaExpiracion() == null
+				|| registro.getFechaExpiracion().before(new Date())) {
+			throw new IllegalStateException(
+					"El enlace caducó. Solicite uno nuevo.");
 		}
 
-		String respuestaLimpia = normalizar(respuesta);
-		if (respuestaLimpia.length() < 3) {
-			throw new IllegalStateException("La respuesta debe tener al menos 3 caracteres.");
+		if (registro.getFkUsuario() == null) {
+			throw new CredencialesInvalidasException("El enlace no es válido.");
 		}
 
-		usuario.setPreguntaSeguridad(pregunta.trim());
-		usuario.setRespuestaSeguridad(passwordEncoder.encode(respuestaLimpia));
-		usuarioRepositorio.guardar(usuario);
+		return registro;
 	}
 
-	@Override
-	public boolean tienePreguntaConfigurada(int idUsuario) {
-		return usuarioRepositorio.buscarPorId(idUsuario)
-				.map(u -> tieneValor(u.getPreguntaSeguridad()) && tieneValor(u.getRespuestaSeguridad()))
-				.orElse(false);
+	private void invalidarAnteriores(int idUsuario) {
+		List<TokenRecuperacion> vivos = tokenRepositorio.buscarSinUsarPorUsuario(idUsuario);
+		for (TokenRecuperacion anterior : vivos) {
+			anterior.setUsado(true);
+			tokenRepositorio.guardar(anterior);
+		}
 	}
 
-	/**
-	 * Localiza al usuario y comprueba que este activo y que sea Gerente General.
-	 * Todos los rechazos devuelven el mismo mensaje para no dar pistas.
-	 */
 	private Usuario usuarioAutorizado(String correo) {
-		if (!tieneValor(correo)) {
+		if (correo == null || correo.isBlank()) {
 			throw new CredencialesInvalidasException(MENSAJE_RECHAZO);
 		}
 
@@ -114,38 +168,54 @@ public class RecuperacionAccesoUseCaseImpl implements IRecuperacionAccesoUseCase
 				.filter(Usuario::isEstadoUsuario)
 				.orElseThrow(() -> new CredencialesInvalidasException(MENSAJE_RECHAZO));
 
-		if (!esGerenteGeneral(usuario)) {
-			throw new CredencialesInvalidasException(MENSAJE_RECHAZO);
-		}
-		return usuario;
-	}
-
-	private boolean esGerenteGeneral(Usuario usuario) {
-		return usuariohasRolRepositorio.ListarTodos().stream()
+		boolean esGerente = usuariohasRolRepositorio.ListarTodos().stream()
 				.filter(a -> a.getFkUsuario() != null
 						&& a.getFkUsuario().getIdUsuario() == usuario.getIdUsuario())
 				.anyMatch(a -> a.getFkRol() != null
 						&& a.getFkRol().getNombre() != null
 						&& ROL_AUTORIZADO.equalsIgnoreCase(a.getFkRol().getNombre().trim()));
-	}
 
-	/**
-	 * Deja la respuesta comparable: sin espacios sobrantes, en minusculas y sin
-	 * tildes. Asi " Quito ", "QUITO" y "Quito" cuentan como la misma respuesta.
-	 * Sin esto, una tilde de mas el dia del apuro deja fuera a la usuaria.
-	 */
-	private String normalizar(String texto) {
-		if (texto == null) {
-			return "";
+		if (!esGerente) {
+			throw new CredencialesInvalidasException(MENSAJE_RECHAZO);
 		}
-		String sinTildes = Normalizer
-				.normalize(texto.trim().toLowerCase(Locale.ROOT), Normalizer.Form.NFD)
-				.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-		return sinTildes.replaceAll("\\s+", " ");
+		return usuario;
 	}
 
-	private boolean tieneValor(String s) {
-		return s != null && !s.isBlank();
+	
+	private Empleado fichaDelUsuario(Usuario usuario) {
+		return empleadoRepositorio.ListarTodo().stream()
+				.filter(e -> e.getFkUsuario() != null
+						&& e.getFkUsuario().getIdUsuario() == usuario.getIdUsuario())
+				.findFirst()
+				.orElseThrow(() -> new IllegalStateException(
+						"Esa cuenta no tiene ficha de empleado, así que no hay un correo "
+						+ "personal al que enviar el enlace."));
+	}
+
+	private String generarToken() {
+		byte[] bytes = new byte[BYTES_DEL_TOKEN];
+		aleatorio.nextBytes(bytes);
+		// Sin relleno y en alfabeto seguro para URL: el token viaja en la ruta.
+		return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+	}
+
+	
+	private String huella(String token) {
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			return HexFormat.of().formatHex(
+					digest.digest(token.trim().getBytes(StandardCharsets.UTF_8)));
+		} catch (NoSuchAlgorithmException ex) {
+			throw new IllegalStateException("SHA-256 no disponible en esta JVM", ex);
+		}
+	}
+
+	private String enmascarar(String correo) {
+		int arroba = correo.indexOf('@');
+		if (arroba <= 0) {
+			return "***";
+		}
+		return correo.charAt(0) + "***" + correo.substring(arroba);
 	}
 
 }

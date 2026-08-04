@@ -2,9 +2,9 @@ package com.prototipo.gestalab.presentacion.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class PreguntaSeguridadRequestDto {
+public class SolicitarRecuperacionRequestDto {
 	
-	@NotBlank(message = "El correo es obligatorio")
+	@NotBlank(message = "El correo laboral es obligatorio")
 	private String correo;
 
 	public String getCorreo() {
