@@ -14,7 +14,18 @@ public class PlanMuestreoPLRequestDto {
 	
 	private int idPlan;
 
-	@NotBlank(message = "El código del plan es obligatorio")
+	/**
+	 * SIN @NotBlank a proposito.
+	 *
+	 * La identificacion del plan (PM-AAAA-0000) la genera el backend en
+	 * PlanMuestreoPLUseCaseImpl.generarCodigoPlan(), y el cliente la envia en
+	 * blanco justo para eso. Si se le pone @NotBlank, la validacion se ejecuta
+	 * ANTES de entrar al controlador y rechaza la peticion con un 400, sin dar
+	 * oportunidad al caso de uso de generar el codigo.
+	 *
+	 * Cuando el codigo SI viene informado (edicion de un plan existente), el
+	 * caso de uso comprueba que no este repetido.
+	 */
 	private String codigoPlan;
 
 	@NotBlank(message = "El objetivo del plan es obligatorio")
