@@ -23,10 +23,47 @@ public class CotizacionCUseCaseImpl implements ICotizacionCUseCase{
 
 	@Override
 	public CotizacionC guardar(CotizacionC nuevaCotizacion) {
-		// TODO Auto-generated method stub
+
+		// Solo en actualizaciones: una cotizacion ya existente tiene id.
+		if (nuevaCotizacion.getIdCotizacionC() > 0) {
+
+			CotizacionC existente = buscarPorId(nuevaCotizacion.getIdCotizacionC());
+
+			// Una cotizacion aprobada es un compromiso con el cliente y la base
+			// de la que cuelga el Plan de Muestreo. No se toca.
+			if (existente.getEstadoAprobacion() == EstadoAprobacionCotizacion.APROBADA) {
+				throw new IllegalStateException(
+						"Esta cotización ya fue aprobada y no se puede modificar.");
+			}
+
+			// El formulario de edicion NO envia los datos de aprobacion, asi que
+			// llegan en null. Sin esto, guardar una cotizacion ENVIADA o PAGADA
+			// la devolveria a BORRADOR y borraria quien la aprobo y cuando.
+			if (nuevaCotizacion.getEstadoAprobacion() == null) {
+				nuevaCotizacion.setEstadoAprobacion(existente.getEstadoAprobacion());
+			}
+			if (nuevaCotizacion.getFechaAprobacionCotizacionC() == null) {
+				nuevaCotizacion.setFechaAprobacionCotizacionC(existente.getFechaAprobacionCotizacionC());
+			}
+			if (nuevaCotizacion.getFkEmpleadoAprueba() == null) {
+				nuevaCotizacion.setFkEmpleadoAprueba(existente.getFkEmpleadoAprueba());
+			}
+			if (nuevaCotizacion.getFechaPagoCotizacionC() == null) {
+				nuevaCotizacion.setFechaPagoCotizacionC(existente.getFechaPagoCotizacionC());
+			}
+			if (nuevaCotizacion.getFechaEnvioCotizacionC() == null) {
+				nuevaCotizacion.setFechaEnvioCotizacionC(existente.getFechaEnvioCotizacionC());
+			}
+			if (nuevaCotizacion.getFechaLimitePagoCotizacionC() == null) {
+				nuevaCotizacion.setFechaLimitePagoCotizacionC(existente.getFechaLimitePagoCotizacionC());
+			}
+		}
+
+		// Cotizacion nueva sin estado: nace como borrador.
 		if (nuevaCotizacion.getEstadoAprobacion() == null) {
 			nuevaCotizacion.setEstadoAprobacion(EstadoAprobacionCotizacion.BORRADOR);
 		}
+
 		return repositorio.guardar(nuevaCotizacion);
 	}
 
@@ -72,6 +109,8 @@ public class CotizacionCUseCaseImpl implements ICotizacionCUseCase{
 		cotizacion.setFechaAprobacionCotizacionC(new Date());
 		cotizacion.setEstadoAprobacion(EstadoAprobacionCotizacion.APROBADA);
 
+		// Se llama al repositorio directamente, no a guardar(), para que la
+		// validacion "no se modifica una aprobada" no bloquee la aprobacion.
 		return repositorio.guardar(cotizacion);
 	}
 
@@ -85,5 +124,4 @@ public class CotizacionCUseCaseImpl implements ICotizacionCUseCase{
 		cotizacion.setEstadoAprobacion(EstadoAprobacionCotizacion.RECHAZADA);
 		return repositorio.guardar(cotizacion);
 	}
-
 }
