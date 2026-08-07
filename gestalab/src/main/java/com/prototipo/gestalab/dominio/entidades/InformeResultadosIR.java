@@ -15,6 +15,56 @@ public class InformeResultadosIR {
 	private EstadoInformeIR estadoInforme;
 	private Date fechaEnvioCoordinacion;
 	
+	private String identificacionSitioMuestreo;
+	private String coordenadaUtmX;
+	private String coordenadaUtmY;
+	private String codigoCadenaCustodia;
+	private String codigoLaboratorio;
+	private String procedimientoTomaMuestra;
+	private Date fechaIngresoLaboratorio;
+	
+	public String getIdentificacionSitioMuestreo() {
+		return identificacionSitioMuestreo;
+	}
+	public void setIdentificacionSitioMuestreo(String identificacionSitioMuestreo) {
+		this.identificacionSitioMuestreo = identificacionSitioMuestreo;
+	}
+	public String getCoordenadaUtmX() {
+		return coordenadaUtmX;
+	}
+	public void setCoordenadaUtmX(String coordenadaUtmX) {
+		this.coordenadaUtmX = coordenadaUtmX;
+	}
+	public String getCoordenadaUtmY() {
+		return coordenadaUtmY;
+	}
+	public void setCoordenadaUtmY(String coordenadaUtmY) {
+		this.coordenadaUtmY = coordenadaUtmY;
+	}
+	public String getCodigoCadenaCustodia() {
+		return codigoCadenaCustodia;
+	}
+	public void setCodigoCadenaCustodia(String codigoCadenaCustodia) {
+		this.codigoCadenaCustodia = codigoCadenaCustodia;
+	}
+	public String getCodigoLaboratorio() {
+		return codigoLaboratorio;
+	}
+	public void setCodigoLaboratorio(String codigoLaboratorio) {
+		this.codigoLaboratorio = codigoLaboratorio;
+	}
+	public String getProcedimientoTomaMuestra() {
+		return procedimientoTomaMuestra;
+	}
+	public void setProcedimientoTomaMuestra(String procedimientoTomaMuestra) {
+		this.procedimientoTomaMuestra = procedimientoTomaMuestra;
+	}
+	public Date getFechaIngresoLaboratorio() {
+		return fechaIngresoLaboratorio;
+	}
+	public void setFechaIngresoLaboratorio(Date fechaIngresoLaboratorio) {
+		this.fechaIngresoLaboratorio = fechaIngresoLaboratorio;
+	}
 	public EstadoInformeIR getEstadoInforme() {
 		return estadoInforme;
 	}

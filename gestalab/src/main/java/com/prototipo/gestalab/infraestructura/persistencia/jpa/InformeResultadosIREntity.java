@@ -49,6 +49,28 @@ public class InformeResultadosIREntity {
 
 	private Date fechaEnvioCoordinacion;
 
+	// ---- Informacion del sitio de muestreo ----
+	// Columnas nuevas: con ddl-auto=update Hibernate las crea al arrancar.
+	@Column(length = 120)
+	private String identificacionSitioMuestreo;
+
+	@Column(length = 40)
+	private String coordenadaUtmX;
+
+	@Column(length = 40)
+	private String coordenadaUtmY;
+
+	@Column(length = 60)
+	private String codigoCadenaCustodia;
+
+	@Column(length = 60)
+	private String codigoLaboratorio;
+
+	@Column(length = 300)
+	private String procedimientoTomaMuestra;
+
+	private Date fechaIngresoLaboratorio;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_datos_laboratorio")
 	private DatosLaboratorioIREntity fkDatosLaboratorioEntity;
@@ -65,6 +87,7 @@ public class InformeResultadosIREntity {
 
 	@OneToMany(mappedBy = "fkInformeEntity", cascade = CascadeType.REMOVE)
 	private List<EquiposUtilizadosIREntity> listaEquipos = new ArrayList<>();
+
 
 
 }

@@ -9,24 +9,35 @@ import lombok.Data;
 @Data
 public class InformeResultadosIRRequestDto {
 	
-		private int idInforme;
+	private int idInforme;
 
-		@NotBlank(message = "El código del informe es obligatorio")
-		private String codigoInforme;
+	@NotBlank(message = "El código del informe es obligatorio")
+	private String codigoInforme;
 
-		private Date fechaEmisionInforme;
+	private Date fechaEmisionInforme;
 
-		private String notasAdvertencia;
+	private String notasAdvertencia;
 
-		@NotBlank(message = "El responsable del análisis es obligatorio")
-		private String nombreResponsable;
+	@NotBlank(message = "El responsable del análisis es obligatorio")
+	private String nombreResponsable;
 
-		@NotBlank(message = "Debe indicar si cumple o no la normativa")
-		private String conformidadGeneral;
+	@NotBlank(message = "Debe indicar si cumple o no la normativa")
+	private String conformidadGeneral;
 
-		private int fkDatosLaboratorio;
+	private int fkDatosLaboratorio;
 
-		@Positive(message = "El informe debe pertenecer a una orden de trabajo")
-		private int fkOrdenTrabajo;
+	@Positive(message = "El informe debe pertenecer a una orden de trabajo")
+	private int fkOrdenTrabajo;
+
+	// ---- Informacion del sitio de muestreo ----
+	// Sin validaciones: son datos que el laboratorio completa cuando los
+	// tiene, y el informe se guarda como borrador antes de tenerlos todos.
+	private String identificacionSitioMuestreo;
+	private String coordenadaUtmX;
+	private String coordenadaUtmY;
+	private String codigoCadenaCustodia;
+	private String codigoLaboratorio;
+	private String procedimientoTomaMuestra;
+	private Date fechaIngresoLaboratorio;
 
 }
