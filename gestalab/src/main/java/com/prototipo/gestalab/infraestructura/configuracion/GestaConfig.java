@@ -39,6 +39,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRecursosCronoPLUseCas
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IResultadosIRUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IRolUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.ITipoTomaFreHoraPLUseCase;
+import com.prototipo.gestalab.aplicacion.casosuso.entrada.ITipoTomaMuestraCUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IUsuarioUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IUsuariohasRolUseCase;
 import com.prototipo.gestalab.aplicacion.casosuso.entrada.IVerificacionPLUseCase;
@@ -76,6 +77,7 @@ import com.prototipo.gestalab.aplicacion.casosuso.impl.RecursosCronoPLUseCaseImp
 import com.prototipo.gestalab.aplicacion.casosuso.impl.ResultadosIRUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.RolUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.TipoTomaFreHoraPLUseCaseImpl;
+import com.prototipo.gestalab.aplicacion.casosuso.impl.TipoTomaMuestraCUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.UsuarioUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.UsuariohasRolUseCaseImpl;
 import com.prototipo.gestalab.aplicacion.casosuso.impl.VerificacionPLUseCaseImpl;
@@ -112,6 +114,7 @@ import com.prototipo.gestalab.dominio.repositorio.IRecursosCronoPLRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IResultadosIRRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IRolRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.ITipoTomaFreHoraPLRepositorio;
+import com.prototipo.gestalab.dominio.repositorio.ITipoTomaMuestraCRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IUsuarioRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IUsuariohasRolRepositorio;
 import com.prototipo.gestalab.dominio.repositorio.IVerificacionPLRepositorio;
@@ -148,6 +151,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.RecursosC
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.ResultadosIRRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.RolRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.TipoTomaFreHoraPLRepositorioImpl;
+import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.TipoTomaMuestraCRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.UsuarioRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.UsuariohasRolRepositorioImpl;
 import com.prototipo.gestalab.infraestructura.persistencia.adaptadores.VerificacionPLRepositorioImpl;
@@ -184,6 +188,7 @@ import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IRecursosC
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IResultadosIRJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IRolJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ITipoTomaFreHoraPLJpaMapper;
+import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.ITipoTomaMuestraCJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IUsuarioJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IUsuariohasRolJpaMapper;
 import com.prototipo.gestalab.infraestructura.persistencia.mapeadores.IVerificacionPLJpaMapper;
@@ -220,6 +225,7 @@ import com.prototipo.gestalab.infraestructura.repositorios.IRecursosCronoPLJpaRe
 import com.prototipo.gestalab.infraestructura.repositorios.IResultadosIRJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IRolJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.ITipoTomaFreHoraPLJpaRepositorio;
+import com.prototipo.gestalab.infraestructura.repositorios.ITipoTomaMuestraCJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IUsuarioJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IUsuariohasRolJpaRepositorio;
 import com.prototipo.gestalab.infraestructura.repositorios.IVerificacionPLJpaRepositorio;
@@ -383,10 +389,11 @@ public class GestaConfig {
 	IDetalleCRepositorio detalleCRepositorio(IDetalleCJpaRepositorio jpaRepositorio, IDetalleCJpaMapper mapper,
 			ICotizacionCJpaRepositorio cotizacionCJpaRepositorio, ICatalogoParametroCJpaRepositorio parametroCJpaRepositorio,
 			ILmpCJpaRepositorio lmpCJpaRepositorio, IDescripcionServicioCJpaRepositorio descripcionServicioCJpaRepositorio,
-			IPlazoEntregaCJpaRepositorio plazoEntregaCJpaRepositorio) {
+			IPlazoEntregaCJpaRepositorio plazoEntregaCJpaRepositorio,
+			ITipoTomaMuestraCJpaRepositorio tipoTomaMuestraCJpaRepositorio) {
 		return new DetalleCRepositorioImpl(jpaRepositorio, mapper, cotizacionCJpaRepositorio, parametroCJpaRepositorio,
-				lmpCJpaRepositorio, descripcionServicioCJpaRepositorio, plazoEntregaCJpaRepositorio);
-
+				lmpCJpaRepositorio, descripcionServicioCJpaRepositorio, plazoEntregaCJpaRepositorio,
+				tipoTomaMuestraCJpaRepositorio);
 	}
 	
 	@Bean
@@ -422,6 +429,17 @@ public class GestaConfig {
 	@Bean
 	IPlazoEntregaCUseCase plazoEntregaCUseCase(IPlazoEntregaCRepositorio repo) {
 		return new PlazoEntregaCUseCaseImpl(repo);
+	}
+
+	@Bean
+	ITipoTomaMuestraCRepositorio tipoTomaMuestraCRepositorio(ITipoTomaMuestraCJpaRepositorio jpaRepositorio,
+			ITipoTomaMuestraCJpaMapper mapper) {
+		return new TipoTomaMuestraCRepositorioImpl(jpaRepositorio, mapper);
+	}
+
+	@Bean
+	ITipoTomaMuestraCUseCase tipoTomaMuestraCUseCase(ITipoTomaMuestraCRepositorio repo) {
+		return new TipoTomaMuestraCUseCaseImpl(repo);
 	}
 
 	@Bean

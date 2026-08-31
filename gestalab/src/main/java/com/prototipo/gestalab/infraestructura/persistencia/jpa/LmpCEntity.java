@@ -25,7 +25,8 @@ public class LmpCEntity {
 	@OneToMany(mappedBy = "fkLmpEntity")
 	private List<NormaParametroLmpCEntity> listaNormaParametroLmp = new ArrayList<>();
  
+	// El LMP aplica al parametro, por eso apunta a la tabla hija DetalleParametro.
 	@OneToMany(mappedBy = "fkLmpEntity")
-	private List<DetalleCEntity> listaDetalles = new ArrayList<>();
+	private List<DetalleParametroCEntity> listaDetalles = new ArrayList<>();
 
 }

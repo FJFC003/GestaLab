@@ -34,7 +34,9 @@ public class CatalogoParametrosCEntity {
 	@JoinColumn(name = "fk_condicion_parametro")
 	private CondicionParametroCEntity fkCondicionParametroEntity;
 	
+    // El parametro ya no cuelga de la linea de detalle sino de la fila hija
+    // que la relaciona con el grupo de servicio.
     @OneToMany(mappedBy = "fkCatalogoParametroEntity")
-    private List<DetalleCEntity> listaDetalles = new ArrayList<>();
+    private List<DetalleParametroCEntity> listaDetalles = new ArrayList<>();
 
 }
