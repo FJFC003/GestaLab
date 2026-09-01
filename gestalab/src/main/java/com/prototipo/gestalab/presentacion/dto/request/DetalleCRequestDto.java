@@ -14,6 +14,7 @@ public class DetalleCRequestDto {
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
 	private String condicionDetalleC;
+	private String frecuenciaDetalleC;
 	private int fkCotizacion;
 	private int fkDescripcionServicio;
 	@Min(value = 1, message = "Debe seleccionar un plazo de entrega")

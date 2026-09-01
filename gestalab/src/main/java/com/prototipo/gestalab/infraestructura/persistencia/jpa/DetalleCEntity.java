@@ -26,6 +26,7 @@ public class DetalleCEntity {
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
 	private String condicionDetalleC;
+	private String frecuenciaDetalleC;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_cotizacion")

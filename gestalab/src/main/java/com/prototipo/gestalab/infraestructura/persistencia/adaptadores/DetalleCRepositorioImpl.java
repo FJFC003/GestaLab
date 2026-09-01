@@ -92,6 +92,7 @@ public class DetalleCRepositorioImpl implements IDetalleCRepositorio {
 				existente.setPrecioUnitarioDetalleC(entity.getPrecioUnitarioDetalleC());
 				existente.setPrecioTotalDetalleC(entity.getPrecioTotalDetalleC());
 				existente.setCondicionDetalleC(entity.getCondicionDetalleC());
+				existente.setFrecuenciaDetalleC(entity.getFrecuenciaDetalleC());
 				existente.setFkCotizacionCEntity(entity.getFkCotizacionCEntity());
 				existente.setFkDescripcionServicioEntity(entity.getFkDescripcionServicioEntity());
 				existente.setFkPlazoEntregaEntity(entity.getFkPlazoEntregaEntity());

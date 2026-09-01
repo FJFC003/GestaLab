@@ -13,6 +13,7 @@ public class DetalleCResponseDto {
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
 	private String condicionDetalleC;
+	private String frecuenciaDetalleC;
 	private DescripcionServicioCResponseDto fkDescripcionServicio;
 	private PlazoEntregaCResponseDto fkPlazoEntrega;
 	private TipoTomaMuestraCResponseDto fkTipoTomaMuestra;

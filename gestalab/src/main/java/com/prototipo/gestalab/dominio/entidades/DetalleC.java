@@ -21,6 +21,7 @@ public class DetalleC {
 	private double precioUnitarioDetalleC;
 	private double precioTotalDetalleC;
 	private String condicionDetalleC;
+	private String frecuenciaDetalleC;
 	private CotizacionC fkCotizacion;
 	private DescripcionServicioC fkDescripcionServicio;
 	private PlazoEntregaC fkPlazoEntrega;
