@@ -25,6 +25,7 @@ public class InformeResultadosIRResponseDto {
 	private String codigoCadenaCustodia;
 	private String codigoLaboratorio;
 	private String procedimientoTomaMuestra;
+	private LmpCResponseDto fkLmp;
 	private Date fechaIngresoLaboratorio;
 
 }

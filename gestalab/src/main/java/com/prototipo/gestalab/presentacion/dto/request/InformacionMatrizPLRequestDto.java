@@ -12,7 +12,8 @@ public class InformacionMatrizPLRequestDto {
 	@Positive(message = "El número de ítem debe ser mayor a cero")
 	private int noItem;
 
-	@NotBlank(message = "El tipo de matriz es obligatorio")
+	// El tipo de matriz lo elige la Coordinadora Tecnica del catalogo al
+	// elaborar el plan; al generarlo desde la cotizacion todavia no se conoce.
 	private String tipoMatriz;
 
 	@NotBlank(message = "La ubicación es obligatoria")

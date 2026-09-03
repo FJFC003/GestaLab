@@ -72,6 +72,10 @@ public class InformeResultadosIREntity {
 	private Date fechaIngresoLaboratorio;
 
 	@ManyToOne
+	@JoinColumn(name = "fk_lmp")
+	private LmpCEntity fkLmpEntity;
+
+	@ManyToOne
 	@JoinColumn(name = "fk_datos_laboratorio")
 	private DatosLaboratorioIREntity fkDatosLaboratorioEntity;
 

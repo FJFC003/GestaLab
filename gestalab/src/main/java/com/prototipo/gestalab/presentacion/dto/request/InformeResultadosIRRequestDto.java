@@ -38,6 +38,7 @@ public class InformeResultadosIRRequestDto {
 	private String codigoCadenaCustodia;
 	private String codigoLaboratorio;
 	private String procedimientoTomaMuestra;
+	private int fkLmp;
 	private Date fechaIngresoLaboratorio;
 
 }

@@ -12,7 +12,7 @@ public class ProcedimientoMuePLRequestDto {
 	@Positive(message = "El número de ítem debe ser mayor a cero")
 	private int noItem;
 
-	@NotBlank(message = "El tipo de matriz es obligatorio")
+	// Igual que en Informacion de la Matriz: lo elige la Coordinadora Tecnica.
 	private String Tipo;
 
 	private String descripcion;

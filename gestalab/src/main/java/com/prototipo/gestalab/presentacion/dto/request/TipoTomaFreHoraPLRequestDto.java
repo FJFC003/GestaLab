@@ -18,7 +18,8 @@ public class TipoTomaFreHoraPLRequestDto {
 	@NotBlank(message = "El tipo de toma de muestra es obligatorio")
 	private String tipo;
 
-	@NotBlank(message = "Las alícuotas son obligatorias")
+	// Las alicuotas las registra el Tecnico de Campo durante el muestreo, asi
+	// que la fila nace sin ellas.
 	private String alicuotas;
 
 	@Positive(message = "Debe pertenecer a un plan de muestreo")

@@ -21,6 +21,10 @@ public class InformeResultadosIR {
 	private String codigoCadenaCustodia;
 	private String codigoLaboratorio;
 	private String procedimientoTomaMuestra;
+	// Limite maximo permisible que se cita en la nota 3 del formato F-PO-02-07.
+	// Es el mismo catalogo LMP que usa la cotizacion, para que el informe no
+	// pueda citar una norma que el area comercial desconoce.
+	private LmpC fkLmp;
 	private Date fechaIngresoLaboratorio;
 	
 	public String getIdentificacionSitioMuestreo() {
@@ -58,6 +62,12 @@ public class InformeResultadosIR {
 	}
 	public void setProcedimientoTomaMuestra(String procedimientoTomaMuestra) {
 		this.procedimientoTomaMuestra = procedimientoTomaMuestra;
+	}
+	public LmpC getFkLmp() {
+		return fkLmp;
+	}
+	public void setFkLmp(LmpC fkLmp) {
+		this.fkLmp = fkLmp;
 	}
 	public Date getFechaIngresoLaboratorio() {
 		return fechaIngresoLaboratorio;
