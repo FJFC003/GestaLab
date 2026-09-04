@@ -27,6 +27,7 @@ import com.prototipo.gestalab.presentacion.dto.integrador.InformeCompletoIRRespo
 import com.prototipo.gestalab.presentacion.dto.request.CondicionAmbientalIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.EquiposUtilizadosIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.InformeResultadosIRRequestDto;
+import com.prototipo.gestalab.presentacion.dto.request.MotivoDevolucionRequestDto;
 import com.prototipo.gestalab.presentacion.dto.request.ResultadosIRRequestDto;
 import com.prototipo.gestalab.presentacion.dto.response.InformeResultadosIRResponseDto;
 import com.prototipo.gestalab.presentacion.mapeadores.ICondicionAmbientalIRDtoMapper;
@@ -149,6 +150,13 @@ public class InformeResultadosIRController {
 	@PutMapping("/enviar-coordinacion/{idInforme}")
 	public InformeResultadosIRResponseDto enviarACoordinacion(@PathVariable int idInforme) {
 		return mapper.toResponseDto(informeUseCase.enviarACoordinacion(idInforme));
+	}
+
+	@PutMapping("/devolver-laboratorio/{idInforme}")
+	public InformeResultadosIRResponseDto devolverALaboratorio(@PathVariable int idInforme,
+			@Valid @RequestBody MotivoDevolucionRequestDto request) {
+		return mapper.toResponseDto(
+				informeUseCase.devolverALaboratorio(idInforme, request.getMotivoDevolucion()));
 	}
 
 	@GetMapping("/enviados")

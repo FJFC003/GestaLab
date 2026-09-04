@@ -39,6 +39,8 @@ public class InformeResultadosIRRequestDto {
 	private String codigoLaboratorio;
 	private String procedimientoTomaMuestra;
 	private int fkLmp;
+	private byte[] imagenMapa;
+	private String imagenMapaTipo;
 	private Date fechaIngresoLaboratorio;
 
 }

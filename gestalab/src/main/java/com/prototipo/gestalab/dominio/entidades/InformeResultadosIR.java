@@ -26,6 +26,17 @@ public class InformeResultadosIR {
 	// pueda citar una norma que el area comercial desconoce.
 	private LmpC fkLmp;
 	private Date fechaIngresoLaboratorio;
+
+	// Mapa del lugar de muestreo. Se guarda el contenido y su tipo MIME para
+	// poder reconstruir la imagen tal cual se subio.
+	private byte[] imagenMapa;
+	private String imagenMapaTipo;
+
+	// Cuando la Coordinacion Tecnica devuelve el informe al laboratorio, queda
+	// registrado por que. Se conserva despues de corregido como historial de la
+	// observacion.
+	private String motivoDevolucion;
+	private Date fechaDevolucionLaboratorio;
 	
 	public String getIdentificacionSitioMuestreo() {
 		return identificacionSitioMuestreo;
@@ -62,6 +73,30 @@ public class InformeResultadosIR {
 	}
 	public void setProcedimientoTomaMuestra(String procedimientoTomaMuestra) {
 		this.procedimientoTomaMuestra = procedimientoTomaMuestra;
+	}
+	public byte[] getImagenMapa() {
+		return imagenMapa;
+	}
+	public void setImagenMapa(byte[] imagenMapa) {
+		this.imagenMapa = imagenMapa;
+	}
+	public String getImagenMapaTipo() {
+		return imagenMapaTipo;
+	}
+	public void setImagenMapaTipo(String imagenMapaTipo) {
+		this.imagenMapaTipo = imagenMapaTipo;
+	}
+	public String getMotivoDevolucion() {
+		return motivoDevolucion;
+	}
+	public void setMotivoDevolucion(String motivoDevolucion) {
+		this.motivoDevolucion = motivoDevolucion;
+	}
+	public Date getFechaDevolucionLaboratorio() {
+		return fechaDevolucionLaboratorio;
+	}
+	public void setFechaDevolucionLaboratorio(Date fechaDevolucionLaboratorio) {
+		this.fechaDevolucionLaboratorio = fechaDevolucionLaboratorio;
 	}
 	public LmpC getFkLmp() {
 		return fkLmp;

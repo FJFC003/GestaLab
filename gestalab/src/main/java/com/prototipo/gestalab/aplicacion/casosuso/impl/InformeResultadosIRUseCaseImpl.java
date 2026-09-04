@@ -134,6 +134,29 @@ public class InformeResultadosIRUseCaseImpl implements IInformeResultadosIRUseCa
 		return repositorio.guardar(informe);
 	}
 
+	/**
+	 * La Coordinacion Tecnica devuelve el informe al laboratorio con una
+	 * justificacion. El informe vuelve a EN_ELABORACION, con lo que reaparece en
+	 * la bandeja del laboratorio y vuelve a ser editable.
+	 */
+	@Override
+	public InformeResultadosIR devolverALaboratorio(int idInforme, String motivo) {
+		InformeResultadosIR informe = buscarPorId(idInforme);
+
+		if (informe.getEstadoInforme() != EstadoInformeIR.ENVIADO_COORDINACION) {
+			throw new IllegalStateException("Solo se puede devolver un informe que fue enviado a Coordinacion Tecnica");
+		}
+		if (motivo == null || motivo.isBlank()) {
+			throw new IllegalArgumentException("Debe indicar por que se devuelve el informe");
+		}
+
+		informe.setEstadoInforme(EstadoInformeIR.EN_ELABORACION);
+		informe.setMotivoDevolucion(motivo.trim());
+		informe.setFechaDevolucionLaboratorio(new Date());
+		informe.setFechaEnvioCoordinacion(null);
+		return repositorio.guardar(informe);
+	}
+
 	/** Bandeja de la Coordinacion Tecnica: solo los informes ya enviados. */
 	@Override
 	public List<InformeResultadosIR> listarEnviados() {

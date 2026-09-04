@@ -71,6 +71,14 @@ public class InformeResultadosIREntity {
 
 	private Date fechaIngresoLaboratorio;
 
+	@Column(columnDefinition = "bytea")
+	private byte[] imagenMapa;
+	private String imagenMapaTipo;
+
+	@Column(length = 1000)
+	private String motivoDevolucion;
+	private Date fechaDevolucionLaboratorio;
+
 	@ManyToOne
 	@JoinColumn(name = "fk_lmp")
 	private LmpCEntity fkLmpEntity;

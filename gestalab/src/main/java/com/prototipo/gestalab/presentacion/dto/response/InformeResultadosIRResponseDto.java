@@ -26,6 +26,10 @@ public class InformeResultadosIRResponseDto {
 	private String codigoLaboratorio;
 	private String procedimientoTomaMuestra;
 	private LmpCResponseDto fkLmp;
+	private byte[] imagenMapa;
+	private String imagenMapaTipo;
+	private String motivoDevolucion;
+	private java.util.Date fechaDevolucionLaboratorio;
 	private Date fechaIngresoLaboratorio;
 
 }

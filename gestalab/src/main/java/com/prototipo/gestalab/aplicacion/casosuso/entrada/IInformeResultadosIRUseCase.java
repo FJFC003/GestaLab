@@ -23,6 +23,7 @@ public interface IInformeResultadosIRUseCase {
 
 
 	InformeResultadosIR enviarACoordinacion(int idInforme);
+	InformeResultadosIR devolverALaboratorio(int idInforme, String motivo);
 	List<InformeResultadosIR> listarEnviados();
 
 }
